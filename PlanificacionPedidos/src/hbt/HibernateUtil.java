@@ -15,7 +15,6 @@ public class HibernateUtil {
 			config.addAnnotatedClass(Disponibilidad.class);
 			config.addAnnotatedClass(Empleado.class);
 			config.addAnnotatedClass(Pedido.class);
-			config.addAnnotatedClass(PedidoProgramado.class);
 			config.addAnnotatedClass(TipoPedido.class);
 			sessionFactory = config.buildSessionFactory();
 		} catch (Throwable ex) {

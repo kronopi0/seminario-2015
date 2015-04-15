@@ -1,6 +1,7 @@
 package controlador;
 
 import java.util.List;
+
 import dao.ClienteDAO;
 import dao.EmpleadoDAO;
 import dao.PedidoDAO;
@@ -8,7 +9,6 @@ import entities.Cliente;
 import entities.ComplejidadPedido;
 import entities.Empleado;
 import entities.Pedido;
-import entities.PedidoProgramado;
 import entities.TipoPedido;
 
 public class Sistema {
@@ -51,7 +51,6 @@ public class Sistema {
 	}
 
 	public void finalizarPedido(Pedido p) {
-		PedidoDAO.getInstancia().actualizarPedido(p);
 	}
 
 	public List<Pedido> getPedidos(String estado) {
@@ -77,8 +76,8 @@ public class Sistema {
 		return PedidoDAO.getInstancia().getCantidadDePedidosResueltosPorEmpleado(e);
 	}
 
-	public PedidoProgramado programarPedido(Pedido p, TipoPedido tipo, ComplejidadPedido complejidad) {
-		return null;
-	}
+	public void programarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) {
+		// TODO Auto-generated method stub
 
+	}
 }

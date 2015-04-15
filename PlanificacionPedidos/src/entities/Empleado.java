@@ -21,7 +21,7 @@ public class Empleado {
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idEmpleado")
-	public Set<PedidoProgramado> pedidos;
+	public Set<Pedido> pedidos;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idEmpleado")
@@ -53,14 +53,6 @@ public class Empleado {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-
-	public Set<PedidoProgramado> getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(Set<PedidoProgramado> pedidos) {
-		this.pedidos = pedidos;
 	}
 
 	public Set<Disponibilidad> getDisponibilidades() {
