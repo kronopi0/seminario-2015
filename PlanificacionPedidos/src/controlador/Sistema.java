@@ -2,9 +2,11 @@ package controlador;
 
 import java.util.List;
 
+import dao.CalendarioDAO;
 import dao.ClienteDAO;
 import dao.EmpleadoDAO;
 import dao.PedidoDAO;
+import entities.Calendario;
 import entities.Cliente;
 import entities.ComplejidadPedido;
 import entities.Empleado;
@@ -13,17 +15,25 @@ import entities.TipoPedido;
 
 public class Sistema {
 
-	private static Sistema instancia;
+	//private static Sistema instancia;
 
 	public Sistema() {
 	}
-
+	/*
 	public static Sistema getInstancia() {
 		if (instancia == null)
 			instancia = new Sistema();
 		return instancia;
 	}
-
+	*/
+	
+	/*
+	 * LEVANTAR CALENDARIO EN MEMORIA
+	 */
+	public List<Calendario> getCalendario() {
+		return CalendarioDAO.getInstancia().getCalendario();
+	}
+	
 	/*
 	 * BUSQUEDAS
 	 */

@@ -103,9 +103,7 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 				comboPendientes.setBounds(128, 38, 219, 26);
 				comboPendientes.setFont(new java.awt.Font("SansSerif", 0, 14));
 
-				Sistema s = new Sistema();
-
-				pedidosPend = s.getPedidos("Pendiente");
+				pedidosPend = sistema.getPedidos("Pendiente");
 
 				for (int i = 0; i < pedidosPend.size(); i++) {
 					comboPendientes.addItem((pedidosPend.get(i).getDescripcion()));

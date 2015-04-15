@@ -193,6 +193,7 @@ public class AltaPedido extends javax.swing.JFrame {
 							} catch (ParseException e) {
 								e.printStackTrace();
 							}
+							p.setFechaSolicitud(new Date());
 							p.setPeriodicidad(Integer.valueOf(jTextFieldPeriodicidad.getText()));
 							
 							sistema.altaPedido(p);
@@ -205,26 +206,6 @@ public class AltaPedido extends javax.swing.JFrame {
 							jTextFieldFechaDeEntrega.setEnabled(false);
 							jTextFieldPeriodicidad.setEnabled(false);
 							jTextFieldDescripcion.setEnabled(false);
-							
-						/*
-							cliente = sistema.buscarCliente(Integer.valueOf(jTextFieldCuit.getText()));
-							if (cliente != null)
-							{
-								jTextFieldNombreCliente.setText(cliente.getNombre());
-								jTextFieldCodigoPedido.setEnabled(true);
-								jTextFieldFechaDeEntrega.setEnabled(true);
-								jTextFieldPeriodicidad.setEnabled(true);
-								jTextFieldDescripcion.setEnabled(true);
-							} else {
-								JOptionPane.showMessageDialog(null, "El Cliente no existe.");
-								jTextFieldCuit.setText("");
-								jTextFieldNombreCliente.setText("");
-								jTextFieldCodigoPedido.setEnabled(false);
-								jTextFieldFechaDeEntrega.setEnabled(false);
-								jTextFieldPeriodicidad.setEnabled(false);
-								jTextFieldDescripcion.setEnabled(false);
-							}
-							*/
 						}
 								
 					}
