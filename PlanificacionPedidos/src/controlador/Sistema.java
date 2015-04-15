@@ -77,7 +77,7 @@ public class Sistema {
 		return PedidoDAO.getInstancia().getCantidadDePedidosResueltosPorEmpleado(e);
 	}
 
-	public PedidoProgramado programarPedido(Pedido p) {
+	public PedidoProgramado programarPedido(Pedido p, TipoPedido tipo, ComplejidadPedido complejidad) {
 		return null;
 	}
 
