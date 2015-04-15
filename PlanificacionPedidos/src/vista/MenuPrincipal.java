@@ -4,9 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.AbstractAction;
-
 import javax.swing.AbstractButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -19,26 +17,23 @@ import javax.swing.SwingUtilities;
 
 import controlador.Sistema;
 
-
 /**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
+ * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
+ * Builder, which is free for non-commercial use. If Jigloo is being used
+ * commercially (ie, by a corporation, company or business for any purpose
+ * whatever) then you should purchase a license for each developer using Jigloo.
+ * Please visit www.cloudgarden.com for details. Use of Jigloo implies
+ * acceptance of these licensing terms. A COMMERCIAL LICENSE HAS NOT BEEN
+ * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
+ * ANY CORPORATE OR COMMERCIAL PURPOSE.
+ */
 public class MenuPrincipal extends javax.swing.JFrame {
 	private JMenuBar Menu;
 	private JMenuItem ModifCliente;
 	private JMenuItem NuevoCliente;
 	private JMenuItem SalirItem;
 	private JMenuItem ConsultarDeudas;
-	private JMenu Ayuda;
+	private JMenu Info;
 	private JMenu Cliente;
 	private JMenu File;
 	private JTabbedPane tabbedPane;
@@ -101,17 +96,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
 					{
 						NuevoCliente = new JMenuItem();
 						Cliente.add(NuevoCliente);
-						NuevoCliente.setText("Programar Pedido");
+						NuevoCliente.setText("Programar Pedidos");
 						NuevoCliente.addActionListener(new ActionListener() {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								int p = -1;
 								for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-									String s = tabbedPane.getComponentAt(i)
-											.getClass().toString();
+									String s = tabbedPane.getComponentAt(i).getClass().toString();
 									System.out.print(s);
-									if (s.endsWith("AltaCliente")) {
+									if (s.endsWith("Programar Pedidos")) {
 										p = i;
 									}
 								}
@@ -119,8 +113,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 									tabbedPane.setSelectedIndex(p);
 								} else {
 									Component c;
-									c = new ProgramarPedido(tabbedPane, sist);
-									tabbedPane.add("Alta Cliente", c);
+									c = new ProgramarPedidos();
+									tabbedPane.add("Programar Pedidos", c);
 									int ip = tabbedPane.indexOfComponent(c);
 									tabbedPane.setSelectedIndex(ip);
 								}
@@ -137,8 +131,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 							public void actionPerformed(ActionEvent arg0) {
 								int p = -1;
 								for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-									String s = tabbedPane.getComponentAt(i)
-											.getClass().toString();
+									String s = tabbedPane.getComponentAt(i).getClass().toString();
 									if (s.endsWith("ModificarCliente")) {
 										p = i;
 									}
@@ -155,32 +148,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
 							}
 						});
 					}
-					
+
 				}
-				
-				
+
 				{
-					Ayuda = new JMenu();
-					Menu.add(Ayuda);
-					Ayuda.setText("Ayuda");
+					Info = new JMenu();
+					Menu.add(Info);
+					Info.setText("Info");
 					{
 						Integrantes = new JMenuItem();
-						Ayuda.add(Integrantes);
+						Info.add(Integrantes);
 						Integrantes.setText("Integrantes");
 						Integrantes.addActionListener(new ActionListener() {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								JOptionPane
-										.showMessageDialog(
-												null,
-												"Integrantes: \n    Manuel Alen Freire \n    Juan Manuel Martinez Godoy \n    Eduardo Sara");
+								JOptionPane.showMessageDialog(null, "Integrantes:\n    Manuel Alen Freire\n    Juan Manuel Martinez Godoy\n    Eduardo Sara");
 							}
 						});
 					}
 				}
 			}
-			
+
 			pack();
 			this.setSize(650, 450);
 		} catch (Exception e) {
