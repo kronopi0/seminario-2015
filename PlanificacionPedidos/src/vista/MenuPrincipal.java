@@ -79,6 +79,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 				getContentPane().add(jButtonFinalizar);
 				jButtonFinalizar.setText("Finalizar");
 				jButtonFinalizar.setBounds(280, 24, 84, 29);
+				jButtonFinalizar.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent evt){
+						FinalizarPedido app = new FinalizarPedido(sistema);
+						app.setVisible(true);
+					}
+				});
 			}
 			{
 				jLabelPedidos = new JLabel();
@@ -102,6 +108,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 				getContentPane().add(jButtonReporte);
 				jButtonReporte.setText("Reporte");
 				jButtonReporte.setBounds(92, 104, 84, 29);
+				jButtonReporte.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent evt){
+						ReportePedidos app = new ReportePedidos(sistema);
+						app.setVisible(true);
+					}
+				});
 			}
 			{
 				jSeparator2 = new JSeparator();
