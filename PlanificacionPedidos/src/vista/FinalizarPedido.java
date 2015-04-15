@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -82,11 +83,14 @@ public class FinalizarPedido extends javax.swing.JFrame {
 
 				jComboBoxPedidosSinFinalizar = new JComboBox<String>();
 				getContentPane().add(jComboBoxPedidosSinFinalizar);
-				jComboBoxPedidosSinFinalizar.setBounds(70, 44, 260, 27);
+				jComboBoxPedidosSinFinalizar.setBounds(71, 44, 260, 27);
 
-				pedidos = sistema.getPedidos("Programados");
+				pedidos = sistema.getPedidos("Programado");
+				System.out.println(pedidos.get(0).getDescripcion());
 				for (int i = 0; i < pedidos.size(); i++)
 					jComboBoxPedidosSinFinalizar.addItem(pedidos.get(i).getDescripcion());
+
+				pedido = pedidos.get(0);
 
 				jComboBoxPedidosSinFinalizar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
@@ -144,16 +148,25 @@ public class FinalizarPedido extends javax.swing.JFrame {
 				botonDetalles.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("botonDetalles.actionPerformed, event=" + evt);
-						String a = "Id pedido:  " + pedido.getId() + "\n";
-						String b = "Descripción:  " + pedido.getDescripcion() + "\n";
+
+						Calendar solicitud = Calendar.getInstance();
+						solicitud.setTime(pedido.getFechaSolicitud());
+
+						Calendar entrega = Calendar.getInstance();
+						entrega.setTime(pedido.getFechaEntrega());
+
+						String a = pedido.getDescripcion() + "\n\n";
+						String b = "Id pedido:  " + pedido.getId() + "\n";
 						String c;
 						if (pedido.getPeriodicidad() == 0)
-							c = "Periodicidad:  No aplica\n";
+							c = "Periodicidad:  No aplica\n\n";
 						else
-							c = "Periodicidad:  " + pedido.getPeriodicidad() + " días\n";
-						String d = "Fecha de solicitud:  " + pedido.getFechaSolicitud();
+							c = "Periodicidad:  " + pedido.getPeriodicidad() + " días\n\n";
+						String d = "Cliente:  " + pedido.getCliente().getNombre() + "\n";
+						String e = "Fecha de solicitud:  " + solicitud.get(Calendar.DAY_OF_MONTH) + "/" + solicitud.get(Calendar.MONTH) + "/" + solicitud.get(Calendar.YEAR) + "\n";
+						String f = "Fecha de entrega esperada:  " + entrega.get(Calendar.DAY_OF_MONTH) + "/" + entrega.get(Calendar.MONTH) + "/" + entrega.get(Calendar.YEAR) + "\n";
 
-						JOptionPane.showMessageDialog(null, a + b + c + d);
+						JOptionPane.showMessageDialog(null, a + b + c + d + e + f);
 
 						jButtonFinalizarPedido.setEnabled(true);
 					}
