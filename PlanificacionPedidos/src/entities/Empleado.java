@@ -19,8 +19,7 @@ public class Empleado {
 	private String nombre;
 	private String apellido;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "idEmpleado")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="empleado", cascade = CascadeType.ALL)
 	public Set<Pedido> pedidos;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

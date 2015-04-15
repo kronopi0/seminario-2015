@@ -2,12 +2,14 @@ package entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,11 +22,11 @@ public class Pedido {
 	private int idPedido;
 	private String descripcion;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idComplejidad")
 	private ComplejidadPedido complejidad;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "idEmpleado")
 	private Empleado empleado;
 
@@ -33,11 +35,11 @@ public class Pedido {
 	private Date fechaFinalizado;
 	private Date fechaEntrega;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "cuit")
 	private Cliente cliente;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idTipoPedido")
 	private TipoPedido tipoPedido;
 

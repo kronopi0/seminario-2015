@@ -18,6 +18,9 @@ public class Calendario {
 	private Date fecha;
 	private boolean diahabil;
 	
+	public Calendario() {
+	}
+
 	public Calendario(int id, Date fecha, boolean esDiaHabil) {
 		super();
 		this.id = id;
