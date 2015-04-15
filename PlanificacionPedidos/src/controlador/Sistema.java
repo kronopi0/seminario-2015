@@ -15,25 +15,23 @@ import entities.TipoPedido;
 
 public class Sistema {
 
-	//private static Sistema instancia;
+	// private static Sistema instancia;
 
 	public Sistema() {
 	}
+
 	/*
-	public static Sistema getInstancia() {
-		if (instancia == null)
-			instancia = new Sistema();
-		return instancia;
-	}
-	*/
-	
+	 * public static Sistema getInstancia() { if (instancia == null) instancia =
+	 * new Sistema(); return instancia; }
+	 */
+
 	/*
 	 * LEVANTAR CALENDARIO EN MEMORIA
 	 */
 	public List<Calendario> getCalendario() {
 		return CalendarioDAO.getInstancia().getCalendario();
 	}
-	
+
 	/*
 	 * BUSQUEDAS
 	 */
@@ -87,7 +85,7 @@ public class Sistema {
 	}
 
 	public void programarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) {
-		// TODO Auto-generated method stub
+		System.out.println(pedido.getDescripcion() + "\n" + tipo.getDescripcion() + "\n" + complejidad.getNombre());
 
 	}
 }

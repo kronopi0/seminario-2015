@@ -2,7 +2,6 @@ package vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -12,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
+
+import org.joda.time.DateTime;
 
 import controlador.Sistema;
 import entities.Pedido;
@@ -104,8 +105,8 @@ public class FinalizarPedido extends javax.swing.JFrame {
 			{
 				jLabelPedidosPendientes = new JLabel();
 				getContentPane().add(jLabelPedidosPendientes);
-				jLabelPedidosPendientes.setText("Pedidos Pendientes de Finalización:");
-				jLabelPedidosPendientes.setBounds(80, 15, 243, 19);
+				jLabelPedidosPendientes.setText("Pedidos pendientes de finalización:");
+				jLabelPedidosPendientes.setBounds(81, 15, 243, 19);
 				jLabelPedidosPendientes.setFont(new java.awt.Font("Segoe UI", 1, 14));
 			}
 			{
@@ -149,11 +150,8 @@ public class FinalizarPedido extends javax.swing.JFrame {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("botonDetalles.actionPerformed, event=" + evt);
 
-						Calendar solicitud = Calendar.getInstance();
-						solicitud.setTime(pedido.getFechaSolicitud());
-
-						Calendar entrega = Calendar.getInstance();
-						entrega.setTime(pedido.getFechaEntrega());
+						DateTime solicitud = new DateTime(pedido.getFechaSolicitud());
+						DateTime entrega = new DateTime(pedido.getFechaEntrega());
 
 						String a = pedido.getDescripcion() + "\n\n";
 						String b = "Id pedido:  " + pedido.getId() + "\n";
@@ -163,8 +161,10 @@ public class FinalizarPedido extends javax.swing.JFrame {
 						else
 							c = "Periodicidad:  " + pedido.getPeriodicidad() + " días\n\n";
 						String d = "Cliente:  " + pedido.getCliente().getNombre() + "\n";
-						String e = "Fecha de solicitud:  " + solicitud.get(Calendar.DAY_OF_MONTH) + "/" + solicitud.get(Calendar.MONTH) + "/" + solicitud.get(Calendar.YEAR) + "\n";
-						String f = "Fecha de entrega esperada:  " + entrega.get(Calendar.DAY_OF_MONTH) + "/" + entrega.get(Calendar.MONTH) + "/" + entrega.get(Calendar.YEAR) + "\n";
+						String e = "Fecha de solicitud:  " + Integer.parseInt(solicitud.toString("dd")) + "/" + Integer.parseInt(solicitud.toString("MM")) + "/"
+								+ Integer.parseInt(solicitud.toString("YYYY")) + "\n";
+						String f = "Fecha de entrega esperada:  " + Integer.parseInt(entrega.toString("dd")) + "/" + Integer.parseInt(entrega.toString("MM")) + "/"
+								+ Integer.parseInt(entrega.toString("YYYY")) + "\n";
 
 						JOptionPane.showMessageDialog(null, a + b + c + d + e + f);
 

@@ -1,22 +1,23 @@
 package vista;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
-import javax.swing.WindowConstants;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
+import javax.swing.WindowConstants;
+import javax.swing.SwingUtilities;
+
+import org.joda.time.DateTime;
 
 import controlador.Sistema;
 import entities.ComplejidadPedido;
 import entities.Pedido;
 import entities.TipoPedido;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
@@ -28,7 +29,7 @@ import java.awt.event.ActionListener;
  * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
  * ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class ProgramarPedidos extends javax.swing.JPanel {
+public class ProgramarPedidos extends javax.swing.JFrame {
 
 	/**
 	 * 
@@ -44,36 +45,36 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 		}
 	}
 
-	private JButton botonCancelar;
-	private JButton botonOK;
+	private JComboBox<String> jComboBoxPedidosSinFinalizar;
+	private JButton jButtonFinalizarPedido;
+	private JButton jButtonSalir;
+	private JLabel jLabelPedidosPendientes;
+	private Sistema sistema;
 	private JComboBox<String> comboComplejidad;
 	private JComboBox<String> comboTipo;
-	private JButton botonDetalles;
 	private JSeparator jSeparator2;
+	private JButton botonDetalles;
+	private JLabel jLabel2;
+	private JLabel jLabel1;
 	private JSeparator jSeparator1;
-	private JLabel tituloTipo;
-	private JLabel tituloComplejidad;
-	private JComboBox<String> comboPendientes;
-	private JLabel tituloPendientes;
-	private Sistema sistema;
 	private Pedido pedido;
-	private List<Pedido> pedidosPend;
+	private List<Pedido> pedidos;
 	private TipoPedido tipo;
 	private List<TipoPedido> tipos;
 	private ComplejidadPedido complejidad;
 	private List<ComplejidadPedido> complejidades;
 
 	/**
-	 * Auto-generated main method to display this JPanel inside a new JFrame.
+	 * Auto-generated main method to display this JFrame
 	 */
 	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.getContentPane().add(new ProgramarPedidos());
-		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setLocationRelativeTo(null);
-
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				ProgramarPedidos inst = new ProgramarPedidos();
+				inst.setLocationRelativeTo(null);
+				inst.setVisible(true);
+			}
+		});
 	}
 
 	public ProgramarPedidos(Sistema s) {
@@ -81,64 +82,118 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 		sistema = s;
 		initGUI();
 	}
-	
+
 	public ProgramarPedidos() {
-		initGUI();
 	}
 
 	private void initGUI() {
 		try {
-			this.setPreferredSize(new java.awt.Dimension(474, 282));
-			this.setLayout(null);
+			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			getContentPane().setLayout(null);
+			this.setTitle("Programar Pedido");
 			{
-				tituloPendientes = new JLabel();
-				this.add(tituloPendientes);
-				tituloPendientes.setText("Seleccione un pedido:");
-				tituloPendientes.setBounds(156, 12, 166, 16);
-				tituloPendientes.setFont(new java.awt.Font("SansSerif", 1, 14));
-			}
-			{
-				comboPendientes = new JComboBox<String>();
-				this.add(comboPendientes);
-				comboPendientes.setBounds(128, 38, 219, 26);
-				comboPendientes.setFont(new java.awt.Font("SansSerif", 0, 14));
 
-				pedidosPend = sistema.getPedidos("Pendiente");
+				jComboBoxPedidosSinFinalizar = new JComboBox<String>();
+				getContentPane().add(jComboBoxPedidosSinFinalizar);
+				jComboBoxPedidosSinFinalizar.setBounds(71, 41, 260, 27);
 
-				for (int i = 0; i < pedidosPend.size(); i++) {
-					comboPendientes.addItem((pedidosPend.get(i).getDescripcion()));
-				}
-				pedido = pedidosPend.get(0);
+				pedidos = sistema.getPedidos("Pendiente");
+				System.out.println(pedidos.get(0).getDescripcion());
+				for (int i = 0; i < pedidos.size(); i++)
+					jComboBoxPedidosSinFinalizar.addItem(pedidos.get(i).getDescripcion());
 
-				comboPendientes.addActionListener(new ActionListener() {
+				pedido = pedidos.get(0);
+
+				jComboBoxPedidosSinFinalizar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						System.out.println("comboPendientes.actionPerformed, event=" + evt);
-						for (int i = 0; i < pedidosPend.size(); i++)
-							if (comboPendientes.getSelectedItem().toString().equals(pedidosPend.get(i).getDescripcion()))
-								pedido = pedidosPend.get(i);
+						for (int i = 0; i < pedidos.size(); i++)
+							if (jComboBoxPedidosSinFinalizar.getSelectedItem().toString().equals(pedidos.get(i).getDescripcion()))
+								pedido = pedidos.get(i);
+
 					}
 				});
-
 			}
 			{
-				tituloComplejidad = new JLabel();
-				this.add(tituloComplejidad);
-				tituloComplejidad.setText("Complejidad");
-				tituloComplejidad.setBounds(102, 186, 88, 16);
-				tituloComplejidad.setFont(new java.awt.Font("SansSerif", 1, 14));
-
+				jLabelPedidosPendientes = new JLabel();
+				getContentPane().add(jLabelPedidosPendientes);
+				jLabelPedidosPendientes.setText("Pedidos pendientes a programar:");
+				jLabelPedidosPendientes.setBounds(86, 15, 243, 19);
+				jLabelPedidosPendientes.setFont(new java.awt.Font("Segoe UI", 1, 14));
 			}
 			{
-				tituloTipo = new JLabel();
-				this.add(tituloTipo);
-				tituloTipo.setText("Tipo");
-				tituloTipo.setBounds(158, 152, 34, 16);
-				tituloTipo.setFont(new java.awt.Font("SansSerif", 1, 14));
+				jButtonFinalizarPedido = new JButton();
+				getContentPane().add(jButtonFinalizarPedido);
+				jButtonFinalizarPedido.setText("Finalizar Pedido");
+				jButtonFinalizarPedido.setBounds(48, 283, 120, 35);
+				jButtonFinalizarPedido.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jButtonFinalizarPedido.setEnabled(false);
+				jButtonFinalizarPedido.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						System.out.println("botonOK.actionPerformed, event=" + evt);
+						sistema.programarPedido(pedido, tipo, complejidad);
+					}
+				});
+			}
+			{
+				jButtonSalir = new JButton();
+				getContentPane().add(jButtonSalir);
+				jButtonSalir.setText("Salir");
+				jButtonSalir.setBounds(224, 285, 107, 34);
+				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jButtonSalir.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						dispose();
+					}
+				});
+			}
+			{
+				jSeparator1 = new JSeparator();
+				getContentPane().add(jSeparator1);
+				jSeparator1.setBounds(0, 121, 394, 10);
+			}
+			{
+				botonDetalles = new JButton();
+				getContentPane().add(botonDetalles);
+				botonDetalles.setText("Detalles");
+				botonDetalles.setBounds(152, 78, 94, 30);
+				botonDetalles.setFont(new java.awt.Font("SansSerif", 1, 12));
+				botonDetalles.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						System.out.println("botonDetalles.actionPerformed, event=" + evt);
+
+						DateTime solicitud = new DateTime(pedido.getFechaSolicitud());
+						DateTime entrega = new DateTime(pedido.getFechaEntrega());
+
+						String a = pedido.getDescripcion() + "\n\n";
+						String b = "Id pedido:  " + pedido.getId() + "\n";
+						String c;
+						if (pedido.getPeriodicidad() == 0)
+							c = "Periodicidad:  No aplica\n\n";
+						else
+							c = "Periodicidad:  " + pedido.getPeriodicidad() + " días\n\n";
+						String d = "Cliente:  " + pedido.getCliente().getNombre() + "\n";
+						String e = "Fecha de solicitud:  " + Integer.parseInt(solicitud.toString("dd")) + "/" + Integer.parseInt(solicitud.toString("MM")) + "/"
+								+ Integer.parseInt(solicitud.toString("YYYY")) + "\n";
+						String f = "Fecha de entrega esperada:  " + Integer.parseInt(entrega.toString("dd")) + "/" + Integer.parseInt(entrega.toString("MM")) + "/"
+								+ Integer.parseInt(entrega.toString("YYYY")) + "\n";
+
+						JOptionPane.showMessageDialog(null, a + b + c + d + e + f);
+
+						jButtonFinalizarPedido.setEnabled(true);
+						comboComplejidad.setEnabled(true);
+						comboTipo.setEnabled(true);
+					}
+				});
+			}
+			{
+				jSeparator2 = new JSeparator();
+				getContentPane().add(jSeparator2);
+				jSeparator2.setBounds(0, 271, 394, 10);
 			}
 			{
 				comboTipo = new JComboBox<String>();
-				this.add(comboTipo);
-				comboTipo.setBounds(238, 147, 172, 26);
+				getContentPane().add(comboTipo);
+				comboTipo.setBounds(88, 159, 216, 26);
 				comboTipo.setEnabled(false);
 
 				tipos = sistema.getTipos();
@@ -163,8 +218,8 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 
 			{
 				comboComplejidad = new JComboBox<String>();
-				this.add(comboComplejidad);
-				comboComplejidad.setBounds(238, 182, 172, 26);
+				getContentPane().add(comboComplejidad);
+				comboComplejidad.setBounds(89, 227, 216, 26);
 				comboComplejidad.setEnabled(false);
 
 				complejidades = sistema.getComplejidades();
@@ -182,71 +237,24 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 								complejidad = complejidades.get(i);
 					}
 				});
-
+				complejidad = complejidades.get(0);
 			}
 			{
-				botonOK = new JButton();
-				this.add(botonOK);
-				botonOK.setText("Confirmar");
-				botonOK.setBounds(88, 236, 114, 33);
-				botonOK.setFont(new java.awt.Font("SansSerif", 1, 12));
-				botonOK.setEnabled(false);
-				botonOK.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
-						System.out.println("botonOK.actionPerformed, event="+evt);
-						sistema.programarPedido(pedido, tipo, complejidad);
-					}
-				});
+				jLabel1 = new JLabel();
+				getContentPane().add(jLabel1);
+				jLabel1.setText("Seleccione tipo de pedido:");
+				jLabel1.setBounds(118, 137, 162, 16);
+				jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12));
 			}
 			{
-				botonCancelar = new JButton();
-				this.add(botonCancelar);
-				botonCancelar.setText("Salir");
-				botonCancelar.setBounds(270, 238, 110, 32);
-				botonCancelar.setFont(new java.awt.Font("SansSerif", 1, 12));
-				botonCancelar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
-						System.out.println("botonCancelar.actionPerformed, event=" + evt);
-						System.exit(0);
-					}
-				});
+				jLabel2 = new JLabel();
+				getContentPane().add(jLabel2);
+				jLabel2.setText("Seleccionar complejidad:");
+				jLabel2.setBounds(121, 206, 159, 16);
+				jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12));
 			}
-			{
-				jSeparator1 = new JSeparator();
-				this.add(jSeparator1);
-				jSeparator1.setBounds(0, 128, 474, 10);
-			}
-			{
-				jSeparator2 = new JSeparator();
-				this.add(jSeparator2);
-				jSeparator2.setBounds(0, 221, 474, 10);
-			}
-			{
-				botonDetalles = new JButton();
-				this.add(botonDetalles);
-				botonDetalles.setText("Ver detalles");
-				botonDetalles.setBounds(175, 77, 123, 32);
-				botonDetalles.setFont(new java.awt.Font("SansSerif", 1, 14));
-				botonDetalles.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
-						System.out.println("botonDetalles.actionPerformed, event=" + evt);
-						String a = "Id pedido:  " + pedido.getId() + "\n";
-						String b = "Descripción:  " + pedido.getDescripcion() + "\n";
-						String c;
-						if (pedido.getPeriodicidad() == 0)
-							c = "Periodicidad:  No aplica\n";
-						else
-							c = "Periodicidad:  " + pedido.getPeriodicidad() + " días\n";
-						String d = "Fecha de solicitud:  " + pedido.getFechaSolicitud();
-
-						JOptionPane.showMessageDialog(null, a + b + c + d);
-
-						comboComplejidad.setEnabled(true);
-						comboTipo.setEnabled(true);
-						botonOK.setEnabled(true);
-					}
-				});
-			}
+			pack();
+			this.setSize(410, 366);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
