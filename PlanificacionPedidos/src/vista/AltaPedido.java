@@ -1,6 +1,9 @@
 package vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,12 +15,25 @@ import javax.swing.SwingUtilities;
 
 import controlador.Sistema;
 import entities.Cliente;
+import entities.Pedido;
 
+
+/**
+* This code was edited or generated using CloudGarden's Jigloo
+* SWT/Swing GUI Builder, which is free for non-commercial
+* use. If Jigloo is being used commercially (ie, by a corporation,
+* company or business for any purpose whatever) then you
+* should purchase a license for each developer using Jigloo.
+* Please visit www.cloudgarden.com for details.
+* Use of Jigloo implies acceptance of these licensing terms.
+* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
+* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
+* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+*/
 public class AltaPedido extends javax.swing.JFrame {
 	private JLabel jLabelCuit;
 	private JButton jButtonBuscarCliente;
 	private JLabel jLabelNombreCliente;
-	private JTextField jTextFieldCodigoPedido;
 	private JLabel jLabelFechaDeEntrega;
 	private JButton jButtonSalir;
 	private JButton jButtonConfirmar;
@@ -27,7 +43,6 @@ public class AltaPedido extends javax.swing.JFrame {
 	private JTextField jTextFieldFechaDeEntrega;
 	private JLabel jLabelDescripcion;
 	private JLabel jLabelPeriodicidad;
-	private JLabel jLabelCodigoPedido;
 	private JSeparator jSeparator1;
 	private JTextField jTextFieldNombreCliente;
 	private JTextField jTextFieldCuit;
@@ -80,12 +95,16 @@ public class AltaPedido extends javax.swing.JFrame {
 							if (cliente != null)
 							{
 								jTextFieldNombreCliente.setText(cliente.getNombre());
-								jTextFieldCodigoPedido.setEnabled(true);
 								jTextFieldFechaDeEntrega.setEnabled(true);
 								jTextFieldPeriodicidad.setEnabled(true);
 								jTextFieldDescripcion.setEnabled(true);
 							} else {
 								JOptionPane.showMessageDialog(null, "El Cliente no existe.");
+								jTextFieldCuit.setText("");
+								jTextFieldNombreCliente.setText("");
+								jTextFieldFechaDeEntrega.setEnabled(false);
+								jTextFieldPeriodicidad.setEnabled(false);
+								jTextFieldDescripcion.setEnabled(false);
 							}
 								
 					}
@@ -103,23 +122,12 @@ public class AltaPedido extends javax.swing.JFrame {
 				getContentPane().add(jTextFieldNombreCliente);
 				jTextFieldNombreCliente.setEnabled(false);
 				jTextFieldNombreCliente.setBounds(74, 51, 284, 23);
+				jTextFieldNombreCliente.setFont(new java.awt.Font("Segoe UI",1,12));
 			}
 			{
 				jSeparator1 = new JSeparator();
 				getContentPane().add(jSeparator1);
 				jSeparator1.setBounds(-10, 89, 418, 10);
-			}
-			{
-				jLabelCodigoPedido = new JLabel();
-				getContentPane().add(jLabelCodigoPedido);
-				jLabelCodigoPedido.setText("Código de Pedido :");
-				jLabelCodigoPedido.setBounds(14, 105, 110, 16);
-			}
-			{
-				jTextFieldCodigoPedido = new JTextField();
-				getContentPane().add(jTextFieldCodigoPedido);
-				jTextFieldCodigoPedido.setEnabled(false);
-				jTextFieldCodigoPedido.setBounds(136, 102, 128, 23);
 			}
 			{
 				jLabelFechaDeEntrega = new JLabel();
@@ -168,6 +176,59 @@ public class AltaPedido extends javax.swing.JFrame {
 				getContentPane().add(jButtonConfirmar);
 				jButtonConfirmar.setText("Confirmar");
 				jButtonConfirmar.setBounds(136, 311, 98, 23);
+				jButtonConfirmar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						if (jTextFieldNombreCliente.getText().isEmpty() ||  jTextFieldFechaDeEntrega.getText().isEmpty() || 
+								jTextFieldPeriodicidad.getText().isEmpty() || jTextFieldDescripcion.getText().isEmpty()){
+							JOptionPane.showMessageDialog(null, "Faltan completar campos.");
+						}
+						else {
+							SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+							Pedido p = new Pedido();
+							p.setCliente(cliente);
+							p.setDescripcion(jTextFieldDescripcion.getText());
+							p.setEstado("Pendiente");
+							try {
+								p.setFechaEntrega(formatter.parse(jTextFieldFechaDeEntrega.getText()));
+							} catch (ParseException e) {
+								e.printStackTrace();
+							}
+							p.setPeriodicidad(Integer.valueOf(jTextFieldPeriodicidad.getText()));
+							
+							sistema.altaPedido(p);
+							JOptionPane.showMessageDialog(null, "Pedido cargado.");
+							jTextFieldCuit.setText("");
+							jTextFieldNombreCliente.setText("");
+							jTextFieldFechaDeEntrega.setText("");
+							jTextFieldPeriodicidad.setText("");
+							jTextFieldDescripcion.setText("");
+							jTextFieldFechaDeEntrega.setEnabled(false);
+							jTextFieldPeriodicidad.setEnabled(false);
+							jTextFieldDescripcion.setEnabled(false);
+							
+						/*
+							cliente = sistema.buscarCliente(Integer.valueOf(jTextFieldCuit.getText()));
+							if (cliente != null)
+							{
+								jTextFieldNombreCliente.setText(cliente.getNombre());
+								jTextFieldCodigoPedido.setEnabled(true);
+								jTextFieldFechaDeEntrega.setEnabled(true);
+								jTextFieldPeriodicidad.setEnabled(true);
+								jTextFieldDescripcion.setEnabled(true);
+							} else {
+								JOptionPane.showMessageDialog(null, "El Cliente no existe.");
+								jTextFieldCuit.setText("");
+								jTextFieldNombreCliente.setText("");
+								jTextFieldCodigoPedido.setEnabled(false);
+								jTextFieldFechaDeEntrega.setEnabled(false);
+								jTextFieldPeriodicidad.setEnabled(false);
+								jTextFieldDescripcion.setEnabled(false);
+							}
+							*/
+						}
+								
+					}
+				});
 			}
 			{
 				jButtonSalir = new JButton();

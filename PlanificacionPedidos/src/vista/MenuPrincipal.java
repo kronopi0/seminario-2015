@@ -38,13 +38,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
 			}
 		});
 	}
-	
+
 	public MenuPrincipal() {
 		super();
 		sistema = new Sistema();
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -73,6 +73,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 				getContentPane().add(jButtonProgramar);
 				jButtonProgramar.setText("Programar");
 				jButtonProgramar.setBounds(179, 24, 96, 29);
+				jButtonProgramar.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent evt){
+						ProgramarPedidos app = new ProgramarPedidos(sistema);
+						app.setVisible(true);
+					}
+				});
 			}
 			{
 				jButtonFinalizar = new JButton();

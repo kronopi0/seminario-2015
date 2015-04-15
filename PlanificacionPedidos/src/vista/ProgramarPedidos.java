@@ -55,7 +55,7 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 	private JLabel tituloComplejidad;
 	private JComboBox<String> comboPendientes;
 	private JLabel tituloPendientes;
-	private Sistema s;
+	private Sistema sistema;
 	private Pedido pedido;
 	private List<Pedido> pedidosPend;
 	private TipoPedido tipo;
@@ -76,8 +76,13 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 
 	}
 
-	public ProgramarPedidos() {
+	public ProgramarPedidos(Sistema s) {
 		super();
+		sistema = s;
+		initGUI();
+	}
+	
+	public ProgramarPedidos() {
 		initGUI();
 	}
 
@@ -138,9 +143,7 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 				comboTipo.setBounds(238, 147, 172, 26);
 				comboTipo.setEnabled(false);
 
-				s = new Sistema();
-
-				tipos = s.getTipos();
+				tipos = sistema.getTipos();
 
 				for (int i = 0; i < tipos.size(); i++) {
 					comboTipo.addItem((tipos.get(i).getDescripcion()));
@@ -166,9 +169,7 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 				comboComplejidad.setBounds(238, 182, 172, 26);
 				comboComplejidad.setEnabled(false);
 
-				s = new Sistema();
-
-				complejidades = s.getComplejidades();
+				complejidades = sistema.getComplejidades();
 
 				for (int i = 0; i < complejidades.size(); i++) {
 					comboComplejidad.addItem((complejidades.get(i).getNombre()));
@@ -195,7 +196,7 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 				botonOK.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("botonOK.actionPerformed, event="+evt);
-						s.programarPedido(pedido, tipo, complejidad);
+						sistema.programarPedido(pedido, tipo, complejidad);
 					}
 				});
 			}
