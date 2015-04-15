@@ -1,4 +1,5 @@
 package vista;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,7 +11,34 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
+
+/**
+* This code was edited or generated using CloudGarden's Jigloo
+* SWT/Swing GUI Builder, which is free for non-commercial
+* use. If Jigloo is being used commercially (ie, by a corporation,
+* company or business for any purpose whatever) then you
+* should purchase a license for each developer using Jigloo.
+* Please visit www.cloudgarden.com for details.
+* Use of Jigloo implies acceptance of these licensing terms.
+* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
+* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
+* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+*/
 public class AltaPedido extends javax.swing.JFrame {
+
+	{
+		//Set Look & Feel
+		try {
+			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel jLabelCuit;
 	private JButton jButtonBuscarCliente;
 	private JLabel jLabelNombreCliente;
@@ -38,12 +66,12 @@ public class AltaPedido extends javax.swing.JFrame {
 			}
 		});
 	}
-	
+
 	public AltaPedido() {
 		super();
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -58,13 +86,13 @@ public class AltaPedido extends javax.swing.JFrame {
 			{
 				jTextFieldCuit = new JTextField();
 				getContentPane().add(jTextFieldCuit);
-				jTextFieldCuit.setBounds(94, 16, 102, 23);
+				jTextFieldCuit.setBounds(94, 16, 118, 23);
 			}
 			{
 				jButtonBuscarCliente = new JButton();
 				getContentPane().add(jButtonBuscarCliente);
 				jButtonBuscarCliente.setText("Buscar Cliente");
-				jButtonBuscarCliente.setBounds(228, 16, 130, 23);
+				jButtonBuscarCliente.setBounds(235, 15, 130, 23);
 			}
 			{
 				jLabelNombreCliente = new JLabel();
@@ -75,7 +103,7 @@ public class AltaPedido extends javax.swing.JFrame {
 			{
 				jTextFieldNombreCliente = new JTextField();
 				getContentPane().add(jTextFieldNombreCliente);
-				jTextFieldNombreCliente.setText("No Existe el Cliente");
+				jTextFieldNombreCliente.setText("");
 				jTextFieldNombreCliente.setBounds(74, 51, 284, 23);
 			}
 			{
@@ -137,16 +165,15 @@ public class AltaPedido extends javax.swing.JFrame {
 				jButtonConfirmar = new JButton();
 				getContentPane().add(jButtonConfirmar);
 				jButtonConfirmar.setText("Confirmar");
-				jButtonConfirmar.setBounds(136, 311, 98, 23);
+				jButtonConfirmar.setBounds(64, 304, 111, 31);
 			}
 			{
 				jButtonSalir = new JButton();
 				getContentPane().add(jButtonSalir);
 				jButtonSalir.setText("Salir");
-				jButtonSalir.setBounds(290, 311, 68, 23);
+				jButtonSalir.setBounds(217, 305, 108, 30);
 				jButtonSalir.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) 
-					{
+					public void actionPerformed(ActionEvent evt) {
 						dispose();
 					}
 				});

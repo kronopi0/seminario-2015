@@ -7,15 +7,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="COMPLEJIDADES_PEDIDOS")
+@Table(name = "COMPLEJIDADES_PEDIDOS")
 public class ComplejidadPedido {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idComplejidad;
 	private String nombre;
 	private float factorTiempo;
-	
+
 	public ComplejidadPedido() {
 		super();
 	}
@@ -43,5 +43,5 @@ public class ComplejidadPedido {
 	public void setFactorTiempo(float factorTiempo) {
 		this.factorTiempo = factorTiempo;
 	}
-	
+
 }

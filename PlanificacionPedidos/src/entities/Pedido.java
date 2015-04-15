@@ -12,37 +12,37 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PEDIDOS")
+@Table(name = "PEDIDOS")
 public class Pedido {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idPedido;
 	private String descripcion;
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="idComplejidad")
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "idComplejidad")
 	private ComplejidadPedido complejidad;
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="idEmpleado")
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "idEmpleado")
 	private Empleado empleado;
-	
+
 	private int periodicidad;
 	private Date fechaSolicitud;
 	private Date fechaFinalizado;
 	private Date fechaEntrega;
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="cuit")
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "cuit")
 	private Cliente cliente;
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="idTipoPedido")
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "idTipoPedido")
 	private TipoPedido tipoPedido;
-	
+
 	private String estado;
-	
+
 	public Pedido() {
 		super();
 	}
@@ -134,5 +134,5 @@ public class Pedido {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
+
 }

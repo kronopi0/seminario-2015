@@ -7,14 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PEDIDOS_PROGRAMADOS")
+@Table(name = "PEDIDOS_PROGRAMADOS")
 public class PedidoProgramado {
 
 	@EmbeddedId
 	private PedidoProgramadoID id;
 	private Date fechaComienzo;
 	private Date fechaFinalizado;
-	
+
 	public PedidoProgramado() {
 		super();
 	}
@@ -34,5 +34,5 @@ public class PedidoProgramado {
 	public void setFechaFinalizado(Date fechaFinalizado) {
 		this.fechaFinalizado = fechaFinalizado;
 	}
-	
+
 }

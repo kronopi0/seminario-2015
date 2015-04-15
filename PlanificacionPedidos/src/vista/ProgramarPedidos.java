@@ -1,35 +1,42 @@
 package vista;
 
 import java.awt.Dimension;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-
 import javax.swing.WindowConstants;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import controlador.Sistema;
+import entities.ComplejidadPedido;
+import entities.Pedido;
+import entities.TipoPedido;
+
 /**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
+ * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
+ * Builder, which is free for non-commercial use. If Jigloo is being used
+ * commercially (ie, by a corporation, company or business for any purpose
+ * whatever) then you should purchase a license for each developer using Jigloo.
+ * Please visit www.cloudgarden.com for details. Use of Jigloo implies
+ * acceptance of these licensing terms. A COMMERCIAL LICENSE HAS NOT BEEN
+ * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
+ * ANY CORPORATE OR COMMERCIAL PURPOSE.
+ */
 public class ProgramarPedidos extends javax.swing.JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	{
-		//Set Look & Feel
+		// Set Look & Feel
 		try {
 			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -38,17 +45,16 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 	private JButton botonOK;
 	private JTextField campoFecha;
 	private JLabel tituloFecha;
-	private JComboBox comboComplejidad;
-	private JComboBox comboTipo;
+	private JComboBox<String> comboComplejidad;
+	private JComboBox<String> comboTipo;
 	private JLabel tituloTipo;
 	private JLabel tituloComplejidad;
-	private JComboBox comboPendientes;
+	private JComboBox<String> comboPendientes;
 	private JLabel tituloPendientes;
 
 	/**
-	* Auto-generated main method to display this 
-	* JPanel inside a new JFrame.
-	*/
+	 * Auto-generated main method to display this JPanel inside a new JFrame.
+	 */
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		frame.getContentPane().add(new ProgramarPedidos());
@@ -56,12 +62,12 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 		frame.pack();
 		frame.setVisible(true);
 	}
-	
+
 	public ProgramarPedidos() {
 		super();
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		try {
 			setPreferredSize(new Dimension(400, 300));
@@ -73,19 +79,25 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 				tituloPendientes.setBounds(26, 37, 123, 16);
 			}
 			{
-				ComboBoxModel comboPendientesModel = 
-						new DefaultComboBoxModel(
-								new String[] { "Item One", "Item Two" });
-				comboPendientes = new JComboBox();
+				comboPendientes = new JComboBox<String>();
 				this.add(comboPendientes);
-				comboPendientes.setModel(comboPendientesModel);
 				comboPendientes.setBounds(175, 34, 186, 23);
+
+				Sistema s = new Sistema();
+
+				List<Pedido> pedidosPend = s.getPedidos("Pendiente");
+
+				for (int i = 0; i < pedidosPend.size(); i++) {
+					comboPendientes.addItem((pedidosPend.get(i).getDescripcion()));
+				}
+
 			}
 			{
 				tituloComplejidad = new JLabel();
 				this.add(tituloComplejidad);
 				tituloComplejidad.setText("Complejidad");
 				tituloComplejidad.setBounds(45, 141, 88, 16);
+
 			}
 			{
 				tituloTipo = new JLabel();
@@ -94,22 +106,33 @@ public class ProgramarPedidos extends javax.swing.JPanel {
 				tituloTipo.setBounds(67, 102, 24, 16);
 			}
 			{
-				ComboBoxModel comboTipoModel = 
-						new DefaultComboBoxModel(
-								new String[] { "Item One", "Item Two" });
-				comboTipo = new JComboBox();
+				comboTipo = new JComboBox<String>();
 				this.add(comboTipo);
-				comboTipo.setModel(comboTipoModel);
 				comboTipo.setBounds(175, 98, 156, 24);
+				
+				Sistema s = new Sistema();
+
+				List<TipoPedido> tipos = s.getTipos();
+
+				for (int i = 0; i < tipos.size(); i++) {
+					comboTipo.addItem((tipos.get(i).getDescripcion()));
+				}
+				
+				
 			}
+			
 			{
-				ComboBoxModel comboComplejidadModel = 
-						new DefaultComboBoxModel(
-								new String[] { "Item One", "Item Two" });
-				comboComplejidad = new JComboBox();
+				comboComplejidad = new JComboBox<String>();
 				this.add(comboComplejidad);
-				comboComplejidad.setModel(comboComplejidadModel);
 				comboComplejidad.setBounds(175, 138, 156, 23);
+				
+				Sistema s = new Sistema();
+
+				List<ComplejidadPedido> complejidades = s.getComplejidades();
+
+				for (int i = 0; i < complejidades.size(); i++) {
+					comboComplejidad.addItem((complejidades.get(i).getNombre()));
+				}
 			}
 			{
 				tituloFecha = new JLabel();

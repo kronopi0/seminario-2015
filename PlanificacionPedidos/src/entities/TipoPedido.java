@@ -7,15 +7,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TIPOS_PEDIDO")
+@Table(name = "TIPOS_PEDIDO")
 public class TipoPedido {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idTipoPedido;
 	private String descripcion;
 	private int tiempo;
-	
+
 	public TipoPedido() {
 		super();
 	}
@@ -35,5 +35,5 @@ public class TipoPedido {
 	public void setCantDias(int cantDias) {
 		this.tiempo = cantDias;
 	}
-	
+
 }

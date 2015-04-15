@@ -11,22 +11,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="EMPLEADOS")
+@Table(name = "EMPLEADOS")
 public class Empleado {
 
 	@Id
 	private int idEmpleado;
 	private String nombre;
 	private String apellido;
-	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="idEmpleado")
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "idEmpleado")
 	public Set<PedidoProgramado> pedidos;
-	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="idEmpleado")
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "idEmpleado")
 	public Set<Disponibilidad> disponibilidades;
-	
+
 	public Empleado() {
 		super();
 	}
@@ -70,5 +70,5 @@ public class Empleado {
 	public void setDisponibilidades(Set<Disponibilidad> disponibilidades) {
 		this.disponibilidades = disponibilidades;
 	}
-	
+
 }

@@ -4,13 +4,13 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class PedidoProgramadoID implements Serializable{
+public class PedidoProgramadoID implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private int idEmpleado;
 	private int idPedido;
-	
+
 	public PedidoProgramadoID() {
 		super();
 	}

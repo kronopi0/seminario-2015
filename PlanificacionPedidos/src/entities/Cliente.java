@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CLIENTES")
+@Table(name = "CLIENTES")
 public class Cliente {
 
 	@Id
@@ -15,7 +15,7 @@ public class Cliente {
 	private String telefono;
 	private String direccion;
 	private String email;
-	
+
 	public Cliente() {
 		super();
 	}
@@ -67,5 +67,5 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 }
