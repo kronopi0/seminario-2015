@@ -12,32 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
+
+import controlador.Sistema;
 import entities.Pedido;
 
-
-/**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
 public class MenuPrincipal extends javax.swing.JFrame {
-
-	{
-		//Set Look & Feel
-		try {
-			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	private JButton jButtonAlta;
 	private JButton jButtonFinalizar;
 	private JButton jButtonSalir;
@@ -47,6 +26,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	private JSeparator jSeparator1;
 	private JLabel jLabelPedidos;
 	private JButton jButtonProgramar;
+	private Sistema sistema;
 
 
 	public static void main(String[] args) {
@@ -61,6 +41,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	
 	public MenuPrincipal() {
 		super();
+		sistema = new Sistema();
 		initGUI();
 	}
 	
@@ -82,7 +63,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 				jButtonAlta.setBounds(90, 24, 84, 29);
 				jButtonAlta.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent evt){
-						AltaPedido app = new AltaPedido();
+						AltaPedido app = new AltaPedido(sistema);
 						app.setVisible(true);
 					}
 				});

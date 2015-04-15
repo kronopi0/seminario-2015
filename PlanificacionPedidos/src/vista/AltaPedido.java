@@ -1,44 +1,19 @@
 package vista;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
-
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
+import controlador.Sistema;
+import entities.Cliente;
 
-/**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
 public class AltaPedido extends javax.swing.JFrame {
-
-	{
-		//Set Look & Feel
-		try {
-			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JLabel jLabelCuit;
 	private JButton jButtonBuscarCliente;
 	private JLabel jLabelNombreCliente;
@@ -56,6 +31,8 @@ public class AltaPedido extends javax.swing.JFrame {
 	private JSeparator jSeparator1;
 	private JTextField jTextFieldNombreCliente;
 	private JTextField jTextFieldCuit;
+	private Sistema sistema;
+	private Cliente cliente;
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -66,10 +43,14 @@ public class AltaPedido extends javax.swing.JFrame {
 			}
 		});
 	}
-
-	public AltaPedido() {
+	
+	public AltaPedido(Sistema s) {
 		super();
+		sistema = s;
 		initGUI();
+	}
+	
+	public AltaPedido() {
 	}
 
 	private void initGUI() {
@@ -86,14 +67,31 @@ public class AltaPedido extends javax.swing.JFrame {
 			{
 				jTextFieldCuit = new JTextField();
 				getContentPane().add(jTextFieldCuit);
-				jTextFieldCuit.setBounds(94, 16, 118, 23);
+				jTextFieldCuit.setBounds(94, 16, 102, 23);
 			}
 			{
 				jButtonBuscarCliente = new JButton();
 				getContentPane().add(jButtonBuscarCliente);
 				jButtonBuscarCliente.setText("Buscar Cliente");
-				jButtonBuscarCliente.setBounds(235, 15, 130, 23);
+				jButtonBuscarCliente.setBounds(228, 16, 130, 23);
+				jButtonBuscarCliente.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+							cliente = sistema.buscarCliente(Integer.valueOf(jTextFieldCuit.getText()));
+							if (cliente != null)
+							{
+								jTextFieldNombreCliente.setText(cliente.getNombre());
+								jTextFieldCodigoPedido.setEnabled(true);
+								jTextFieldFechaDeEntrega.setEnabled(true);
+								jTextFieldPeriodicidad.setEnabled(true);
+								jTextFieldDescripcion.setEnabled(true);
+							} else {
+								JOptionPane.showMessageDialog(null, "El Cliente no existe.");
+							}
+								
+					}
+				});
 			}
+			
 			{
 				jLabelNombreCliente = new JLabel();
 				getContentPane().add(jLabelNombreCliente);
@@ -103,7 +101,7 @@ public class AltaPedido extends javax.swing.JFrame {
 			{
 				jTextFieldNombreCliente = new JTextField();
 				getContentPane().add(jTextFieldNombreCliente);
-				jTextFieldNombreCliente.setText("");
+				jTextFieldNombreCliente.setEnabled(false);
 				jTextFieldNombreCliente.setBounds(74, 51, 284, 23);
 			}
 			{
@@ -120,6 +118,7 @@ public class AltaPedido extends javax.swing.JFrame {
 			{
 				jTextFieldCodigoPedido = new JTextField();
 				getContentPane().add(jTextFieldCodigoPedido);
+				jTextFieldCodigoPedido.setEnabled(false);
 				jTextFieldCodigoPedido.setBounds(136, 102, 128, 23);
 			}
 			{
@@ -144,16 +143,19 @@ public class AltaPedido extends javax.swing.JFrame {
 				jTextFieldFechaDeEntrega = new JTextField();
 				getContentPane().add(jTextFieldFechaDeEntrega);
 				jTextFieldFechaDeEntrega.setText("dd/mm/aaaa");
+				jTextFieldFechaDeEntrega.setEnabled(false);
 				jTextFieldFechaDeEntrega.setBounds(136, 137, 128, 23);
 			}
 			{
 				jTextFieldPeriodicidad = new JTextField();
 				getContentPane().add(jTextFieldPeriodicidad);
+				jTextFieldPeriodicidad.setEnabled(false);
 				jTextFieldPeriodicidad.setBounds(136, 173, 128, 23);
 			}
 			{
 				jTextFieldDescripcion = new JTextField();
 				getContentPane().add(jTextFieldDescripcion);
+				jTextFieldDescripcion.setEnabled(false);
 				jTextFieldDescripcion.setBounds(136, 209, 222, 74);
 			}
 			{
@@ -165,15 +167,16 @@ public class AltaPedido extends javax.swing.JFrame {
 				jButtonConfirmar = new JButton();
 				getContentPane().add(jButtonConfirmar);
 				jButtonConfirmar.setText("Confirmar");
-				jButtonConfirmar.setBounds(64, 304, 111, 31);
+				jButtonConfirmar.setBounds(136, 311, 98, 23);
 			}
 			{
 				jButtonSalir = new JButton();
 				getContentPane().add(jButtonSalir);
 				jButtonSalir.setText("Salir");
-				jButtonSalir.setBounds(217, 305, 108, 30);
+				jButtonSalir.setBounds(290, 311, 68, 23);
 				jButtonSalir.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+					public void actionPerformed(ActionEvent evt) 
+					{
 						dispose();
 					}
 				});
