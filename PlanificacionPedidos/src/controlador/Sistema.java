@@ -11,6 +11,7 @@ import entities.Cliente;
 import entities.ComplejidadPedido;
 import entities.Empleado;
 import entities.Pedido;
+import entities.ReportePedidosPorEmpleado;
 import entities.TipoPedido;
 
 public class Sistema {
@@ -80,8 +81,8 @@ public class Sistema {
 		return PedidoDAO.getInstancia().getPorcentajeDeCumplimientoFechaDeEntrega();
 	}
 
-	public List<Pedido> reporteCantidadDePedidosResueltosPorEmpleado(Empleado e) {
-		return PedidoDAO.getInstancia().getCantidadDePedidosResueltosPorEmpleado(e);
+	public List<ReportePedidosPorEmpleado> reporteCantidadDePedidosResueltosPorEmpleado() {
+		return PedidoDAO.getInstancia().getCantidadDePedidosResueltosPorEmpleado();
 	}
 
 	public void programarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) {

@@ -7,6 +7,7 @@ import java.util.List;
 import entities.Calendario;
 import entities.Empleado;
 import entities.Pedido;
+import entities.ReportePedidosPorEmpleado;
 
 public class TestEdu {
 
@@ -28,17 +29,16 @@ public class TestEdu {
 		for (Pedido p : pedidos)
 			System.out.println(p.getId() + "  " + p.getDescripcion());
 		
-		/*
-		pedidos=null;
 		
-		Empleado e = sistema.buscarEmpleado(136378);
-		pedidos = sistema.reporteCantidadDePedidosResueltosPorEmpleado(e);
+		List<ReportePedidosPorEmpleado> reportes;
+
+		reportes = sistema.reporteCantidadDePedidosResueltosPorEmpleado();
 		
 		System.out.println("Reporte pedidos Resuelto: \n");
-		for (Pedido p : pedidos)
-			System.out.println(p.getId() + "  " + p.getDescripcion());
+		for (ReportePedidosPorEmpleado r : reportes)
+			System.out.println(r.getId() + "  " + r.getNombre() + "  " + r.getApellido() + "  " + r.getCantidad());
 		
-		
+		/*
 		List<Calendario> calendario = sistema.getCalendario();
 		System.out.println("---- CALENDARIO 2015 ----\n");
 		for (Calendario c : calendario)

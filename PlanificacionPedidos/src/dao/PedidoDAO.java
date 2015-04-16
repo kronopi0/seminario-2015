@@ -10,8 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entities.ComplejidadPedido;
-import entities.Empleado;
 import entities.Pedido;
+import entities.ReportePedidosPorEmpleado;
 import entities.TipoPedido;
 
 public class PedidoDAO {
@@ -64,20 +64,24 @@ public class PedidoDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Pedido> getCantidadDePedidosResueltosPorEmpleado(Empleado e) {
-		List<Pedido> pedidos = new ArrayList<Pedido>();
+	public List<ReportePedidosPorEmpleado> getCantidadDePedidosResueltosPorEmpleado() {
+		//List<Pedido> pedidos = new ArrayList<Pedido>();
+		List<ReportePedidosPorEmpleado> reportes = new ArrayList<ReportePedidosPorEmpleado>();;
 		Session sesion = sf.openSession();
-
+		
 		sesion.beginTransaction();
-		Query q = sesion.createQuery("SELECT p FROM Pedido p WHERE p.estado = :estado AND p.idEmpleado = :idEmpleado");
+		Query q = sesion.createQuery("SELECT new entities.ReportePedidosPorEmpleado(e.idEmpleado, e.nombre, e.apellido, COUNT(*)) "
+				+ "FROM Pedido p inner join p.empleado e WHERE p.estado = :estado GROUP BY e.idEmpleado, e.nombre, e.apellido");
+		//Query q = sesion.createQuery("SELECT p FROM Pedido p WHERE p.estado = :estado AND p.idEmpleado = :idEmpleado");
 		q.setString("estado", "Finalizado");
-		q.setInteger("idEmpleado", e.getId());
-		pedidos = (List<Pedido>) q.list();
+		//q.setInteger("idEmpleado", e.getId());
+		reportes = (List<ReportePedidosPorEmpleado>) q.list();
+		//pedidos = (List<Pedido>) q.list();
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
 
-		return pedidos;
+		return reportes;
 	}
 
 	public float getPorcentajeDeCumplimientoFechaDeEntrega() {
