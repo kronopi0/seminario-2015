@@ -108,17 +108,10 @@ public class ListarPedidos extends javax.swing.JFrame {
 				comboCliente.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						String eleccion = comboCliente.getSelectedItem().toString();
+
 						List<Pedido> pedidos = sistema.getPedidos(eleccion);
-						List<String> elementos = new ArrayList<String>();
-						String a, b, c;
-						for (int i = 0; i < pedidos.size(); i++) {
-							a = pedidos.get(i).getId() + "";
-							b = pedidos.get(i).getDescripcion();
-							c = pedidos.get(i).getPeriodicidad() + "";
-							elementos.add(a + "     " + b + "     " + c + "     ");
-						}
-						// Lista app = new Lista(sistema, elementos);
-						// app.setVisible(true);
+
+						// TableExample t = new TableExample(pedidos);
 					}
 				});
 

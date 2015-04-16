@@ -54,7 +54,7 @@ public class PedidoDAO {
 
 		sesion.beginTransaction();
 		Query q = sesion.createQuery("SELECT p FROM Pedido p WHERE p.estado = :estado");
-		q.setString("estado", "Pendiente");
+		q.setString("estado", estado);
 		pedidos = (List<Pedido>) q.list();
 		sesion.getTransaction().commit();
 		sesion.flush();
