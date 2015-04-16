@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="lib/javassist-3.4.GA.jar"/>
 	<classpathentry kind="lib" path="lib/jta-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="lib/joda-time-2.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -31,6 +31,21 @@ import entities.Pedido;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class AltaPedido extends javax.swing.JFrame {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	{
+		// Set Look & Feel
+		try {
+			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private JLabel jLabelCuit;
 	private JButton jButtonBuscarCliente;
 	private JLabel jLabelNombreCliente;

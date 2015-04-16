@@ -18,7 +18,7 @@ public class Empleado {
 	private int idEmpleado;
 	private String nombre;
 	private String apellido;
-
+	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="empleado", cascade = CascadeType.ALL)
 	public Set<Pedido> pedidos;
 
