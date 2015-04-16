@@ -2,13 +2,16 @@ package entities;
 
 public class ReportePedidosPorEmpleado {
 
-	private Integer id;
+	private int id;
 	private String nombre;
 	private String apellido;
-	private Integer cantidad;
+	private long cantidad;
 	
-	public ReportePedidosPorEmpleado(Integer id, String nombre, String apellido,
-			Integer cantidad) {
+	public ReportePedidosPorEmpleado() {
+		super();
+	}
+
+	public ReportePedidosPorEmpleado(int id, String nombre, String apellido, long cantidad) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -40,11 +43,11 @@ public class ReportePedidosPorEmpleado {
 		this.apellido = apellido;
 	}
 
-	public int getCantidad() {
+	public long getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(int cantidad) {
+	public void setCantidad(long cantidad) {
 		this.cantidad = cantidad;
 	}
 	

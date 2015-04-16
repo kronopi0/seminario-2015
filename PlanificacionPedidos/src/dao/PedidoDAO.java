@@ -70,8 +70,8 @@ public class PedidoDAO {
 		Session sesion = sf.openSession();
 		
 		sesion.beginTransaction();
-		Query q = sesion.createQuery("SELECT new entities.ReportePedidosPorEmpleado(e.idEmpleado, e.nombre, e.apellido, COUNT(*)) "
-				+ "FROM Pedido p inner join p.empleado e WHERE p.estado = :estado GROUP BY e.idEmpleado, e.nombre, e.apellido");
+		Query q = sesion.createQuery("SELECT new entities.ReportePedidosPorEmpleado(e.idEmpleado, e.nombre, e.apellido, COUNT(*) as cant) "
+				+ "FROM Pedido p join p.empleado e WHERE p.estado = :estado GROUP BY e.idEmpleado, e.nombre, e.apellido");
 		//Query q = sesion.createQuery("SELECT p FROM Pedido p WHERE p.estado = :estado AND p.idEmpleado = :idEmpleado");
 		q.setString("estado", "Finalizado");
 		//q.setInteger("idEmpleado", e.getId());
@@ -96,6 +96,7 @@ public class PedidoDAO {
 		sesion.getTransaction().commit();
 		sesion.flush();
 
+		sesion.beginTransaction();
 		Query q2 = sesion.createQuery("SELECT count(*) FROM Pedido p WHERE p.estado = :estado");
 		q2.setString("estado", "Finalizado");
 		totalPedidosFinalizados = (Long) q2.uniqueResult();

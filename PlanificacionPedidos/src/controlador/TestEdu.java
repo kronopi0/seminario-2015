@@ -38,6 +38,9 @@ public class TestEdu {
 		for (ReportePedidosPorEmpleado r : reportes)
 			System.out.println(r.getId() + "  " + r.getNombre() + "  " + r.getApellido() + "  " + r.getCantidad());
 		
+		
+		float cumplimientoEntrega = sistema.reportePorcentajeDeCumplimientoFechaDeEntrega();
+		System.out.println("Porcentaje de cumplimiento: " + cumplimientoEntrega);
 		/*
 		List<Calendario> calendario = sistema.getCalendario();
 		System.out.println("---- CALENDARIO 2015 ----\n");
