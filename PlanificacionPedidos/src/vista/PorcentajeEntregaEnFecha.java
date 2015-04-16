@@ -2,20 +2,12 @@ package vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
-
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JSeparator;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
-import org.joda.time.DateTime;
-
 import controlador.Sistema;
-import entities.Pedido;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
@@ -46,11 +38,7 @@ public class PorcentajeEntregaEnFecha extends javax.swing.JFrame {
 
 	private JButton jButtonSalir;
 	private JLabel jLabelPedidosPendientes;
-	private Sistema sistema;
 	private JLabel porcentaje;
-	private JSeparator jSeparator1;
-	private Pedido pedido;
-	private List<Pedido> pedidos;
 	private double por;
 
 	/**
@@ -67,7 +55,6 @@ public class PorcentajeEntregaEnFecha extends javax.swing.JFrame {
 
 	public PorcentajeEntregaEnFecha(Sistema s, double porcentaje) {
 		super();
-		sistema = s;
 		por = porcentaje;
 		initGUI();
 	}
@@ -103,12 +90,10 @@ public class PorcentajeEntregaEnFecha extends javax.swing.JFrame {
 			{
 				porcentaje = new JLabel();
 				getContentPane().add(porcentaje);
-				porcentaje.setBounds(149, 58, 55, 42);
+				porcentaje.setBounds(140, 53, 89, 59);
 				porcentaje.setText("45%");
 				porcentaje.setFont(new java.awt.Font("SansSerif",1,24));
-				
-				por = 123/56;
-				
+				System.out.println(por);
 				porcentaje.setText(por+"%");
 				
 				

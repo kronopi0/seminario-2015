@@ -145,7 +145,7 @@ public class Principal extends javax.swing.JFrame {
 					{
 						cutMenuItem = new JMenuItem();
 						jMenu4.add(cutMenuItem);
-						cutMenuItem.setText("Listar pedidos por empleado");
+						cutMenuItem.setText("Listar pedidos resueltos por empleado");
 						cutMenuItem.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 
@@ -166,7 +166,7 @@ public class Principal extends javax.swing.JFrame {
 								javax.swing.SwingUtilities
 										.invokeLater(new Runnable() {
 											public void run() {
-												TablaPedidosPorEmpleado t = new TablaPedidosPorEmpleado();
+												TablaPedidosResueltosPorEmpleado t = new TablaPedidosResueltosPorEmpleado();
 												t.main(data);
 											}
 										});
