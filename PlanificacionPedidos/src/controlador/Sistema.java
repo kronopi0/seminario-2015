@@ -88,4 +88,8 @@ public class Sistema {
 		System.out.println(pedido.getDescripcion() + "\n" + tipo.getDescripcion() + "\n" + complejidad.getNombre());
 
 	}
+
+	public List<Cliente> getClientes() {
+		return ClienteDAO.getInstancia().getClientes();
+	}
 }

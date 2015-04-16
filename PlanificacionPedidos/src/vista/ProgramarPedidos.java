@@ -123,14 +123,15 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 			{
 				jButtonFinalizarPedido = new JButton();
 				getContentPane().add(jButtonFinalizarPedido);
-				jButtonFinalizarPedido.setText("Finalizar Pedido");
-				jButtonFinalizarPedido.setBounds(48, 283, 120, 35);
+				jButtonFinalizarPedido.setText("Programar Pedido");
+				jButtonFinalizarPedido.setBounds(48, 283, 133, 35);
 				jButtonFinalizarPedido.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jButtonFinalizarPedido.setEnabled(false);
 				jButtonFinalizarPedido.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("botonOK.actionPerformed, event=" + evt);
 						sistema.programarPedido(pedido, tipo, complejidad);
+						JOptionPane.showMessageDialog(null, "Pedido programado.");
 					}
 				});
 			}
@@ -178,10 +179,6 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 								+ Integer.parseInt(entrega.toString("YYYY")) + "\n";
 
 						JOptionPane.showMessageDialog(null, a + b + c + d + e + f);
-
-						jButtonFinalizarPedido.setEnabled(true);
-						comboComplejidad.setEnabled(true);
-						comboTipo.setEnabled(true);
 					}
 				});
 			}
@@ -194,7 +191,6 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				comboTipo = new JComboBox<String>();
 				getContentPane().add(comboTipo);
 				comboTipo.setBounds(88, 159, 216, 26);
-				comboTipo.setEnabled(false);
 
 				tipos = sistema.getTipos();
 
@@ -220,7 +216,6 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				comboComplejidad = new JComboBox<String>();
 				getContentPane().add(comboComplejidad);
 				comboComplejidad.setBounds(89, 227, 216, 26);
-				comboComplejidad.setEnabled(false);
 
 				complejidades = sistema.getComplejidades();
 
@@ -235,7 +230,9 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 						for (int i = 0; i < tipos.size(); i++)
 							if (comboComplejidad.getSelectedItem().toString().equals(complejidades.get(i).getNombre()))
 								complejidad = complejidades.get(i);
+						jButtonFinalizarPedido.setEnabled(true);
 					}
+
 				});
 				complejidad = complejidades.get(0);
 			}

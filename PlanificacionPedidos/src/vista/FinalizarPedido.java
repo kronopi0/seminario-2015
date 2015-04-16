@@ -115,11 +115,11 @@ public class FinalizarPedido extends javax.swing.JFrame {
 				jButtonFinalizarPedido.setText("Finalizar Pedido");
 				jButtonFinalizarPedido.setBounds(55, 145, 120, 35);
 				jButtonFinalizarPedido.setFont(new java.awt.Font("SansSerif", 1, 12));
-				jButtonFinalizarPedido.setEnabled(false);
 				jButtonFinalizarPedido.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("jButtonFinalizarPedido.actionPerformed, event=" + evt);
 						sistema.finalizarPedido(pedido);
+						JOptionPane.showMessageDialog(null, "Pedido finalizado.");
 					}
 				});
 			}
@@ -167,8 +167,6 @@ public class FinalizarPedido extends javax.swing.JFrame {
 								+ Integer.parseInt(entrega.toString("YYYY")) + "\n";
 
 						JOptionPane.showMessageDialog(null, a + b + c + d + e + f);
-
-						jButtonFinalizarPedido.setEnabled(true);
 					}
 				});
 			}

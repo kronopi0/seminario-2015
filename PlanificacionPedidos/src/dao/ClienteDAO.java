@@ -1,10 +1,14 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import hbt.HibernateUtil;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import entities.Cliente;
 
 public class ClienteDAO {
@@ -33,6 +37,21 @@ public class ClienteDAO {
 		sesion.close();
 		
 		return c;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Cliente> getClientes() {
+		List<Cliente> clientes = new ArrayList<Cliente>();
+		Session sesion = sf.openSession();
+
+		sesion.beginTransaction();
+		Query q = sesion.createQuery("SELECT c FROM Cliente c");
+		clientes = (List<Cliente>) q.list();
+		sesion.getTransaction().commit();
+		sesion.flush();
+		sesion.close();
+
+		return clientes;
 	}
 	
 }
