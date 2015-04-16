@@ -1,5 +1,6 @@
 package controlador;
 
+import java.util.Date;
 import java.util.List;
 
 import dao.CalendarioDAO;
@@ -60,6 +61,9 @@ public class Sistema {
 	}
 
 	public void finalizarPedido(Pedido p) {
+		p.setEstado("Finalizado");
+		p.setFechaFinalizado(new Date());
+		PedidoDAO.getInstancia().actualizarPedido(p);
 	}
 
 	public List<Pedido> getPedidos(String estado) {
@@ -86,8 +90,11 @@ public class Sistema {
 	}
 
 	public void programarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) {
-		System.out.println(pedido.getDescripcion() + "\n" + tipo.getDescripcion() + "\n" + complejidad.getNombre());
-
+		pedido.setEstado("Programado");
+		pedido.setComplejidad(complejidad);
+		pedido.setTipoPedido(tipo);
+		int duracion = (int) (pedido.getTipoPedido().getCantDias()*pedido.getComplejidad().getFactorTiempo());
+		List<Empleado> empleadosCapacitados = EmpleadoDAO.getInstancia().getEmpleadosCapacitados(tipo, complejidad); 
 	}
 
 	public List<Cliente> getClientes() {
