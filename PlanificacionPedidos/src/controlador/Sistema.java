@@ -81,7 +81,7 @@ public class Sistema {
 	/*
 	 * REPORTES
 	 */
-	public float reportePorcentajeDeCumplimientoFechaDeEntrega() {
+	public Double reportePorcentajeDeCumplimientoFechaDeEntrega() {
 		return PedidoDAO.getInstancia().getPorcentajeDeCumplimientoFechaDeEntrega();
 	}
 

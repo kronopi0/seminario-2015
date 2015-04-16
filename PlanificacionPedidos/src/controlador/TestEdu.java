@@ -39,7 +39,7 @@ public class TestEdu {
 			System.out.println(r.getId() + "  " + r.getNombre() + "  " + r.getApellido() + "  " + r.getCantidad());
 		
 		
-		float cumplimientoEntrega = sistema.reportePorcentajeDeCumplimientoFechaDeEntrega();
+		Double cumplimientoEntrega = sistema.reportePorcentajeDeCumplimientoFechaDeEntrega();
 		System.out.println("Porcentaje de cumplimiento: " + cumplimientoEntrega);
 		/*
 		List<Calendario> calendario = sistema.getCalendario();
