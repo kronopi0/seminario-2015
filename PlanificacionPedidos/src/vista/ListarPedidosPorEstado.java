@@ -24,7 +24,7 @@ import entities.Pedido;
  * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
  * ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class ListarPedidos extends javax.swing.JFrame {
+public class ListarPedidosPorEstado extends javax.swing.JFrame {
 
 	/**
 	 * 
@@ -49,27 +49,26 @@ public class ListarPedidos extends javax.swing.JFrame {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				ListarPedidos inst = new ListarPedidos();
+				ListarPedidosPorEstado inst = new ListarPedidosPorEstado();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 
-	public ListarPedidos(Sistema s) {
+	public ListarPedidosPorEstado(Sistema s) {
 		super();
 		sistema = s;
 		initGUI();
 	}
 
-	public ListarPedidos() {
+	public ListarPedidosPorEstado() {
 	}
 
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			this.setTitle("Alta Pedido");
 			{
 				jLabelCuit = new JLabel();
 				getContentPane().add(jLabelCuit);

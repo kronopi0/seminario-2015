@@ -7,9 +7,18 @@ import java.util.List;
 import javax.swing.*;
 
 import controlador.Sistema;
-import entities.Pedido;
 import entities.ReportePedidosPorEmpleado;
 
+/**
+ * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
+ * Builder, which is free for non-commercial use. If Jigloo is being used
+ * commercially (ie, by a corporation, company or business for any purpose
+ * whatever) then you should purchase a license for each developer using Jigloo.
+ * Please visit www.cloudgarden.com for details. Use of Jigloo implies
+ * acceptance of these licensing terms. A COMMERCIAL LICENSE HAS NOT BEEN
+ * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
+ * ANY CORPORATE OR COMMERCIAL PURPOSE.
+ */
 public class Principal extends javax.swing.JFrame {
 
 	/**
@@ -20,7 +29,8 @@ public class Principal extends javax.swing.JFrame {
 	{
 		// Set Look & Feel
 		try {
-			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+			javax.swing.UIManager
+					.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -31,7 +41,6 @@ public class Principal extends javax.swing.JFrame {
 	private JMenuItem copyMenuItem;
 	private JMenuItem cutMenuItem;
 	private JMenu jMenu4;
-	private JSeparator jSeparator2;
 	private JMenuItem saveAsMenuItem;
 	private JMenuItem saveMenuItem;
 	private JMenuItem openFileMenuItem;
@@ -64,7 +73,8 @@ public class Principal extends javax.swing.JFrame {
 			{
 				getContentPane().setLayout(null);
 				this.setTitle("Kantar World Panel");
-				getContentPane().setBackground(new java.awt.Color(149, 156, 172));
+				getContentPane().setBackground(
+						new java.awt.Color(149, 156, 172));
 			}
 			this.setSize(497, 360);
 			{
@@ -78,7 +88,7 @@ public class Principal extends javax.swing.JFrame {
 					{
 						newFileMenuItem = new JMenuItem();
 						jMenu3.add(newFileMenuItem);
-						newFileMenuItem.setText("Alta");
+						newFileMenuItem.setText("Nuevo");
 						newFileMenuItem.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 								AltaPedido app = new AltaPedido(sistema);
@@ -90,12 +100,14 @@ public class Principal extends javax.swing.JFrame {
 						openFileMenuItem = new JMenuItem();
 						jMenu3.add(openFileMenuItem);
 						openFileMenuItem.setText("Programar");
-						openFileMenuItem.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								ProgramarPedidos app = new ProgramarPedidos(sistema);
-								app.setVisible(true);
-							}
-						});
+						openFileMenuItem
+								.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent evt) {
+										ProgramarPedidos app = new ProgramarPedidos(
+												sistema);
+										app.setVisible(true);
+									}
+								});
 					}
 					{
 						saveMenuItem = new JMenuItem();
@@ -103,40 +115,42 @@ public class Principal extends javax.swing.JFrame {
 						saveMenuItem.setText("Finalizar");
 						saveMenuItem.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
-								FinalizarPedido app = new FinalizarPedido(sistema);
+								FinalizarPedido app = new FinalizarPedido(
+										sistema);
 								app.setVisible(true);
 							}
 						});
 					}
-					{
-						jSeparator2 = new JSeparator();
-						jMenu3.add(jSeparator2);
-					}
-					{
-						saveAsMenuItem = new JMenuItem();
-						jMenu3.add(saveAsMenuItem);
-						saveAsMenuItem.setText("Listar");
-						saveAsMenuItem.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								ListarPedidos app = new ListarPedidos(sistema);
-								app.setVisible(true);
-							}
-						});
-					}
+
 				}
+
 				{
 					jMenu4 = new JMenu();
 					jMenuBar1.add(jMenu4);
 					jMenu4.setText("Reportes");
 					jMenu4.setFont(new java.awt.Font("SansSerif", 1, 12));
 					{
+						saveAsMenuItem = new JMenuItem();
+						jMenu4.add(saveAsMenuItem);
+						saveAsMenuItem.setText("Listar pedidos según estado");
+						saveAsMenuItem.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								ListarPedidosPorEstado app = new ListarPedidosPorEstado(
+										sistema);
+								app.setVisible(true);
+								app.setLocationRelativeTo(null);
+							}
+						});
+					}
+					{
 						cutMenuItem = new JMenuItem();
 						jMenu4.add(cutMenuItem);
-						cutMenuItem.setText("Pedidos por empleado");
+						cutMenuItem.setText("Listar pedidos por empleado");
 						cutMenuItem.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 
-								List<ReportePedidosPorEmpleado> l = sistema.reporteCantidadDePedidosResueltosPorEmpleado();
+								List<ReportePedidosPorEmpleado> l = sistema
+										.reporteCantidadDePedidosResueltosPorEmpleado();
 
 								final Object[][] data = new Object[l.size()][4];
 
@@ -149,45 +163,61 @@ public class Principal extends javax.swing.JFrame {
 									data[i][3] = p.getCantidad();
 								}
 
-								javax.swing.SwingUtilities.invokeLater(new Runnable() {
-									public void run() {
-										TablaPedidosPorEmpleado t = new TablaPedidosPorEmpleado();
-										t.main(data);
-									}
-								});
+								javax.swing.SwingUtilities
+										.invokeLater(new Runnable() {
+											public void run() {
+												TablaPedidosPorEmpleado t = new TablaPedidosPorEmpleado();
+												t.main(data);
+											}
+										});
 							}
 						});
 					}
 					{
 						copyMenuItem = new JMenuItem();
 						jMenu4.add(copyMenuItem);
-						copyMenuItem.setText("Reporte B");
-					}
-				}
-				{
-					jMenu5 = new JMenu();
-					jMenuBar1.add(jMenu5);
-					jMenu5.setText("Otros");
-					jMenu5.setFont(new java.awt.Font("SansSerif", 1, 12));
-					{
-						helpMenuItem = new JMenuItem();
-						jMenu5.add(helpMenuItem);
-						helpMenuItem.setText("Integrantes");
-						helpMenuItem.addActionListener(new ActionListener() {
+						copyMenuItem
+								.setText("Cumplimiento Fecha de Entrega");
+						copyMenuItem.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
-								JOptionPane.showMessageDialog(null, "Integrantes:\n-Alen Freire, Manuel\n-Godoy, Juan Manuel\n-Sara, Eduardo");
+								double porcentaje = sistema.reportePorcentajeDeCumplimientoFechaDeEntrega();
+								PorcentajeEntregaEnFecha app = new PorcentajeEntregaEnFecha(sistema, porcentaje);
+								app.setVisible(true);
+								app.setLocationRelativeTo(null);
 							}
 						});
 					}
 					{
-						helpMenuItem = new JMenuItem();
-						jMenu5.add(helpMenuItem);
-						helpMenuItem.setText("Salir");
-						helpMenuItem.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								System.exit(0);
-							}
-						});
+						jMenu5 = new JMenu();
+						jMenuBar1.add(jMenu5);
+						jMenu5.setText("Otros");
+						jMenu5.setFont(new java.awt.Font("SansSerif", 1, 12));
+						{
+							helpMenuItem = new JMenuItem();
+							jMenu5.add(helpMenuItem);
+							helpMenuItem.setText("Integrantes");
+							helpMenuItem
+									.addActionListener(new ActionListener() {
+										public void actionPerformed(
+												ActionEvent evt) {
+											JOptionPane
+													.showMessageDialog(null,
+															"Integrantes:\n-Alen Freire, Manuel\n-Godoy, Juan Manuel\n-Sara, Eduardo");
+										}
+									});
+						}
+						{
+							helpMenuItem = new JMenuItem();
+							jMenu5.add(helpMenuItem);
+							helpMenuItem.setText("Salir");
+							helpMenuItem
+									.addActionListener(new ActionListener() {
+										public void actionPerformed(
+												ActionEvent evt) {
+											System.exit(0);
+										}
+									});
+						}
 					}
 				}
 			}
