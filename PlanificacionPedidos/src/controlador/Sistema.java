@@ -93,8 +93,14 @@ public class Sistema {
 		pedido.setEstado("Programado");
 		pedido.setComplejidad(complejidad);
 		pedido.setTipoPedido(tipo);
-		//int duracion = (int) (pedido.getTipoPedido().getCantDias()*pedido.getComplejidad().getFactorTiempo());
-		//List<Empleado> empleadosCapacitados = EmpleadoDAO.getInstancia().getEmpleadosCapacitados(tipo, complejidad); 
+		int duracion = (int) (pedido.getTipoPedido().getCantDias()*pedido.getComplejidad().getFactorTiempo());
+		List<Empleado> empleadosCapacitados = EmpleadoDAO.getInstancia().getEmpleadosCapacitados(tipo, complejidad);
+		if (empleadosCapacitados != null) {
+			pedido.setComplejidad(complejidad);
+			pedido.setTipoPedido(tipo);
+			pedido.setEmpleado(empleadosCapacitados.get(0));
+			PedidoDAO.getInstancia().programarPedido(pedido);
+		}
 	}
 
 	public List<Cliente> getClientes() {

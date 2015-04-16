@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entities.ComplejidadPedido;
+import entities.Empleado;
 import entities.Pedido;
 import entities.ReportePedidosPorEmpleado;
 import entities.TipoPedido;
@@ -162,6 +163,17 @@ public class PedidoDAO {
 		sesion.close();
 
 		return cp;
+	}
+
+	public void programarPedido(Pedido p) {
+		Session sesion = sf.openSession();
+
+		sesion.beginTransaction();
+		sesion.update(p);
+		sesion.getTransaction().commit();
+		sesion.flush();
+		sesion.close();
+		System.out.println("ID PEDIDO: " + p.getId());
 	}
 
 }

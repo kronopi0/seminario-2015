@@ -6,15 +6,15 @@ CREATE TABLE [dbo].[FESTIVOS](
     [fecha] [datetime] NULL
 ) ON [PRIMARY]
 
-CREATE TABLE [dbo].[CALENDARIO](
-    [id] [int] IDENTITY(1,1) NOT NULL,
-    [fecha] [datetime] NOT NULL,
-    [diahabil] [bit] NOT NULL,
- CONSTRAINT [PK_Calendario] PRIMARY KEY CLUSTERED 
-(
-    [Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
+--CREATE TABLE [dbo].[CALENDARIO](
+--    [id] [int] IDENTITY(1,1) NOT NULL,
+--   [fecha] [datetime] NOT NULL,
+--    [diahabil] [bit] NOT NULL,
+-- CONSTRAINT [PK_Calendario] PRIMARY KEY CLUSTERED 
+--(
+--    [Id] ASC
+--)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+--) ON [PRIMARY]
 
 ---------------------------------------------
 ---INSERCION DE DATOS EN LA TABLA FESTIVOS---
