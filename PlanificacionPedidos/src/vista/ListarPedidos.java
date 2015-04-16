@@ -2,7 +2,6 @@ package vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -111,8 +110,25 @@ public class ListarPedidos extends javax.swing.JFrame {
 
 						List<Pedido> pedidos = sistema.getPedidos(eleccion);
 
-						// TableExample t = new TableExample(pedidos);
+						final Object[][] data = new Object[pedidos.size()][4];
+
+						for (int i = 0; i < pedidos.size(); i++) {
+
+							Pedido p = pedidos.get(i);
+							data[i][0] = Integer.toString(p.getId());
+							data[i][1] = p.getDescripcion();
+							data[i][2] = p.getCliente().getNombre();
+							data[i][3] = p.getFechaSolicitud();
+						}
+
+						javax.swing.SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								TablaListarPedidos t = new TablaListarPedidos();
+								t.main(data);
+							}
+						});
 					}
+
 				});
 
 			}

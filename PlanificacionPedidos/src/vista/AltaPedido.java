@@ -197,8 +197,6 @@ public class AltaPedido extends javax.swing.JFrame {
 				for (int i = 0; i < clientes.size(); i++)
 					comboCliente.addItem(clientes.get(i).getNombre());
 
-				cliente = clientes.get(0);
-
 				comboCliente.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						for (int i = 0; i < clientes.size(); i++)

@@ -87,11 +87,8 @@ public class FinalizarPedido extends javax.swing.JFrame {
 				jComboBoxPedidosSinFinalizar.setBounds(71, 44, 260, 27);
 
 				pedidos = sistema.getPedidos("Programado");
-				System.out.println(pedidos.get(0).getDescripcion());
 				for (int i = 0; i < pedidos.size(); i++)
-					jComboBoxPedidosSinFinalizar.addItem(pedidos.get(i).getDescripcion());
-
-				pedido = pedidos.get(0);
+				jComboBoxPedidosSinFinalizar.addItem(pedidos.get(i).getDescripcion());
 
 				jComboBoxPedidosSinFinalizar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {

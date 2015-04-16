@@ -198,8 +198,6 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 					comboTipo.addItem((tipos.get(i).getDescripcion()));
 				}
 
-				tipo = tipos.get(0);
-
 				comboTipo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("comboTipo.actionPerformed, event=" + evt);
@@ -222,7 +220,6 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				for (int i = 0; i < complejidades.size(); i++) {
 					comboComplejidad.addItem((complejidades.get(i).getNombre()));
 				}
-				complejidad = complejidades.get(0);
 
 				comboComplejidad.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
