@@ -171,9 +171,6 @@ public class AltaPedido extends javax.swing.JFrame {
 							jTextFieldFechaDeEntrega.setText("dd/mm/aaaa");
 							jTextFieldPeriodicidad.setText("");
 							jTextFieldDescripcion.setText("");
-							jTextFieldFechaDeEntrega.setEnabled(false);
-							jTextFieldPeriodicidad.setEnabled(false);
-							jTextFieldDescripcion.setEnabled(false);
 						}
 
 					}

@@ -16,6 +16,19 @@ import javax.swing.SwingUtilities;
 import controlador.Sistema;
 import entities.Pedido;
 
+
+/**
+* This code was edited or generated using CloudGarden's Jigloo
+* SWT/Swing GUI Builder, which is free for non-commercial
+* use. If Jigloo is being used commercially (ie, by a corporation,
+* company or business for any purpose whatever) then you
+* should purchase a license for each developer using Jigloo.
+* Please visit www.cloudgarden.com for details.
+* Use of Jigloo implies acceptance of these licensing terms.
+* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
+* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
+* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+*/
 public class MenuPrincipal extends javax.swing.JFrame {
 	private JButton jButtonAlta;
 	private JButton jButtonFinalizar;
@@ -27,7 +40,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	private JLabel jLabelPedidos;
 	private JButton jButtonProgramar;
 	private Sistema sistema;
-
+	private JButton jButton1;
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -135,6 +148,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
 					public void actionPerformed(ActionEvent evt) 
 					{
 							System.exit(0);
+					}
+				});
+			}
+			{
+				jButton1 = new JButton();
+				getContentPane().add(jButton1);
+				jButton1.setText("listar");
+				jButton1.setBounds(196, 101, 69, 36);
+				jButton1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						System.out.println("jButton1.actionPerformed, event="+evt);
+						ListarPedidos app = new ListarPedidos(sistema);
+						app.setVisible(true);
 					}
 				});
 			}
