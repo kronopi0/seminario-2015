@@ -30,6 +30,13 @@ public class Empleado {
 		super();
 	}
 
+	public Empleado(int idEmpleado, String nombre, String apellido) {
+		super();
+		this.idEmpleado = idEmpleado;
+		this.nombre = nombre;
+		this.apellido = apellido;
+	}
+
 	public int getId() {
 		return idEmpleado;
 	}

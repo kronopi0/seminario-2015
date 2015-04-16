@@ -47,9 +47,9 @@ public class EmpleadoDAO {
 		List<Empleado> empleados = new ArrayList<Empleado>();
 		Session sesion = sf.openSession();
 
+		String query = "empleados_capacitados " + complejidad.getNombre() + ", " + tipo.getDescripcion();
 		sesion.beginTransaction();
-		Query q = sesion.createQuery("SELECT c FROM Empleado c");
-		empleados = (List<Empleado>) q.list();
+		empleados = (List<Empleado>) sesion.createSQLQuery(query).addEntity(Empleado.class).list();
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
