@@ -12,6 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entities.Calendario;
+import entities.Disponibilidad;
 import entities.Pedido;
 
 public class CalendarioDAO {
@@ -43,22 +44,18 @@ public class CalendarioDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public int getDiasHabiles(Pedido pedido) {
-		long dias;
-		long d=0;
+	public Integer getDiasHabiles(Pedido pedido) {
+		Disponibilidad disp;
 		Session sesion = sf.openSession();
-		String query = "diashabiles " + pedido.getFechaSolicitud() + ", " + pedido.getFechaEntrega();
-		//String query = "diashabiles " + "2015-05-01" + ", " +"2015-06-01";
+		
 		sesion.beginTransaction();
-		//sesion.createSQLQuery(query).addEntity(Calendario.class);
-		dias = (Long) sesion.createSQLQuery(query).addEntity(Calendario.class).uniqueResult();
-		String mensaje = "";
-		mensaje = "dias habiles: "+dias;
-		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
+		disp = (Disponibilidad) sesion.createSQLQuery("diashabiles :fechaDesde, :fechaHasta").addEntity(Disponibilidad.class).
+				setParameter("fechaDesde", pedido.getFechaSolicitud()).setParameter("fechaHasta", pedido.getFechaEntrega()).uniqueResult();
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
-		return (int)dias;
+		System.out.println("Dias Habiles: " + disp.getCantidadDias());
+		return disp.getCantidadDias();
 	}
 
 }

@@ -17,6 +17,7 @@ public class Disponibilidad {
 	private int idDisponibilidad;
 	private Date fechaInicio;
 	private Date fechaFin;
+	private Integer cantidadDias;
 
 	public Disponibilidad() {
 		super();
@@ -36,6 +37,14 @@ public class Disponibilidad {
 
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+
+	public Integer getCantidadDias() {
+		return cantidadDias;
+	}
+
+	public void setCantidadDias(Integer cantidadDias) {
+		this.cantidadDias = cantidadDias;
 	}
 
 }

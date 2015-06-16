@@ -119,7 +119,7 @@ private static Sistema instancia;
 		
 		//Cantidad de dias habiles entre fechaSolicitud y fechaEntregaEsperada
 		
-		int diasHabiles=CalendarioDAO.getInstancia().getDiasHabiles(pedido);
+		Integer diasHabiles=CalendarioDAO.getInstancia().getDiasHabiles(pedido);
 		mensaje = "dias habiles: "+diasHabiles;
 		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 		
