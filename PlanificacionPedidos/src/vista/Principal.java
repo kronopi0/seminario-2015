@@ -91,7 +91,7 @@ public class Principal extends javax.swing.JFrame {
 						newFileMenuItem.setText("Nuevo");
 						newFileMenuItem.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
-								AltaPedido app = new AltaPedido(sistema);
+								AltaPedido app = new AltaPedido();
 								app.setVisible(true);
 							}
 						});
@@ -103,8 +103,7 @@ public class Principal extends javax.swing.JFrame {
 						openFileMenuItem
 								.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent evt) {
-										ProgramarPedidos app = new ProgramarPedidos(
-												sistema);
+										ProgramarPedidos app = new ProgramarPedidos();
 										app.setVisible(true);
 									}
 								});
@@ -115,8 +114,7 @@ public class Principal extends javax.swing.JFrame {
 						saveMenuItem.setText("Finalizar");
 						saveMenuItem.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
-								FinalizarPedido app = new FinalizarPedido(
-										sistema);
+								FinalizarPedido app = new FinalizarPedido();
 								app.setVisible(true);
 							}
 						});

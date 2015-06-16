@@ -8,3 +8,15 @@ inner join Complejidades_Pedidos cp on cp.idcomplejidad=ce.idcomplejidad
 inner join Tipos_Pedido_Empleado tpe on tpe.idempleado=e.idempleado
 inner join Tipos_Pedido tp on tp.idtipopedido=tpe.idtipopedido
 where cp.nombre like @complejidad and tp.descripcion like @tipoEstudio
+
+
+create procedure diashabiles
+@fechaDesde datetime,
+@fechaHasta datetime,
+@dias int output
+
+as
+
+select @dias = sum(diahabil)
+from calendario
+where fecha BETWEEN @fechaDesde AND @fechaHasta

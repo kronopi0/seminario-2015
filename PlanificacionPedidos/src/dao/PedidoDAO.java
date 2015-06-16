@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import hbt.HibernateUtil;
@@ -174,6 +175,18 @@ public class PedidoDAO {
 		sesion.flush();
 		sesion.close();
 		System.out.println("ID PEDIDO: " + p.getId());
+	}
+	
+	public void finalizarPedido(Pedido p) {
+		p.setEstado("Finalizado");
+		p.setFechaFinalizado(new Date());
+			
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		sesion.update(p);
+		sesion.getTransaction().commit();
+		sesion.flush();
+		sesion.close();
 	}
 
 }

@@ -102,8 +102,8 @@ INSERT INTO PEDIDOS VALUES
 			null,
 			getdate()+5,
            'Pendiente',
-           null,
-           11111,
+			11111,           
+			null,
            null,
            null)
 INSERT INTO PEDIDOS VALUES
@@ -113,8 +113,8 @@ INSERT INTO PEDIDOS VALUES
 			null,
 			getdate()+3,
            'Pendiente',
-           null,
-           11111,
+           11111,           
+			null,
            null,
            null)
 INSERT INTO PEDIDOS VALUES
@@ -124,8 +124,8 @@ INSERT INTO PEDIDOS VALUES
 			null,
 			getdate()+9,
            'Pendiente',
-           null,
-           11111,
+           11111,           
+			null,
            null,
            null)
 INSERT INTO PEDIDOS VALUES
@@ -135,8 +135,8 @@ INSERT INTO PEDIDOS VALUES
 			null,
 			getdate()+5,
            'Pendiente',
-           null,
-           11111,
+           11111,           
+			null,
            null,
            null)
 

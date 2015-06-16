@@ -2,7 +2,7 @@ package controlador;
 
 import java.util.Date;
 import java.util.List;
-
+import javax.swing.JOptionPane;
 import dao.CalendarioDAO;
 import dao.ClienteDAO;
 import dao.EmpleadoDAO;
@@ -17,9 +17,12 @@ import entities.TipoPedido;
 
 public class Sistema {
 
-	// private static Sistema instancia;
+private static Sistema instancia;
 
-	public Sistema() {
+	public static Sistema getInstancia(){
+		if(instancia == null)
+			instancia = new Sistema();
+		return instancia;
 	}
 
 	/*
@@ -93,17 +96,59 @@ public class Sistema {
 		pedido.setEstado("Programado");
 		pedido.setComplejidad(complejidad);
 		pedido.setTipoPedido(tipo);
-		int duracion = (int) (pedido.getTipoPedido().getCantDias()*pedido.getComplejidad().getFactorTiempo());
+		
+		//duracion en dias
+		float dur = (pedido.getTipoPedido().getCantDias()*pedido.getComplejidad().getFactorTiempo());
+		int duracion = 0;
+		if(dur>(int)dur){
+			duracion = (int)dur+1;
+		}else{
+			duracion = (int)dur;
+		}
+		String mensaje = "";
+		mensaje = "duracion: "+duracion;
+		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
+		
+		//listado de id de empleados que cumplen complejidad
+		
 		List<Empleado> empleadosCapacitados = EmpleadoDAO.getInstancia().getEmpleadosCapacitados(tipo, complejidad);
-		if (empleadosCapacitados != null) {
+		for(int i=0;i<empleadosCapacitados.size();i++){
+			mensaje = "id: "+empleadosCapacitados.get(i).getId()+"  Nombre: "+empleadosCapacitados.get(i).getNombre()+"  Apellido: "+empleadosCapacitados.get(i).getApellido();
+			JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		//Cantidad de dias habiles entre fechaSolicitud y fechaEntregaEsperada
+		
+		int diasHabiles=CalendarioDAO.getInstancia().getDiasHabiles(pedido);
+		mensaje = "dias habiles: "+diasHabiles;
+		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
+		
+		//Por normas de la empresa no pueden tener un caso mas de 2 empleados
+		
+		//Si fechaEntrega-fechaPedido<=duracion busco empleado que tenga libre esa fecha, termino el pedido con ese empleado y pongo sus fechas ocupadas
+		//Si fechaEntrega-fechaPedido>duracion busco 2 empleados y que tengan estas fechas libres, termino el pedido con ese empleado y pongo sus fechas ocupadas
+		
+		
+		
+		/*if (empleadosCapacitados != null) {
 			pedido.setComplejidad(complejidad);
 			pedido.setTipoPedido(tipo);
 			pedido.setEmpleado(empleadosCapacitados.get(0));
 			PedidoDAO.getInstancia().programarPedido(pedido);
-		}
+		}*/
+		
+		/*String men = "";
+		men = "LLego aca: ";
+		JOptionPane.showMessageDialog(null, men, "OK", JOptionPane.INFORMATION_MESSAGE);*/
 	}
 
 	public List<Cliente> getClientes() {
 		return ClienteDAO.getInstancia().getClientes();
+	}
+	
+	//Clientes
+	
+	public void altaCliente(Cliente cliente) {
+		ClienteDAO.getInstancia().grabarCliente(cliente);
 	}
 }

@@ -15,6 +15,7 @@ import javax.swing.SwingUtilities;
 import org.joda.time.DateTime;
 
 import controlador.Sistema;
+import dao.PedidoDAO;
 import entities.Pedido;
 
 /**
@@ -66,14 +67,11 @@ public class FinalizarPedido extends javax.swing.JFrame {
 		});
 	}
 
-	public FinalizarPedido(Sistema s) {
+	public FinalizarPedido() {
 		super();
-		sistema = s;
 		initGUI();
 	}
 
-	public FinalizarPedido() {
-	}
 
 	private void initGUI() {
 		try {
@@ -86,7 +84,8 @@ public class FinalizarPedido extends javax.swing.JFrame {
 				getContentPane().add(jComboBoxPedidosSinFinalizar);
 				jComboBoxPedidosSinFinalizar.setBounds(71, 44, 260, 27);
 
-				pedidos = sistema.getPedidos("Programado");
+				//pedidos = PedidoDAO.getInstancia().getPedidos("Programado");
+				pedidos = PedidoDAO.getInstancia().getPedidos("Pendiente");
 				for (int i = 0; i < pedidos.size(); i++)
 				jComboBoxPedidosSinFinalizar.addItem(pedidos.get(i).getDescripcion());
 
@@ -115,7 +114,7 @@ public class FinalizarPedido extends javax.swing.JFrame {
 				jButtonFinalizarPedido.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("jButtonFinalizarPedido.actionPerformed, event=" + evt);
-						sistema.finalizarPedido(pedido);
+						PedidoDAO.getInstancia().finalizarPedido(pedido);
 						JOptionPane.showMessageDialog(null, "Pedido finalizado.");
 					}
 				});

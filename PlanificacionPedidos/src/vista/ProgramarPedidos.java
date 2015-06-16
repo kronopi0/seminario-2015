@@ -15,6 +15,7 @@ import javax.swing.SwingUtilities;
 import org.joda.time.DateTime;
 
 import controlador.Sistema;
+import dao.PedidoDAO;
 import entities.ComplejidadPedido;
 import entities.Pedido;
 import entities.TipoPedido;
@@ -77,14 +78,11 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 		});
 	}
 
-	public ProgramarPedidos(Sistema s) {
+	public ProgramarPedidos() {
 		super();
-		sistema = s;
 		initGUI();
 	}
 
-	public ProgramarPedidos() {
-	}
 
 	private void initGUI() {
 		try {
@@ -97,7 +95,7 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				getContentPane().add(jComboBoxPedidosSinFinalizar);
 				jComboBoxPedidosSinFinalizar.setBounds(71, 41, 260, 27);
 
-				pedidos = sistema.getPedidos("Pendiente");
+				pedidos = PedidoDAO.getInstancia().getPedidos("Pendiente");
 				System.out.println(pedidos.get(0).getDescripcion());
 				for (int i = 0; i < pedidos.size(); i++)
 					jComboBoxPedidosSinFinalizar.addItem(pedidos.get(i).getDescripcion());
@@ -130,7 +128,7 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				jButtonFinalizarPedido.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("botonOK.actionPerformed, event=" + evt);
-						sistema.programarPedido(pedido, tipo, complejidad);
+						Sistema.getInstancia().programarPedido(pedido, tipo, complejidad);
 						JOptionPane.showMessageDialog(null, "Pedido programado.");
 					}
 				});
@@ -192,7 +190,7 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				getContentPane().add(comboTipo);
 				comboTipo.setBounds(88, 159, 216, 26);
 
-				tipos = sistema.getTipos();
+				tipos = PedidoDAO.getInstancia().getTipos();
 
 				for (int i = 0; i < tipos.size(); i++) {
 					comboTipo.addItem((tipos.get(i).getDescripcion()));
@@ -214,8 +212,8 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				comboComplejidad = new JComboBox<String>();
 				getContentPane().add(comboComplejidad);
 				comboComplejidad.setBounds(89, 227, 216, 26);
-
-				complejidades = sistema.getComplejidades();
+				
+				complejidades = PedidoDAO.getInstancia().getComplejidades();
 
 				for (int i = 0; i < complejidades.size(); i++) {
 					comboComplejidad.addItem((complejidades.get(i).getNombre()));

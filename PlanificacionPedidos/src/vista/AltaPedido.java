@@ -17,19 +17,11 @@ import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
 import controlador.Sistema;
+import dao.ClienteDAO;
+import dao.PedidoDAO;
 import entities.Cliente;
 import entities.Pedido;
 
-/**
- * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
- * Builder, which is free for non-commercial use. If Jigloo is being used
- * commercially (ie, by a corporation, company or business for any purpose
- * whatever) then you should purchase a license for each developer using Jigloo.
- * Please visit www.cloudgarden.com for details. Use of Jigloo implies
- * acceptance of these licensing terms. A COMMERCIAL LICENSE HAS NOT BEEN
- * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
- * ANY CORPORATE OR COMMERCIAL PURPOSE.
- */
 public class AltaPedido extends javax.swing.JFrame {
 
 	/**
@@ -73,14 +65,11 @@ public class AltaPedido extends javax.swing.JFrame {
 		});
 	}
 
-	public AltaPedido(Sistema s) {
+	public AltaPedido() {
 		super();
-		sistema = s;
 		initGUI();
 	}
 
-	public AltaPedido() {
-	}
 
 	private void initGUI() {
 		try {
@@ -165,8 +154,8 @@ public class AltaPedido extends javax.swing.JFrame {
 							}
 							p.setFechaSolicitud(new Date());
 							p.setPeriodicidad(Integer.valueOf(jTextFieldPeriodicidad.getText()));
-
-							sistema.altaPedido(p);
+							PedidoDAO.getInstancia().grabarPedido(p);
+							//sistema.altaPedido(p);
 							JOptionPane.showMessageDialog(null, "Pedido cargado.");
 							jTextFieldFechaDeEntrega.setText("dd/mm/aaaa");
 							jTextFieldPeriodicidad.setText("");
@@ -193,7 +182,7 @@ public class AltaPedido extends javax.swing.JFrame {
 				getContentPane().add(comboCliente);
 				comboCliente.setBounds(60, 41, 254, 26);
 
-				clientes = sistema.getClientes();
+				clientes = ClienteDAO.getInstancia().getClientes();
 				for (int i = 0; i < clientes.size(); i++)
 					comboCliente.addItem(clientes.get(i).getNombre());
 

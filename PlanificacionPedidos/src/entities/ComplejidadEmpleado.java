@@ -14,5 +14,13 @@ public class ComplejidadEmpleado {
 	public ComplejidadEmpleado() {
 		super();
 	}
+
+	public ComplejidadEmpleadoID getId() {
+		return id;
+	}
+
+	public void setId(ComplejidadEmpleadoID id) {
+		this.id = id;
+	}
 	
 }
