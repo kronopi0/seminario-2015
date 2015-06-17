@@ -43,7 +43,7 @@ public class CalendarioDAO {
 		return calendario;
 	}
 	
-	//distinta ver
+	
 	@SuppressWarnings("unchecked")
 	public Integer getDiasHabiles(Pedido pedido) {
 		Disponibilidad disp;

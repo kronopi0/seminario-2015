@@ -55,8 +55,8 @@ INSERT INTO PEDIDOS VALUES
 			getdate()+5,
            'Programado',
            1,
-           11111,
            3,
+		   11111,
            1362378)
 INSERT INTO PEDIDOS VALUES
            ( 'Informe temprano',
@@ -66,8 +66,8 @@ INSERT INTO PEDIDOS VALUES
 			getdate()+3,
            'Programado',
            3,
-           11111,
            1,
+		   11111,
            1362378)
 INSERT INTO PEDIDOS VALUES
            ( 'Reporte genial',
@@ -77,8 +77,8 @@ INSERT INTO PEDIDOS VALUES
 			getdate()+9,
            'Programado',
            2,
-           11111,
            1,
+		   11111,
            1352854)
 INSERT INTO PEDIDOS VALUES
            ( 'Soy un pedido',
@@ -88,8 +88,8 @@ INSERT INTO PEDIDOS VALUES
 			getdate()+5,
            'Programado',
            1,
-           11111,
            3,
+		   11111,
            1352854)
 
 
@@ -102,9 +102,9 @@ INSERT INTO PEDIDOS VALUES
 			null,
 			getdate()+5,
            'Pendiente',
-			11111,           
 			null,
            null,
+		   11111,
            null)
 INSERT INTO PEDIDOS VALUES
            ( 'Informe temprano',
@@ -113,9 +113,9 @@ INSERT INTO PEDIDOS VALUES
 			null,
 			getdate()+3,
            'Pendiente',
-           11111,           
-			null,
            null,
+           null,
+		   11111,
            null)
 INSERT INTO PEDIDOS VALUES
            ( 'Reporte genial',
@@ -124,9 +124,9 @@ INSERT INTO PEDIDOS VALUES
 			null,
 			getdate()+9,
            'Pendiente',
-           11111,           
-			null,
+            null,
            null,
+		   11111,
            null)
 INSERT INTO PEDIDOS VALUES
            ( 'Soy un pedido',
@@ -135,9 +135,9 @@ INSERT INTO PEDIDOS VALUES
 			null,
 			getdate()+5,
            'Pendiente',
-           11111,           
-			null,
            null,
+           null,
+		   11111,
            null)
 
 --PEDIDOS finalizados
@@ -150,8 +150,8 @@ INSERT INTO PEDIDOS VALUES
 			getdate()+5,
            'Finalizado',
            1,
-           11111,
            1,
+		   11111,
            1358354)
 INSERT INTO PEDIDOS VALUES
            ( 'Informe temprano',
@@ -161,8 +161,8 @@ INSERT INTO PEDIDOS VALUES
 			getdate()+3,
            'Finalizado',
            1,
-           11111,
-           2,
+          2,
+		   11111,
            1358354)
 INSERT INTO PEDIDOS VALUES
            ( 'Reporte genial',
@@ -172,8 +172,8 @@ INSERT INTO PEDIDOS VALUES
 			getdate()+9,
            'Finalizado',
            3,
-           11111,
            1,
+		   11111,
            1358354)
 INSERT INTO PEDIDOS VALUES
            ( 'Soy un pedido',
@@ -183,27 +183,8 @@ INSERT INTO PEDIDOS VALUES
 			getdate()+5,
            'Finalizado',
            1,
-           11111,
            2,
+		   11111,
            1358354)
 
 
-
-
-
-
-
-
-
---PROCEDURES
-
-create proc empleados_capacitados
-@complejidad varchar(20),
-@tipoEstudio varchar(20)
-as
-select e.idEmpleado, e.nombre, e.apellido from Empleados e
-inner join Complejidades_Empleado ce on ce.idempleado=e.idempleado
-inner join Complejidades_Pedidos cp on cp.idcomplejidad=ce.idcomplejidad
-inner join Tipos_Pedido_Empleado tpe on tpe.idempleado=e.idempleado
-inner join Tipos_Pedido tp on tp.idtipopedido=tpe.idtipopedido
-where cp.nombre like @complejidad and tp.descripcion like @tipoEstudio
