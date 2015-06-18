@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ public class Empleado {
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idEmpleado")
-	public Set<Disponibilidad> disponibilidades;
+	public List<Disponibilidad> disponibilidades;
 
 	public Empleado() {
 		super();
@@ -61,12 +62,16 @@ public class Empleado {
 		this.apellido = apellido;
 	}
 
-	public Set<Disponibilidad> getDisponibilidades() {
+	public List<Disponibilidad> getDisponibilidades() {
 		return disponibilidades;
 	}
 
-	public void setDisponibilidades(Set<Disponibilidad> disponibilidades) {
+	public void setDisponibilidades(List<Disponibilidad> disponibilidades) {
 		this.disponibilidades = disponibilidades;
 	}
 
+	public void agregarDisponibilidad(Disponibilidad disp) {
+		disponibilidades.add(disp);
+	}
+	
 }

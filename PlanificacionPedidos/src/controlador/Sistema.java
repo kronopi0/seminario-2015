@@ -122,8 +122,8 @@ private static Sistema instancia;
 				
 		//Cantidad de dias habiles entre fechaSolicitud y fechaEntregaEsperada
 		
-		Integer diasHabiles=CalendarioDAO.getInstancia().getDiasHabiles(pedido);
-		mensaje = "dias habiles: "+diasHabiles;
+		Disponibilidad disp=CalendarioDAO.getInstancia().getDiasHabiles(pedido);
+		mensaje = "dias habiles: "+disp.getCantidadDias();
 		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 		
 		//Por normas de la empresa el pedido no puede tener un caso mas de 1 empleado
@@ -132,13 +132,13 @@ private static Sistema instancia;
 		int i=0;
 		if (i<empleadosCapacitados.size()){
 			//Si duración<=días habiles
-			if(duracion<=diasHabiles){
+			if(duracion<=disp.getCantidadDias()){
 				//busco empleados libres en rango de fechas de empleadosCapacitados
 				int disponible=1;
 				int idDisponible=0;
-				for(int j=0;j<empleadosCapacitados.size();j++){
-					List<Disponibilidad> disponibilidadPorEmpleadoCapacitado = DisponibilidadDAO.getInstancia().buscarDisponibilidadPorEmpleado(empleadosCapacitados.get(j).getId());
-					
+				for(int j=0; j<empleadosCapacitados.size(); j++){
+					List<Disponibilidad> disponibilidadPorEmpleadoCapacitado = empleadosCapacitados.get(j).getDisponibilidades();
+
 					mensaje = "id: "+empleadosCapacitados.get(j).getId()+"  Nombre: "+empleadosCapacitados.get(j).getNombre();
 					JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 					if(0<disponibilidadPorEmpleadoCapacitado.size()){
@@ -179,7 +179,7 @@ private static Sistema instancia;
 						PedidoDAO.getInstancia().actualizarPedido(pedido);*/
 						
 						//Agregar Disponibilidad
-						
+						//empleadoSeleccionado.
 											
 						
 						j=empleadosCapacitados.size();
@@ -198,7 +198,7 @@ private static Sistema instancia;
 				
 			}else{
 				//Si los días habiles es mejor a la cantidad de días necesarios
-				mensaje = "La Fecha de Entrega debe ser "+(duracion-diasHabiles)+" día/s habile/s más de la Fecha de Entrega pactada";
+				mensaje = "La Fecha de Entrega debe ser "+(duracion-disp.getCantidadDias())+" día/s habile/s más de la Fecha de Entrega pactada";
 				JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}else{
