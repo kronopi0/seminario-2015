@@ -14,7 +14,7 @@ public class Disponibilidad {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idDisponibilidad;
+	private Integer idDisponibilidad;
 	private Date fechaInicio;
 	private Date fechaFin;
 	private Integer cantidadDias;
@@ -23,7 +23,15 @@ public class Disponibilidad {
 	public Disponibilidad() {
 		super();
 	}
+	
+	public Integer getIdDisponibilidad() {
+		return idDisponibilidad;
+	}
 
+	public void setIdDisponibilidad(Integer idDisponibilidad) {
+		this.idDisponibilidad = idDisponibilidad;
+	}
+	
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}

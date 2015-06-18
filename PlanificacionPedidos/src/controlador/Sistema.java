@@ -122,8 +122,10 @@ private static Sistema instancia;
 				
 		//Cantidad de dias habiles entre fechaSolicitud y fechaEntregaEsperada
 		
-		Disponibilidad disp=CalendarioDAO.getInstancia().getDiasHabiles(pedido);
-		mensaje = "dias habiles: "+disp.getCantidadDias();
+		Integer diasHabiles=CalendarioDAO.getInstancia().getDiasHabiles(pedido);
+		//System.out.println("Disponibilidad generada: ");
+		//System.out.println("Fecha Inicio: " + disp.getFechaInicio() + " Fecha Fin: " + disp.getFechaFin());
+		mensaje = "dias habiles: "+diasHabiles;
 		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 		
 		//Por normas de la empresa el pedido no puede tener un caso mas de 1 empleado
@@ -132,7 +134,7 @@ private static Sistema instancia;
 		int i=0;
 		if (i<empleadosCapacitados.size()){
 			//Si duración<=días habiles
-			if(duracion<=disp.getCantidadDias()){
+			if(duracion<=diasHabiles){
 				//busco empleados libres en rango de fechas de empleadosCapacitados
 				int disponible=1;
 				int idDisponible=0;
@@ -179,6 +181,12 @@ private static Sistema instancia;
 						PedidoDAO.getInstancia().actualizarPedido(pedido);*/
 						
 						//Agregar Disponibilidad
+						
+						Disponibilidad disp = new Disponibilidad();
+						disp.setFechaInicio(pedido.getFechaSolicitud());
+						disp.setFechaFin(pedido.getFechaEntrega());
+						disp.setCantidadDias(diasHabiles);
+						
 						empleadoSeleccionado.agregarDisponibilidad(disp);
 						
 						EmpleadoDAO.getInstancia().ModificarEmpleado(empleadoSeleccionado);
@@ -199,7 +207,7 @@ private static Sistema instancia;
 				
 			}else{
 				//Si los días habiles es mejor a la cantidad de días necesarios
-				mensaje = "La Fecha de Entrega debe ser "+(duracion-disp.getCantidadDias())+" día/s habile/s más de la Fecha de Entrega pactada";
+				mensaje = "La Fecha de Entrega debe ser "+(duracion-diasHabiles)+" día/s habile/s más de la Fecha de Entrega pactada";
 				JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}else{

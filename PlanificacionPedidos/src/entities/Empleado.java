@@ -23,7 +23,7 @@ public class Empleado {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="empleado", cascade = CascadeType.ALL)
 	public Set<Pedido> pedidos;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "idEmpleado")
 	public List<Disponibilidad> disponibilidades;
 
@@ -71,7 +71,7 @@ public class Empleado {
 	}
 
 	public void agregarDisponibilidad(Disponibilidad disp) {
-		disponibilidades.add(disp);
+		this.disponibilidades.add(disp);
 	}
 	
 }

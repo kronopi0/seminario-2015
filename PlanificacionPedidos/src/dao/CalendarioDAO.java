@@ -45,7 +45,7 @@ public class CalendarioDAO {
 	
 	
 	@SuppressWarnings("unchecked")
-	public Disponibilidad getDiasHabiles(Pedido pedido) {
+	public Integer getDiasHabiles(Pedido pedido) {
 		Disponibilidad disp;
 		Session sesion = sf.openSession();
 		
@@ -55,7 +55,7 @@ public class CalendarioDAO {
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
-		return disp;
+		return disp.getCantidadDias();
 	}
 
 }
