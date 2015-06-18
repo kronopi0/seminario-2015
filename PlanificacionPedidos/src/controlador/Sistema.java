@@ -138,7 +138,11 @@ private static Sistema instancia;
 				int idDisponible=0;
 				for(int j=0; j<empleadosCapacitados.size(); j++){
 					List<Disponibilidad> disponibilidadPorEmpleadoCapacitado = empleadosCapacitados.get(j).getDisponibilidades();
-
+					
+					for(Disponibilidad d: disponibilidadPorEmpleadoCapacitado) {
+						System.out.println("Disponibilidades");
+						System.out.println(d.getFechaInicio() + " " + d.getFechaFin());
+					}
 					mensaje = "id: "+empleadosCapacitados.get(j).getId()+"  Nombre: "+empleadosCapacitados.get(j).getNombre();
 					JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 					if(0<disponibilidadPorEmpleadoCapacitado.size()){
