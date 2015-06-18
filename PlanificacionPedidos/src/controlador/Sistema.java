@@ -181,7 +181,6 @@ private static Sistema instancia;
 						PedidoDAO.getInstancia().actualizarPedido(pedido);*/
 						
 						//Agregar Disponibilidad
-						
 						Disponibilidad disp = new Disponibilidad();
 						disp.setFechaInicio(pedido.getFechaSolicitud());
 						disp.setFechaFin(pedido.getFechaEntrega());
