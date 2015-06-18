@@ -180,6 +180,7 @@ private static Sistema instancia;
 						
 						//Agregar Disponibilidad
 						empleadoSeleccionado.agregarDisponibilidad(disp);
+						
 						EmpleadoDAO.getInstancia().ModificarEmpleado(empleadoSeleccionado);
 
 						j=empleadosCapacitados.size();
