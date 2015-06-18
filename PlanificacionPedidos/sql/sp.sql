@@ -31,3 +31,13 @@ if (select max(idDisponibilidad) from Disponibilidades) is not null
 
 --Devuelvo como resultado la Dispobilidad
 select @idDisponibilidad as idDisponibilidad, @fechaDesde as fechaInicio, @fechaHasta as fechaFin, @cantidadDias as cantidadDias
+
+--------------------------------------------------------------------------------------------------------------
+--3.
+create proc disponibilidad
+@idEmpleado int
+
+as
+select d.idDisponibilidad,d.fechaInicio,d.fechaFin,d.cantidadDias
+from DISPONIBILIDADES d
+where d.idEmpleado = @idEmpleado

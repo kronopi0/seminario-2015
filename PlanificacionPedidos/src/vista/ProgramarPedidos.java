@@ -129,7 +129,7 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("botonOK.actionPerformed, event=" + evt);
 						Sistema.getInstancia().programarPedido(pedido, tipo, complejidad);
-						JOptionPane.showMessageDialog(null, "Pedido programado.");
+						//JOptionPane.showMessageDialog(null, "Pedido programado.");
 					}
 				});
 			}

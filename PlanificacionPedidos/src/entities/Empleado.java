@@ -69,4 +69,9 @@ public class Empleado {
 		this.disponibilidades = disponibilidades;
 	}
 
+	public void setDisponibilidade(Disponibilidad disponibilidadnva) {
+		this.disponibilidades = (Set<Disponibilidad>) disponibilidadnva;
+		
+	}
+
 }

@@ -19,6 +19,7 @@ public class Disponibilidad {
 	private Date fechaFin;
 	private Integer cantidadDias;
 
+
 	public Disponibilidad() {
 		super();
 	}

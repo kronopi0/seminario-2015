@@ -55,7 +55,7 @@ public class CalendarioDAO {
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
-		System.out.println("Dias Habiles: " + disp.getCantidadDias());
+		//System.out.println("Dias Habiles: " + disp.getCantidadDias());
 		return disp.getCantidadDias();
 	}
 
