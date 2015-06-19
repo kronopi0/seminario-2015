@@ -69,6 +69,10 @@ private static Sistema instancia;
 	public void finalizarPedido(Pedido p) {
 		p.setEstado("Finalizado");
 		p.setFechaFinalizado(new Date());
+		//Liberar Empleado si la Fecha de Entrega es mayor a la Fecha de Finalización
+		
+		//No se me ocurre la forma de hacerlo sin un SP
+		
 		PedidoDAO.getInstancia().actualizarPedido(p);
 	}
 
@@ -111,8 +115,6 @@ private static Sistema instancia;
 			duracion = (int)dur;
 		}
 		String mensaje = "";
-		mensaje = "duracion: "+duracion;
-		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 		
 		//listado de id de empleados que cumplen complejidad
 		
@@ -121,10 +123,6 @@ private static Sistema instancia;
 		//Cantidad de dias habiles entre fechaSolicitud y fechaEntregaEsperada
 		
 		Integer diasHabiles=CalendarioDAO.getInstancia().getDiasHabiles(pedido);
-		//System.out.println("Disponibilidad generada: ");
-		//System.out.println("Fecha Inicio: " + disp.getFechaInicio() + " Fecha Fin: " + disp.getFechaFin());
-		mensaje = "dias habiles: "+diasHabiles;
-		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 		
 		//Por normas de la empresa el pedido no puede tener un caso mas de 1 empleado
 		
@@ -138,13 +136,11 @@ private static Sistema instancia;
 				int idDisponible=0;
 				for(int j=0; j<empleadosCapacitados.size(); j++){
 					List<Disponibilidad> disponibilidadPorEmpleadoCapacitado = empleadosCapacitados.get(j).getDisponibilidades();
-
-					mensaje = "id: "+empleadosCapacitados.get(j).getId()+"  Nombre: "+empleadosCapacitados.get(j).getNombre();
-					JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
+					
 					if(0<disponibilidadPorEmpleadoCapacitado.size()){
 						for(int k=0;k<disponibilidadPorEmpleadoCapacitado.size();k++){
 							//caso1
-							if((disponibilidadPorEmpleadoCapacitado.get(k).getFechaInicio()==pedido.getFechaSolicitud())&&(disponibilidadPorEmpleadoCapacitado.get(k).getFechaFin()==pedido.getFechaEntrega())){
+							if((disponibilidadPorEmpleadoCapacitado.get(k).getFechaInicio().equals(pedido.getFechaSolicitud()))&&(disponibilidadPorEmpleadoCapacitado.get(k).getFechaFin().equals(pedido.getFechaEntrega()))){
 								disponible=0;
 							}
 							//caso2
@@ -168,26 +164,23 @@ private static Sistema instancia;
 					
 					if(disponible==1){
 						idDisponible = empleadosCapacitados.get(j).getId();
-						mensaje = "Disponible Final (1 ok) = "+disponible;
-						JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
-						mensaje = "Agrego Empleado = "+idDisponible;
-						JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
-						
+
 						//Programar Pedido
 						empleadoSeleccionado = EmpleadoDAO.getInstancia().buscarEmpleado(idDisponible);
-						/*pedido.setEmpleado(empleadoSeleccionado);
-						PedidoDAO.getInstancia().actualizarPedido(pedido);*/
+						pedido.setEmpleado(empleadoSeleccionado);
+						PedidoDAO.getInstancia().actualizarPedido(pedido);
 						
 						//Agregar Disponibilidad
 						Disponibilidad disp = new Disponibilidad();
 						disp.setFechaInicio(pedido.getFechaSolicitud());
 						disp.setFechaFin(pedido.getFechaEntrega());
 						disp.setCantidadDias(diasHabiles);
-						
 						empleadoSeleccionado.agregarDisponibilidad(disp);
-						
 						EmpleadoDAO.getInstancia().ModificarEmpleado(empleadoSeleccionado);
-
+						
+						mensaje = "Empleado Asignado  id : "+empleadoSeleccionado.getId()+" Nombre : "+empleadoSeleccionado.getNombre()+" Apellido : "+empleadoSeleccionado.getApellido();
+						JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
+						
 						j=empleadosCapacitados.size();
 						JOptionPane.showMessageDialog(null, "Pedido programado.");
 					}else{

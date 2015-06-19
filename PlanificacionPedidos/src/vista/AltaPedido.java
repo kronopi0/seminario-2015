@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
+import org.joda.time.DateTime;
+
 import controlador.Sistema;
 import dao.ClienteDAO;
 import dao.PedidoDAO;
@@ -142,7 +144,7 @@ public class AltaPedido extends javax.swing.JFrame {
 						if (jTextFieldFechaDeEntrega.getText().isEmpty() || jTextFieldPeriodicidad.getText().isEmpty() || jTextFieldDescripcion.getText().isEmpty()) {
 							JOptionPane.showMessageDialog(null, "Faltan completar campos.");
 						} else {
-							SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 							Pedido p = new Pedido();
 							p.setCliente(cliente);
 							p.setDescripcion(jTextFieldDescripcion.getText());
@@ -154,8 +156,7 @@ public class AltaPedido extends javax.swing.JFrame {
 							}
 							p.setFechaSolicitud(new Date());
 							p.setPeriodicidad(Integer.valueOf(jTextFieldPeriodicidad.getText()));
-							PedidoDAO.getInstancia().grabarPedido(p);
-							//sistema.altaPedido(p);
+							Sistema.getInstancia().altaPedido(p);
 							JOptionPane.showMessageDialog(null, "Pedido cargado.");
 							jTextFieldFechaDeEntrega.setText("dd/mm/aaaa");
 							jTextFieldPeriodicidad.setText("");

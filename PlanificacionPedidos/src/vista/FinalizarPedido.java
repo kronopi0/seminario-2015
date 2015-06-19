@@ -84,8 +84,7 @@ public class FinalizarPedido extends javax.swing.JFrame {
 				getContentPane().add(jComboBoxPedidosSinFinalizar);
 				jComboBoxPedidosSinFinalizar.setBounds(71, 44, 260, 27);
 
-				//pedidos = PedidoDAO.getInstancia().getPedidos("Programado");
-				pedidos = PedidoDAO.getInstancia().getPedidos("Pendiente");
+				pedidos = PedidoDAO.getInstancia().getPedidos("Programado");
 				for (int i = 0; i < pedidos.size(); i++)
 				jComboBoxPedidosSinFinalizar.addItem(pedidos.get(i).getDescripcion());
 
@@ -114,7 +113,7 @@ public class FinalizarPedido extends javax.swing.JFrame {
 				jButtonFinalizarPedido.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("jButtonFinalizarPedido.actionPerformed, event=" + evt);
-						PedidoDAO.getInstancia().finalizarPedido(pedido);
+						Sistema.getInstancia().finalizarPedido(pedido);
 						JOptionPane.showMessageDialog(null, "Pedido finalizado.");
 					}
 				});
