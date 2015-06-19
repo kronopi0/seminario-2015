@@ -69,9 +69,17 @@ private static Sistema instancia;
 	public void finalizarPedido(Pedido p) {
 		p.setEstado("Finalizado");
 		p.setFechaFinalizado(new Date());
-		//Liberar Empleado si la Fecha de Entrega es mayor a la Fecha de Finalización
 		
+		//Liberar Empleado si la Fecha de Entrega es mayor a la Fecha de Finalización
 		//No se me ocurre la forma de hacerlo sin un SP
+		if(p.getFechaFinalizado().before(p.getFechaEntrega())) {
+			for(Disponibilidad d: p.getEmpleado().getDisponibilidades()) {
+				if(d.getFechaFin().compareTo(p.getFechaEntrega()) == 0) {
+					d.setFechaFin(p.getFechaFinalizado());
+					EmpleadoDAO.getInstancia().ModificarEmpleado(p.getEmpleado());
+				}
+			}		
+		}
 		
 		PedidoDAO.getInstancia().actualizarPedido(p);
 	}
