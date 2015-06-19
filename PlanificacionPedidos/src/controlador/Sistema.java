@@ -1,6 +1,7 @@
 package controlador;
 
 import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -76,6 +77,11 @@ private static Sistema instancia;
 			for(Disponibilidad d: p.getEmpleado().getDisponibilidades()) {
 				if(d.getFechaFin().compareTo(p.getFechaEntrega()) == 0) {
 					d.setFechaFin(p.getFechaFinalizado());
+					//Calculo cantidad de días real					
+					long diferenciaEn_ms = p.getFechaFinalizado().getTime() - p.getFechaSolicitud().getTime();
+					long dias = diferenciaEn_ms / (1000 * 60 * 60 * 24);
+					d.setCantidadDias((int) dias+1);
+
 					EmpleadoDAO.getInstancia().ModificarEmpleado(p.getEmpleado());
 				}
 			}		
