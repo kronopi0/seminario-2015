@@ -5,14 +5,10 @@ import hbt.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.hql.ast.QuerySyntaxException;
 
-import entities.Cliente;
 import entities.ComplejidadPedido;
 import entities.Empleado;
 import entities.TipoPedido;
@@ -40,7 +36,7 @@ public class EmpleadoDAO {
 	}
 	
 	//MODIFICAR
-	public void ModificarEmpleado(Empleado empleado){
+	public void actualizarEmpleado(Empleado empleado){
 		Session session = sf.openSession();
 		session.beginTransaction();
 		session.saveOrUpdate(empleado);  

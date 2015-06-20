@@ -2,14 +2,14 @@ package dao;
 
 import hbt.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.hql.ast.QuerySyntaxException;
+
 import entities.ComplejidadPedido;
 
 public class ComplejidadPedidoDAO {
@@ -56,7 +56,7 @@ public class ComplejidadPedidoDAO {
 	
 	// BUSCAR
 	
-	public ComplejidadPedido buscarComplejidadPedido(int idComplejidad) {
+	public ComplejidadPedido buscarComplejidadPedidoPorId(int idComplejidad) {
 		ComplejidadPedido c;
 		Session sesion = sf.openSession();
 		
@@ -71,25 +71,33 @@ public class ComplejidadPedidoDAO {
 		return c;
 	}
 	
-	public List<ComplejidadPedido> getComplejidadPedidos(){
-		List<ComplejidadPedido> complejidadPedido = null;
-		try {
-			Session session = sf.openSession();
+	public ComplejidadPedido buscarComplejidadPedido(String complejidad) {
+		ComplejidadPedido cp;
+		Session sesion = sf.openSession();
+
+		sesion.beginTransaction();
+		Query q = sesion.createQuery("SELECT cp FROM ComplejidadPedido cp WHERE cp.nombre = :nombre");
+		q.setString("nombre", complejidad);
+		cp = (ComplejidadPedido) q.uniqueResult();
+		sesion.getTransaction().commit();
+		sesion.flush();
+		sesion.close();
+
+		return cp;
+	}
 	
-			String hql = "SELECT *FROM ComplejidadPedido";
-			
-			Query query = session.createQuery(hql);
-			complejidadPedido = (List<ComplejidadPedido>) query.list();
-			
-			session.close();
-			
-		}catch (QuerySyntaxException q){
-			JOptionPane.showMessageDialog(null, q, "Error", JOptionPane.ERROR_MESSAGE);
-			System.out.println("Exception de sintaxis en ComplejidadPedidoDAO: buscarComplejidadPedidoByComplejidadPedidos");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return complejidadPedido;
+	@SuppressWarnings("unchecked")
+	public List<ComplejidadPedido> getComplejidadesPedido() {
+		List<ComplejidadPedido> complejidades = new ArrayList<ComplejidadPedido>();
+		Session sesion = sf.openSession();
+
+		sesion.beginTransaction();
+		Query q = sesion.createQuery("SELECT p FROM ComplejidadPedido p");
+		complejidades = (List<ComplejidadPedido>) q.list();
+		sesion.getTransaction().commit();
+		sesion.flush();
+		sesion.close();
+		return complejidades;
 	}
 
 }

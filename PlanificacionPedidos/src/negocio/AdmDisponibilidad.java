@@ -2,7 +2,7 @@ package negocio;
 
 import java.util.Date;
 
-public class Disponibilidad {
+public class AdmDisponibilidad {
 
 	private int idDisponibilidad;
 	private Date fechaInicio;
@@ -10,7 +10,7 @@ public class Disponibilidad {
 	private Integer cantidadDias;
 
 
-	public Disponibilidad() {
+	public AdmDisponibilidad() {
 		super();
 	}
 

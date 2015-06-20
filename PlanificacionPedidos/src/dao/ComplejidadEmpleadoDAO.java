@@ -10,7 +10,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entities.ComplejidadEmpleado;
-import entities.Empleado;
 
 public class ComplejidadEmpleadoDAO {
 	

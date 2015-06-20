@@ -10,11 +10,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ComplejidadPedido;
-import entities.Empleado;
+import entities.Disponibilidad;
 import entities.Pedido;
 import entities.ReportePedidosPorEmpleado;
-import entities.TipoPedido;
 
 public class PedidoDAO {
 
@@ -29,7 +27,7 @@ public class PedidoDAO {
 		return instancia;
 	}
 
-	public void grabarPedido(Pedido p) {
+	public void guardarPedido(Pedido p) {
 		Session sesion = sf.openSession();
 
 		sesion.beginTransaction();
@@ -108,64 +106,6 @@ public class PedidoDAO {
 		
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<TipoPedido> getTipos() {
-		List<TipoPedido> tipos = new ArrayList<TipoPedido>();
-		Session sesion = sf.openSession();
-		sesion.beginTransaction();
-		Query q = sesion.createQuery("SELECT p FROM TipoPedido p");
-		tipos = (List<TipoPedido>) q.list();
-		sesion.getTransaction().commit();
-		sesion.flush();
-		sesion.close();
-
-		return tipos;
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<ComplejidadPedido> getComplejidades() {
-		List<ComplejidadPedido> complejidades = new ArrayList<ComplejidadPedido>();
-		Session sesion = sf.openSession();
-
-		sesion.beginTransaction();
-		Query q = sesion.createQuery("SELECT p FROM ComplejidadPedido p");
-		complejidades = (List<ComplejidadPedido>) q.list();
-		sesion.getTransaction().commit();
-		sesion.flush();
-		sesion.close();
-		return complejidades;
-	}
-
-	public TipoPedido buscarTipoPedido(String tipoPedido) {
-		TipoPedido tp;
-		Session sesion = sf.openSession();
-
-		sesion.beginTransaction();
-		Query q = sesion.createQuery("SELECT p FROM Pedido p WHERE p.estado = :estado");
-		q.setString("estado", "Pendiente");
-		tp = (TipoPedido) q.uniqueResult();
-		sesion.getTransaction().commit();
-		sesion.flush();
-		sesion.close();
-
-		return tp;
-	}
-
-	public ComplejidadPedido buscarComplejidadPedido(String complejidad) {
-		ComplejidadPedido cp;
-		Session sesion = sf.openSession();
-
-		sesion.beginTransaction();
-		Query q = sesion.createQuery("SELECT cp FROM ComplejidadPedido cp WHERE cp.nombre = :nombre");
-		q.setString("nombre", complejidad);
-		cp = (ComplejidadPedido) q.uniqueResult();
-		sesion.getTransaction().commit();
-		sesion.flush();
-		sesion.close();
-
-		return cp;
-	}
-
 	public void programarPedido(Pedido p) {
 		Session sesion = sf.openSession();
 
@@ -187,6 +127,19 @@ public class PedidoDAO {
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
+	}
+	
+	public Integer getCantidadDiasHabiles(Pedido pedido) {
+		Disponibilidad disp;
+		Session sesion = sf.openSession();
+		
+		sesion.beginTransaction();
+		disp = (Disponibilidad) sesion.createSQLQuery("diashabiles :fechaDesde, :fechaHasta").addEntity(Disponibilidad.class).
+				setParameter("fechaDesde", pedido.getFechaSolicitud()).setParameter("fechaHasta", pedido.getFechaEntrega()).uniqueResult();
+		sesion.getTransaction().commit();
+		sesion.flush();
+		sesion.close();
+		return disp.getCantidadDias();
 	}
 
 }

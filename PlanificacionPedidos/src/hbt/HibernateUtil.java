@@ -10,7 +10,6 @@ public class HibernateUtil {
 	static {
 		try {
 			AnnotationConfiguration config = new AnnotationConfiguration();
-			config.addAnnotatedClass(Calendario.class);
 			config.addAnnotatedClass(Cliente.class);
 			config.addAnnotatedClass(ComplejidadPedido.class);
 			config.addAnnotatedClass(Disponibilidad.class);

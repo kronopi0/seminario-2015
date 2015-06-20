@@ -5,12 +5,9 @@ import java.util.List;
 
 import hbt.HibernateUtil;
 
-import javax.swing.JOptionPane;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.hql.ast.QuerySyntaxException;
 
 import entities.Cliente;
 
@@ -28,7 +25,7 @@ public class ClienteDAO {
 	}
 	
 	// ALTAS
-	public void grabarCliente(Cliente cliente){
+	public void guardarCliente(Cliente cliente){
 		Session session = sf.openSession();
 		session.beginTransaction();
 		session.persist(cliente);
@@ -88,6 +85,5 @@ public class ClienteDAO {
 
 		return clientes;
 	}
-	
 
 }

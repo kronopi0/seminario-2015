@@ -5,15 +5,10 @@ import java.util.List;
 
 import hbt.HibernateUtil;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ComplejidadPedido;
 import entities.Disponibilidad;
-import entities.Empleado;
-import entities.TipoPedido;
-
 
 public class DisponibilidadDAO {
 	private static DisponibilidadDAO instancia = null;
