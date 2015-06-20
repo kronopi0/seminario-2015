@@ -32,7 +32,17 @@ public class Pedido {
 
 	private int periodicidad;
 	private Date fechaSolicitud;
+	private Date fechaInicio;
 	private Date fechaFinalizado;
+	
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
 	private Date fechaEntrega;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

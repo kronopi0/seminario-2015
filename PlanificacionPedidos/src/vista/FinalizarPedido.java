@@ -93,7 +93,6 @@ public class FinalizarPedido extends javax.swing.JFrame {
 						for (int i = 0; i < pedidos.size(); i++)
 							if (jComboBoxPedidosSinFinalizar.getSelectedItem().toString().equals(pedidos.get(i).getDescripcion()))
 								pedido = pedidos.get(i);
-
 					}
 				});
 			}

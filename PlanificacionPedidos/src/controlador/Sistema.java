@@ -1,10 +1,15 @@
 package controlador;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+
+import org.joda.time.DateTime;
 
 import dao.CalendarioDAO;
 import dao.ClienteDAO;
@@ -72,13 +77,13 @@ private static Sistema instancia;
 		p.setFechaFinalizado(new Date());
 		
 		//Liberar Empleado si la Fecha de Entrega es mayor a la Fecha de Finalización
-		//No se me ocurre la forma de hacerlo sin un SP
+		
 		if(p.getFechaFinalizado().before(p.getFechaEntrega())) {
 			for(Disponibilidad d: p.getEmpleado().getDisponibilidades()) {
 				if(d.getFechaFin().compareTo(p.getFechaEntrega()) == 0) {
 					d.setFechaFin(p.getFechaFinalizado());
 					//Calculo cantidad de días real					
-					long diferenciaEn_ms = p.getFechaFinalizado().getTime() - p.getFechaSolicitud().getTime();
+					long diferenciaEn_ms = p.getFechaFinalizado().getTime() - p.getFechaInicio().getTime();
 					long dias = diferenciaEn_ms / (1000 * 60 * 60 * 24);
 					d.setCantidadDias((int) dias+1);
 
@@ -112,8 +117,20 @@ private static Sistema instancia;
 	public List<ReportePedidosPorEmpleado> reporteCantidadDePedidosResueltosPorEmpleado() {
 		return PedidoDAO.getInstancia().getCantidadDePedidosResueltosPorEmpleado();
 	}
+	
+	 public String sumarRestarDiasFecha(Date fecha, int dias) throws ParseException{
+		 Calendar calendar = Calendar.getInstance();
+		 calendar.setTime(fecha);
+		 calendar.add(Calendar.DAY_OF_YEAR, dias);
+		 int ano = calendar.get(Calendar.YEAR);
+	     int mes = calendar.get(Calendar.MONTH)+1;
+	     int dia = calendar.get(Calendar.DAY_OF_MONTH);
+		 String fechaaux = dia+"/"+mes+"/"+ano;
+		 
+		 return fechaaux; 
+	 }
 
-	public void programarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) {
+	public void programarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) throws ParseException {
 		pedido.setEstado("Programado");
 		pedido.setComplejidad(complejidad);
 		pedido.setTipoPedido(tipo);
@@ -129,6 +146,12 @@ private static Sistema instancia;
 			duracion = (int)dur;
 		}
 		String mensaje = "";
+		
+		//Con la fecha de inicio y duracion en dias busco la fecha hasta
+		
+		Date fechaInicioTarea = pedido.getFechaInicio();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date fechaFinTarea = formatter.parse(Sistema.getInstancia().sumarRestarDiasFecha(pedido.getFechaInicio(), duracion));
 		
 		//listado de id de empleados que cumplen complejidad
 		
@@ -153,20 +176,26 @@ private static Sistema instancia;
 					
 					if(0<disponibilidadPorEmpleadoCapacitado.size()){
 						for(int k=0;k<disponibilidadPorEmpleadoCapacitado.size();k++){
+							
+							String StrfechaEmpleadoInicio = Sistema.getInstancia().sumarRestarDiasFecha(disponibilidadPorEmpleadoCapacitado.get(k).getFechaInicio(), -1);
+							String StrfechaEmpleadoFin = Sistema.getInstancia().sumarRestarDiasFecha(disponibilidadPorEmpleadoCapacitado.get(k).getFechaFin(), 1);
+							Date fechaEmpleadoInicio = formatter.parse(StrfechaEmpleadoInicio);
+							Date fechaEmpleadoFin = formatter.parse(StrfechaEmpleadoFin);	
+							
 							//caso1
-							if((disponibilidadPorEmpleadoCapacitado.get(k).getFechaInicio().equals(pedido.getFechaSolicitud()))&&(disponibilidadPorEmpleadoCapacitado.get(k).getFechaFin().equals(pedido.getFechaEntrega()))){
+							if((fechaEmpleadoInicio.equals(fechaInicioTarea))&&(fechaEmpleadoFin.equals(fechaFinTarea))){
 								disponible=0;
 							}
 							//caso2
-							if((disponibilidadPorEmpleadoCapacitado.get(k).getFechaInicio().before(pedido.getFechaSolicitud()))&&(pedido.getFechaSolicitud().before(disponibilidadPorEmpleadoCapacitado.get(k).getFechaFin()))){
+							if((fechaInicioTarea.before(fechaEmpleadoFin))&&(fechaEmpleadoFin.before(fechaFinTarea))){	
 								disponible=0;
 							}
 							//caso3
-							if((pedido.getFechaSolicitud().before(disponibilidadPorEmpleadoCapacitado.get(k).getFechaInicio()))&&(disponibilidadPorEmpleadoCapacitado.get(k).getFechaInicio().before(pedido.getFechaEntrega()))){
+							if((fechaInicioTarea.before(fechaEmpleadoInicio))&&(fechaEmpleadoInicio.before(fechaFinTarea))){
 								disponible=0;
 							}
 							//caso4
-							if((disponibilidadPorEmpleadoCapacitado.get(k).getFechaInicio().before(pedido.getFechaSolicitud()))&&(pedido.getFechaSolicitud().before(disponibilidadPorEmpleadoCapacitado.get(k).getFechaFin()))){
+							if((fechaEmpleadoInicio.before(fechaInicioTarea))&&(fechaInicioTarea.before(fechaEmpleadoFin))){
 								disponible=0;
 							}
 						}
@@ -186,9 +215,9 @@ private static Sistema instancia;
 						
 						//Agregar Disponibilidad
 						Disponibilidad disp = new Disponibilidad();
-						disp.setFechaInicio(pedido.getFechaSolicitud());
-						disp.setFechaFin(pedido.getFechaEntrega());
-						disp.setCantidadDias(diasHabiles);
+						disp.setFechaInicio(fechaInicioTarea);
+						disp.setFechaFin(fechaFinTarea);
+						disp.setCantidadDias(duracion);
 						empleadoSeleccionado.agregarDisponibilidad(disp);
 						EmpleadoDAO.getInstancia().ModificarEmpleado(empleadoSeleccionado);
 						
