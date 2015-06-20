@@ -40,7 +40,7 @@ public class AltaPedido extends javax.swing.JFrame {
 		}
 	}
 
-	private JLabel jLabelCuit;
+	private JLabel jLabelSeleccionar;
 	private JLabel jLabelFechaDeEntrega;
 	private JLabel jLabel1;
 	private JComboBox<String> comboCliente;
@@ -79,11 +79,11 @@ public class AltaPedido extends javax.swing.JFrame {
 			getContentPane().setLayout(null);
 			this.setTitle("Alta Pedido");
 			{
-				jLabelCuit = new JLabel();
-				getContentPane().add(jLabelCuit);
-				jLabelCuit.setText("Seleccionar un cliente:");
-				jLabelCuit.setBounds(121, 16, 140, 16);
-				jLabelCuit.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jLabelSeleccionar = new JLabel();
+				getContentPane().add(jLabelSeleccionar);
+				jLabelSeleccionar.setText("Seleccionar un cliente:");
+				jLabelSeleccionar.setBounds(121, 16, 140, 16);
+				jLabelSeleccionar.setFont(new java.awt.Font("SansSerif", 1, 12));
 			}
 
 			{

@@ -3,6 +3,7 @@ package controlador;
 import java.text.ParseException;
 import java.util.List;
 
+import dto.ClienteDTO;
 import negocio.AdmCliente;
 import negocio.AdmComplejidadPedido;
 import negocio.AdmEmpleado;
@@ -17,19 +18,18 @@ import entities.TipoPedido;
 
 public class Sistema {
 
-private static Sistema instancia;
+	private static Sistema instancia;
 
-	public static Sistema getInstancia(){
-		if(instancia == null)
+	public static Sistema getInstancia() {
+		if (instancia == null)
 			instancia = new Sistema();
 		return instancia;
 	}
 
-
 	/*
 	 * BUSQUEDAS
 	 */
-	
+
 	public Empleado buscarEmpleado(int id) {
 		return AdmEmpleado.getInstancia().buscarEmpleado(id);
 	}
@@ -46,11 +46,10 @@ private static Sistema instancia;
 		return AdmTipoPedido.getInstancia().buscarTipoPedido(tipoPedido);
 	}
 
-	
 	/*
 	 * GESTION DE PEDIDOS
 	 */
-	
+
 	public void altaPedido(Pedido p) {
 		AdmPedido.getInstancia().guardarPedido(p);
 	}
@@ -58,7 +57,7 @@ private static Sistema instancia;
 	public void programarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) throws ParseException {
 		AdmPedido.getInstancia().programarPedido(pedido, tipo, complejidad);
 	}
-	
+
 	public void finalizarPedido(Pedido p) throws ParseException {
 		AdmPedido.getInstancia().finalizarPedido(p);
 	}
@@ -75,11 +74,10 @@ private static Sistema instancia;
 		return AdmComplejidadPedido.getInstancia().getComplejidadesPedido();
 	}
 
-	
 	/*
 	 * REPORTES
 	 */
-	
+
 	public Double reportePorcentajeDeCumplimientoFechaDeEntrega() {
 		return AdmPedido.getInstancia().getPorcentajeDeCumplimientoFechaDeEntrega();
 	}
@@ -87,14 +85,25 @@ private static Sistema instancia;
 	public List<ReportePedidosPorEmpleado> reporteCantidadDePedidosResueltosPorEmpleado() {
 		return AdmPedido.getInstancia().getCantidadDePedidosResueltosPorEmpleado();
 	}
-	
-	
+
 	/*
 	 * GESTION DE CLIENTES
 	 */
-	
-	public void altaCliente(Cliente cliente) {
-		AdmCliente.getInstancia().guardarCliente(cliente);
+
+	public void altaCliente(ClienteDTO cliente) {
+		AdmCliente.getInstancia().AltaCliente(cliente);
 	}
-	
+
+	public void modificarCliente(ClienteDTO cliente) {
+		AdmCliente.getInstancia().ModificarCliente(cliente);
+	}
+
+	public List<ClienteDTO> listarClientes() {
+		return AdmCliente.getInstancia().listarClientes();
+	}
+
+	public void eliminarCliente(ClienteDTO cliente) {
+		AdmCliente.getInstancia().eliminarCliente(cliente);
+
+	}
 }
