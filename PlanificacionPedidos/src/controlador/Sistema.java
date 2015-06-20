@@ -72,21 +72,28 @@ private static Sistema instancia;
 		PedidoDAO.getInstancia().grabarPedido(p);
 	}
 
-	public void finalizarPedido(Pedido p) {
+	public void finalizarPedido(Pedido p) throws ParseException {
 		p.setEstado("Finalizado");
 		p.setFechaFinalizado(new Date());
 		
 		//Liberar Empleado si la Fecha de Entrega es mayor a la Fecha de Finalización
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		String StrfechaFinalizado = Sistema.getInstancia().sumarRestarDiasFecha(p.getFechaFinalizado(), 0);
+		Date fechaFinalizado = formatter.parse(StrfechaFinalizado);
+		//duracion en dias
+				float dur = (p.getTipoPedido().getCantDias()*p.getComplejidad().getFactorTiempo());
+				int duracion = 0;
+				if(dur>(int)dur){
+					duracion = (int)dur+1;
+				}else{
+					duracion = (int)dur;
+				}
+		Date fechaFinTarea = formatter.parse(Sistema.getInstancia().sumarRestarDiasFecha(p.getFechaInicio(), duracion));
 		
-		if(p.getFechaFinalizado().before(p.getFechaEntrega())) {
+		if(fechaFinalizado.before(fechaFinTarea)) {
 			for(Disponibilidad d: p.getEmpleado().getDisponibilidades()) {
-				if(d.getFechaFin().compareTo(p.getFechaEntrega()) == 0) {
-					d.setFechaFin(p.getFechaFinalizado());
-					//Calculo cantidad de días real					
-					long diferenciaEn_ms = p.getFechaFinalizado().getTime() - p.getFechaInicio().getTime();
-					long dias = diferenciaEn_ms / (1000 * 60 * 60 * 24);
-					d.setCantidadDias((int) dias+1);
-
+				if(d.getFechaFin().compareTo(fechaFinTarea) == 0) {
+					d.setFechaFin(fechaFinalizado);
 					EmpleadoDAO.getInstancia().ModificarEmpleado(p.getEmpleado());
 				}
 			}		

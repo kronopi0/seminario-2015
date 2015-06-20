@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -112,7 +113,12 @@ public class FinalizarPedido extends javax.swing.JFrame {
 				jButtonFinalizarPedido.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("jButtonFinalizarPedido.actionPerformed, event=" + evt);
-						Sistema.getInstancia().finalizarPedido(pedido);
+						try {
+							Sistema.getInstancia().finalizarPedido(pedido);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						JOptionPane.showMessageDialog(null, "Pedido finalizado.");
 					}
 				});
