@@ -63,7 +63,7 @@ public class Integrantes extends javax.swing.JPanel {
 				jLabelCuit = new JLabel();
 				this.add(jLabelCuit);
 				jLabelCuit.setText("Alen Freire, Manuel");
-				jLabelCuit.setBounds(73, 72, 137, 38);
+				jLabelCuit.setBounds(51, 72, 137, 38);
 				jLabelCuit.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
@@ -78,29 +78,29 @@ public class Integrantes extends javax.swing.JPanel {
 				jLabelCui2 = new JLabel();
 				this.add(jLabelCui2);
 				jLabelCui2.setText("LU 126031");
-				jLabelCui2.setBounds(73, 97, 86, 30);
+				jLabelCui2.setBounds(51, 97, 86, 30);
 				jLabelCui2.setFont(new java.awt.Font("Courier New", 1, 13));
 			}
 			{
 				jLabelCui3 = new JLabel();
 				this.add(jLabelCui3);
 				jLabelCui3.setText("LU 136378");
-				jLabelCui3.setBounds(73, 157, 86, 30);
+				jLabelCui3.setBounds(51, 157, 86, 30);
 				jLabelCui3.setFont(new java.awt.Font("Courier New", 1, 13));
 			}
 			{
 				jLabelCui4 = new JLabel();
 				this.add(jLabelCui4);
 				jLabelCui4.setText("LU 135854");
-				jLabelCui4.setBounds(74, 215, 86, 30);
+				jLabelCui4.setBounds(52, 215, 86, 30);
 				jLabelCui4.setFont(new java.awt.Font("Courier New", 1, 13));
 			}
 
 			{
 				jLabelNombre = new JLabel();
 				this.add(jLabelNombre);
-				jLabelNombre.setText("Godoy, Juan Manuel");
-				jLabelNombre.setBounds(73, 131, 137, 38);
+				jLabelNombre.setText("Martinez Godoy, Juan Manuel");
+				jLabelNombre.setBounds(51, 131, 206, 38);
 				jLabelNombre.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 
@@ -108,7 +108,7 @@ public class Integrantes extends javax.swing.JPanel {
 				jLabelPais = new JLabel();
 				this.add(jLabelPais);
 				jLabelPais.setText("Sara, Eduardo");
-				jLabelPais.setBounds(73, 189, 102, 38);
+				jLabelPais.setBounds(51, 189, 102, 38);
 				jLabelPais.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
@@ -134,7 +134,7 @@ public class Integrantes extends javax.swing.JPanel {
 			BufferedImage myPicture = ImageIO.read(new File("img/uade.png"));
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 			add(picLabel);
-			picLabel.setBounds(285, 72, 355, 169);
+			picLabel.setBounds(291, 72, 355, 169);
 
 		} catch (Exception e) {
 			e.printStackTrace();
