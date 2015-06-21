@@ -9,6 +9,16 @@ import javax.swing.*;
 import controlador.Sistema;
 import entities.ReportePedidosPorEmpleado;
 
+/**
+ * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
+ * Builder, which is free for non-commercial use. If Jigloo is being used
+ * commercially (ie, by a corporation, company or business for any purpose
+ * whatever) then you should purchase a license for each developer using Jigloo.
+ * Please visit www.cloudgarden.com for details. Use of Jigloo implies
+ * acceptance of these licensing terms. A COMMERCIAL LICENSE HAS NOT BEEN
+ * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
+ * ANY CORPORATE OR COMMERCIAL PURPOSE.
+ */
 public class Principal extends javax.swing.JFrame {
 
 	/**
@@ -31,6 +41,7 @@ public class Principal extends javax.swing.JFrame {
 	private JMenuItem cutMenuItem;
 	private JMenu jMenuReportes;
 	private JMenuItem saveAsMenuItem;
+	private JTabbedPane jTabbedPane1;
 	private JMenuItem saveMenuItem;
 	private JMenuItem openFileMenuItem;
 	private JMenuItem newFileMenuItem;
@@ -40,8 +51,8 @@ public class Principal extends javax.swing.JFrame {
 	private JMenu jMenuClientes;
 	private JMenu jMenuEmpleados;
 	private JMenuItem altaMenuItem;
-	private AbstractButton modificarMenuItem;
-	private AbstractButton bajaMenuItem;
+	private JMenuItem modificarMenuItem;
+	private JMenuItem bajaMenuItem;
 	private JMenu jMenuComplejidadPedidos;
 
 	/**
@@ -70,8 +81,13 @@ public class Principal extends javax.swing.JFrame {
 				getContentPane().setLayout(null);
 				this.setTitle("Kantar World Panel");
 				getContentPane().setBackground(new java.awt.Color(149, 156, 172));
+				{
+					jTabbedPane1 = new JTabbedPane();
+					getContentPane().add(jTabbedPane1);
+					jTabbedPane1.setBounds(0, 0, 697, 408);
+				}
 			}
-			this.setSize(497, 360);
+			this.setSize(713, 494);
 			{
 				jMenuBar1 = new JMenuBar();
 				setJMenuBar(jMenuBar1);
@@ -237,8 +253,9 @@ public class Principal extends javax.swing.JFrame {
 							altaMenuItem.addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent evt) {
-									AltaCliente app = new AltaCliente();
-									app.setVisible(true);
+									ClienteAltaP app = new ClienteAltaP(jTabbedPane1);
+									jTabbedPane1.addTab("Agregar Cliente", app);
+
 								}
 							});
 						}
@@ -249,8 +266,8 @@ public class Principal extends javax.swing.JFrame {
 							modificarMenuItem.addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent evt) {
-									ModificarCliente app = new ModificarCliente();
-									app.setVisible(true);
+									ClienteModificarP app = new ClienteModificarP(jTabbedPane1);
+									jTabbedPane1.addTab("Modificar Cliente", app);
 								}
 							});
 						}
@@ -261,8 +278,8 @@ public class Principal extends javax.swing.JFrame {
 							bajaMenuItem.addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent evt) {
-									EliminarCliente app = new EliminarCliente();
-									app.setVisible(true);
+									ClienteBajaP app = new ClienteBajaP(jTabbedPane1);
+									jTabbedPane1.addTab("Eliminar Cliente", app);
 								}
 							});
 						}
@@ -279,8 +296,9 @@ public class Principal extends javax.swing.JFrame {
 							altaMenuItem.addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent evt) {
-									AltaEmpleado app = new AltaEmpleado();
-									app.setVisible(true);
+									EmpleadoAltaP app = new EmpleadoAltaP(jTabbedPane1);
+									jTabbedPane1.addTab("Agregar Empleado", app);
+
 								}
 							});
 						}
@@ -291,8 +309,8 @@ public class Principal extends javax.swing.JFrame {
 							modificarMenuItem.addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent evt) {
-									ModificarEmpleado app = new ModificarEmpleado();
-									app.setVisible(true);
+									//EmpleadoModificarP app = new EmpleadoModificarP(jTabbedPane1);
+									//jTabbedPane1.addTab("Modificar Empleado", app);
 								}
 							});
 						}
@@ -303,8 +321,8 @@ public class Principal extends javax.swing.JFrame {
 							bajaMenuItem.addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent evt) {
-									EliminarEmpleado app = new EliminarEmpleado();
-									app.setVisible(true);
+									//EmpleadoBajaP app = new EmpladoBajaP(jTabbedPane1);
+									//jTabbedPane1.addTab("Eliminar Empleado", app);
 								}
 							});
 						}

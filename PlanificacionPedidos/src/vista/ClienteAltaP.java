@@ -1,14 +1,14 @@
 package vista;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JSeparator;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
+import javax.swing.JLabel;
 
 import controlador.Sistema;
 import dto.ClienteDTO;
@@ -23,140 +23,130 @@ import dto.ClienteDTO;
  * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
  * ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class AltaCliente extends javax.swing.JFrame {
+public class ClienteAltaP extends javax.swing.JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private JTextField jTextFieldCuit;
+	private JLabel jLabelEmail;
+	private JLabel jLabelTelefono;
 	private JLabel jLabelCuit;
 	private JLabel jLabelNombre;
-	private JLabel jLabelEmail;
-	private JTextField jTextFieldPais;
-	private JButton jButtonSalir;
-	private JButton jButtonConfirmar;
-	private JSeparator jSeparator1;
-	private JTextField jTextFieldEmail;
-	private JTextField jTextFieldDireccion;
-	private JTextField jTextFieldTelefono;
-	private JTextField jTextFieldNombre;
-	private JTextField jTextFieldCuit;
-	private JLabel jLabelDireccion;
-	private JLabel jLabelTelefono;
 	private JLabel jLabelPais;
+	private JTextField jTextFieldNombre;
+	private JTextField jTextFieldPais;
+	private JLabel jLabelDireccion;
+	private JTextField jTextFieldTelefono;
+	private JTextField jTextFieldDireccion;
+	private JTextField jTextFieldEmail;
+	private JSeparator jSeparator1;
+	private JButton jButtonConfirmar;
+	private JTabbedPane panel;
+	private JButton jButtonSalir;
+	private ClienteAltaP instancia;
 
-	{
-		// Set Look & Feel
-		try {
-			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	/**
+	 * Auto-generated main method to display this JPanel inside a new JFrame.
+	 */
 
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				AltaCliente inst = new AltaCliente();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
-
-	public AltaCliente() {
+	public ClienteAltaP(JTabbedPane p) {
 		super();
+		panel = p;
+		instancia = this;
 		initGUI();
+
 	}
 
 	private void initGUI() {
 		try {
-			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			getContentPane().setLayout(null);
-			this.setTitle("Alta Cliente");
+			setPreferredSize(new Dimension(676, 360));
+			this.setLayout(null);
 			{
 				jLabelCuit = new JLabel();
-				getContentPane().add(jLabelCuit);
+				this.add(jLabelCuit);
 				jLabelCuit.setText("Cuit :");
-				jLabelCuit.setBounds(24, 25, 47, 16);
-				jLabelCuit.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jLabelCuit.setBounds(184, 18, 75, 38);
+				jLabelCuit.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				jLabelNombre = new JLabel();
-				getContentPane().add(jLabelNombre);
+				this.add(jLabelNombre);
 				jLabelNombre.setText("Nombre :");
-				jLabelNombre.setBounds(24, 65, 51, 16);
-				jLabelNombre.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jLabelNombre.setBounds(184, 60, 75, 38);
+				jLabelNombre.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
+
 			{
 				jLabelPais = new JLabel();
-				getContentPane().add(jLabelPais);
+				this.add(jLabelPais);
 				jLabelPais.setText("Pais :");
-				jLabelPais.setBounds(24, 105, 31, 16);
-				jLabelPais.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jLabelPais.setBounds(184, 102, 75, 38);
+				jLabelPais.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				jLabelTelefono = new JLabel();
-				getContentPane().add(jLabelTelefono);
+				this.add(jLabelTelefono);
 				jLabelTelefono.setText("Teléfono :");
-				jLabelTelefono.setBounds(24, 143, 81, 16);
-				jLabelTelefono.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jLabelTelefono.setBounds(184, 144, 75, 38);
+				jLabelTelefono.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				jLabelDireccion = new JLabel();
-				getContentPane().add(jLabelDireccion);
+				this.add(jLabelDireccion);
 				jLabelDireccion.setText("Dirección :");
-				jLabelDireccion.setBounds(24, 183, 85, 16);
-				jLabelDireccion.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jLabelDireccion.setBounds(184, 186, 75, 38);
+				jLabelDireccion.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				jLabelEmail = new JLabel();
-				getContentPane().add(jLabelEmail);
+				this.add(jLabelEmail);
 				jLabelEmail.setText("Email :");
-				jLabelEmail.setBounds(24, 223, 38, 16);
-				jLabelEmail.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jLabelEmail.setBounds(184, 228, 75, 38);
+				jLabelEmail.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				jTextFieldCuit = new JTextField();
-				getContentPane().add(jTextFieldCuit);
-				jTextFieldCuit.setBounds(93, 19, 114, 28);
+				this.add(jTextFieldCuit);
+				jTextFieldCuit.setBounds(313, 22, 230, 28);
 			}
 			{
 				jTextFieldNombre = new JTextField();
-				getContentPane().add(jTextFieldNombre);
-				jTextFieldNombre.setBounds(93, 59, 230, 28);
+				this.add(jTextFieldNombre);
+				jTextFieldNombre.setBounds(313, 64, 230, 28);
 			}
 			{
 				jTextFieldPais = new JTextField();
-				getContentPane().add(jTextFieldPais);
-				jTextFieldPais.setBounds(93, 99, 230, 28);
+				this.add(jTextFieldPais);
+				jTextFieldPais.setBounds(313, 107, 230, 28);
 			}
 			{
 				jTextFieldTelefono = new JTextField();
-				getContentPane().add(jTextFieldTelefono);
-				jTextFieldTelefono.setBounds(93, 137, 230, 28);
+				this.add(jTextFieldTelefono);
+				jTextFieldTelefono.setBounds(313, 150, 230, 28);
 			}
 			{
 				jTextFieldDireccion = new JTextField();
-				getContentPane().add(jTextFieldDireccion);
-				jTextFieldDireccion.setBounds(94, 177, 229, 28);
+				this.add(jTextFieldDireccion);
+				jTextFieldDireccion.setBounds(313, 193, 230, 28);
 			}
 			{
 				jTextFieldEmail = new JTextField();
-				getContentPane().add(jTextFieldEmail);
-				jTextFieldEmail.setBounds(94, 217, 230, 28);
+				this.add(jTextFieldEmail);
+				jTextFieldEmail.setBounds(313, 236, 230, 28);
 			}
 			{
 				jSeparator1 = new JSeparator();
-				getContentPane().add(jSeparator1);
-				jSeparator1.setBounds(-7, 263, 391, 11);
+				this.add(jSeparator1);
+				jSeparator1.setBounds(0, 288, 700, 11);
 			}
 			{
 				jButtonConfirmar = new JButton();
-				getContentPane().add(jButtonConfirmar);
+				jButtonConfirmar.setLayout(null);
+				this.add(jButtonConfirmar);
 				jButtonConfirmar.setText("Confirmar");
-				jButtonConfirmar.setBounds(66, 280, 86, 33);
-				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jButtonConfirmar.setBounds(183, 304, 91, 40);
+				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonConfirmar.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent evt) {
@@ -179,20 +169,19 @@ public class AltaCliente extends javax.swing.JFrame {
 			}
 			{
 				jButtonSalir = new JButton();
-				getContentPane().add(jButtonSalir);
+				this.add(jButtonSalir);
 				jButtonSalir.setText("Salir");
-				jButtonSalir.setBounds(228, 280, 85, 33);
-				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jButtonSalir.setBounds(396, 304, 91, 40);
+				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonSalir.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						dispose();
+						panel.remove(instancia);
 					}
 				});
 
 			}
-			pack();
-			this.setSize(400, 365);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
