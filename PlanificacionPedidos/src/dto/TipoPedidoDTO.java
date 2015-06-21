@@ -10,22 +10,6 @@ public class TipoPedidoDTO {
 		super();
 	}
 
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public int getCantDias() {
-		return tiempo;
-	}
-
-	public void setCantDias(int cantDias) {
-		this.tiempo = cantDias;
-	}
-
 	public int getIdTipoPedido() {
 		return idTipoPedido;
 	}
@@ -34,4 +18,21 @@ public class TipoPedidoDTO {
 		this.idTipoPedido = idTipoPedido;
 	}
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public int getTiempo() {
+		return tiempo;
+	}
+
+	public void setTiempo(int tiempo) {
+		this.tiempo = tiempo;
+	}
+
+	
 }

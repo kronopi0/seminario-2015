@@ -20,6 +20,14 @@ public class TipoPedido {
 		super();
 	}
 
+	public int getIdTipoPedido() {
+		return idTipoPedido;
+	}
+
+	public void setIdTipoPedido(int idTipoPedido) {
+		this.idTipoPedido = idTipoPedido;
+	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -28,12 +36,12 @@ public class TipoPedido {
 		this.descripcion = descripcion;
 	}
 
-	public int getCantDias() {
+	public int getTiempo() {
 		return tiempo;
 	}
 
-	public void setCantDias(int cantDias) {
-		this.tiempo = cantDias;
+	public void setTiempo(int tiempo) {
+		this.tiempo = tiempo;
 	}
 
 }

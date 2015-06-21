@@ -58,7 +58,7 @@ public class AdmCliente {
 
 	}
 
-	private Cliente toEntity(ClienteDTO c) {
+	public Cliente toEntity(ClienteDTO c) {
 		Cliente entity = new Cliente();
 		entity.setCuit(c.getCuit());
 		entity.setDireccion(c.getDireccion());

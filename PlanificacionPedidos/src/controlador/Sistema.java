@@ -6,6 +6,7 @@ import java.util.List;
 import dto.ClienteDTO;
 import dto.ComplejidadPedidoDTO;
 import dto.EmpleadoDTO;
+import dto.PedidoDTO;
 import negocio.AdmCliente;
 import negocio.AdmComplejidadPedido;
 import negocio.AdmEmpleado;
@@ -52,8 +53,8 @@ public class Sistema {
 	 * GESTION DE PEDIDOS
 	 */
 
-	public void altaPedido(Pedido p) {
-		AdmPedido.getInstancia().guardarPedido(p);
+	public void altaPedido(PedidoDTO p) {
+		AdmPedido.getInstancia().altaPedido(p);
 	}
 
 	public void programarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) throws ParseException {

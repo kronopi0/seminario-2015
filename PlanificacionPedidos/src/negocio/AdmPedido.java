@@ -2,6 +2,7 @@ package negocio;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +10,11 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import dao.PedidoDAO;
+import dto.ClienteDTO;
+import dto.ComplejidadPedidoDTO;
+import dto.EmpleadoDTO;
+import dto.PedidoDTO;
+import dto.TipoPedidoDTO;
 import entities.ComplejidadPedido;
 import entities.Disponibilidad;
 import entities.Empleado;
@@ -31,10 +37,6 @@ public class AdmPedido {
 		dao = PedidoDAO.getInstancia();
 	}
 
-	public void guardarPedido(Pedido p) {
-		dao.guardarPedido(p);
-	}
-
 	public List<Pedido> getPedidos(String estado) {
 		return dao.getPedidos(estado);
 	}
@@ -49,7 +51,7 @@ public class AdmPedido {
 		String StrfechaFinalizado = this.sumarRestarDiasFecha(p.getFechaFinalizado(), 0);
 		Date fechaFinalizado = formatter.parse(StrfechaFinalizado);
 		// duracion en dias
-		float dur = (p.getTipoPedido().getCantDias() * p.getComplejidad().getFactorTiempo());
+		float dur = (p.getTipoPedido().getTiempo() * p.getComplejidad().getFactorTiempo());
 		int duracion = 0;
 		if (dur > (int) dur) {
 			duracion = (int) dur + 1;
@@ -77,7 +79,7 @@ public class AdmPedido {
 		Empleado empleadoSeleccionado;
 
 		// duracion en dias
-		float dur = (pedido.getTipoPedido().getCantDias() * pedido.getComplejidad().getFactorTiempo());
+		float dur = (pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
 		int duracion = 0;
 		if (dur > (int) dur) {
 			duracion = (int) dur + 1;
@@ -114,8 +116,7 @@ public class AdmPedido {
 					if (0 < disponibilidadPorEmpleadoCapacitado.size()) {
 						for (int k = 0; k < disponibilidadPorEmpleadoCapacitado.size(); k++) {
 
-							String StrfechaEmpleadoInicio = this
-									.sumarRestarDiasFecha(disponibilidadPorEmpleadoCapacitado.get(k).getFechaInicio(), -1);
+							String StrfechaEmpleadoInicio = this.sumarRestarDiasFecha(disponibilidadPorEmpleadoCapacitado.get(k).getFechaInicio(), -1);
 							String StrfechaEmpleadoFin = this.sumarRestarDiasFecha(disponibilidadPorEmpleadoCapacitado.get(k).getFechaFin(), 1);
 							Date fechaEmpleadoInicio = formatter.parse(StrfechaEmpleadoInicio);
 							Date fechaEmpleadoFin = formatter.parse(StrfechaEmpleadoFin);
@@ -159,8 +160,8 @@ public class AdmPedido {
 						empleadoSeleccionado.agregarDisponibilidad(disp);
 						AdmEmpleado.getInstancia().actualizarEmpleado(empleadoSeleccionado);
 
-						mensaje = "Empleado Asignado  id : " + empleadoSeleccionado.getId() + " Nombre : " + empleadoSeleccionado.getNombre()
-								+ " Apellido : " + empleadoSeleccionado.getApellido();
+						mensaje = "Empleado Asignado  id : " + empleadoSeleccionado.getId() + " Nombre : " + empleadoSeleccionado.getNombre() + " Apellido : "
+								+ empleadoSeleccionado.getApellido();
 						JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 
 						j = empleadosCapacitados.size();
@@ -210,4 +211,49 @@ public class AdmPedido {
 		return dao.getCantidadDePedidosResueltosPorEmpleado();
 	}
 
+	public void altaPedido(PedidoDTO p) {
+		dao.guardarPedido(toEntity(p));
+
+	}
+
+	// private PedidoDTO toDTO(Pedido c) {
+	// PedidoDTO dto = new PedidoDTO();
+	// dto.setId(c.getId());
+	// dto.setNombre(c.getNombre());
+	// dto.setApellido(c.getApellido());
+	// return dto;
+	//
+	// }
+
+	private Pedido toEntity(PedidoDTO dto) {
+		Pedido entity = new Pedido();
+
+		entity.setDescripcion(dto.getDescripcion());
+		entity.setPeriodicidad(dto.getPeriodicidad());
+		entity.setFechaSolicitud(dto.getFechaSolicitud());
+		entity.setFechaInicio(dto.getFechaInicio());
+		entity.setFechaFinalizado(dto.getFechaFinalizado());
+		entity.setFechaEntrega(dto.getFechaEntrega());
+		entity.setEstado(dto.getEstado());
+
+		if (dto.getEmpleado() == null)
+			entity.setEmpleado(null);
+		else
+			entity.setEmpleado(AdmEmpleado.getInstancia().toEntity(dto.getEmpleado()));
+
+		if (dto.getComplejidad() == null)
+			entity.setComplejidad(null);
+		else
+			entity.setComplejidad(AdmComplejidadPedido.getInstancia().toEntity(dto.getComplejidad()));
+
+		entity.setCliente(AdmCliente.getInstancia().toEntity(dto.getCliente()));
+
+		if (dto.getTipoPedido() == null)
+			entity.setTipoPedido(null);
+		else
+			entity.setTipoPedido(AdmTipoPedido.getInstancia().toEntity(dto.getTipoPedido()));
+
+		return entity;
+
+	}
 }

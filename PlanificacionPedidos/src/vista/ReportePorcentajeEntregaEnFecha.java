@@ -19,7 +19,7 @@ import controlador.Sistema;
  * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
  * ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class PorcentajeEntregaEnFecha extends javax.swing.JFrame {
+public class ReportePorcentajeEntregaEnFecha extends javax.swing.JFrame {
 
 	/**
 	 * 
@@ -47,19 +47,19 @@ public class PorcentajeEntregaEnFecha extends javax.swing.JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				PorcentajeEntregaEnFecha inst = new PorcentajeEntregaEnFecha();
+				ReportePorcentajeEntregaEnFecha inst = new ReportePorcentajeEntregaEnFecha();
 				inst.setVisible(true);
 			}
 		});
 	}
 
-	public PorcentajeEntregaEnFecha(Sistema s, double porcentaje) {
+	public ReportePorcentajeEntregaEnFecha(Sistema s, double porcentaje) {
 		super();
 		por = porcentaje;
 		initGUI();
 	}
 
-	public PorcentajeEntregaEnFecha() {
+	public ReportePorcentajeEntregaEnFecha() {
 	}
 
 	private void initGUI() {

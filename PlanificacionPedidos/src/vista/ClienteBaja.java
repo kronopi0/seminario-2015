@@ -3,8 +3,10 @@ package vista;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -23,7 +25,7 @@ import dto.ClienteDTO;
  * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
  * ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class ClienteAltaP extends javax.swing.JPanel {
+public class ClienteBaja extends javax.swing.JPanel {
 	/**
 	 * 
 	 */
@@ -44,13 +46,17 @@ public class ClienteAltaP extends javax.swing.JPanel {
 	private JButton jButtonConfirmar;
 	private JTabbedPane panel;
 	private JButton jButtonSalir;
-	private ClienteAltaP instancia;
+	private ClienteBaja instancia;
+	private JLabel jLabelSeleccionar;
+	private JComboBox<String> comboCliente;
+	private List<ClienteDTO> clientes;
+	private ClienteDTO cliente;
 
 	/**
 	 * Auto-generated main method to display this JPanel inside a new JFrame.
 	 */
 
-	public ClienteAltaP(JTabbedPane p) {
+	public ClienteBaja(JTabbedPane p) {
 		super();
 		panel = p;
 		instancia = this;
@@ -66,14 +72,49 @@ public class ClienteAltaP extends javax.swing.JPanel {
 				jLabelCuit = new JLabel();
 				this.add(jLabelCuit);
 				jLabelCuit.setText("Cuit :");
-				jLabelCuit.setBounds(184, 18, 75, 38);
+				jLabelCuit.setBounds(184, 72, 75, 38);
 				jLabelCuit.setFont(new java.awt.Font("SansSerif", 1, 13));
+			}
+			{
+				comboCliente = new JComboBox<String>();
+				this.add(comboCliente);
+				comboCliente.setBounds(201, 35, 254, 26);
+
+				clientes = Sistema.getInstancia().listarClientes();
+				for (int i = 0; i < clientes.size(); i++)
+					comboCliente.addItem(clientes.get(i).getNombre());
+
+				comboCliente.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent evt) {
+						for (int i = 0; i < clientes.size(); i++)
+							if (comboCliente.getSelectedItem().toString().equals(clientes.get(i).getNombre())) {
+								cliente = clientes.get(i);
+								jTextFieldCuit.setText(cliente.getCuit() + "");
+								jTextFieldDireccion.setText(cliente.getDireccion());
+								jTextFieldEmail.setText(cliente.getEmail());
+								jTextFieldNombre.setText(cliente.getNombre());
+								jTextFieldPais.setText(cliente.getPais());
+								jTextFieldTelefono.setText(cliente.getTelefono());
+
+							}
+
+					}
+				});
+
+			}
+			{
+				jLabelSeleccionar = new JLabel();
+				this.add(jLabelSeleccionar);
+				jLabelSeleccionar.setText("Seleccionar un cliente:");
+				jLabelSeleccionar.setBounds(252, 10, 166, 16);
+				jLabelSeleccionar.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				jLabelNombre = new JLabel();
 				this.add(jLabelNombre);
 				jLabelNombre.setText("Nombre :");
-				jLabelNombre.setBounds(184, 60, 75, 38);
+				jLabelNombre.setBounds(184, 108, 75, 38);
 				jLabelNombre.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 
@@ -81,59 +122,71 @@ public class ClienteAltaP extends javax.swing.JPanel {
 				jLabelPais = new JLabel();
 				this.add(jLabelPais);
 				jLabelPais.setText("Pais :");
-				jLabelPais.setBounds(184, 102, 75, 38);
+				jLabelPais.setBounds(184, 144, 75, 38);
 				jLabelPais.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				jLabelTelefono = new JLabel();
 				this.add(jLabelTelefono);
 				jLabelTelefono.setText("Teléfono :");
-				jLabelTelefono.setBounds(184, 144, 75, 38);
+				jLabelTelefono.setBounds(184, 179, 75, 38);
 				jLabelTelefono.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				jLabelDireccion = new JLabel();
 				this.add(jLabelDireccion);
 				jLabelDireccion.setText("Dirección :");
-				jLabelDireccion.setBounds(184, 186, 75, 38);
+				jLabelDireccion.setBounds(184, 212, 75, 38);
 				jLabelDireccion.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				jLabelEmail = new JLabel();
 				this.add(jLabelEmail);
 				jLabelEmail.setText("Email :");
-				jLabelEmail.setBounds(184, 228, 75, 38);
+				jLabelEmail.setBounds(184, 246, 75, 38);
 				jLabelEmail.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				jTextFieldCuit = new JTextField();
 				this.add(jTextFieldCuit);
-				jTextFieldCuit.setBounds(313, 22, 230, 28);
+				jTextFieldCuit.setBounds(313, 76, 230, 28);
+				jTextFieldCuit.setEnabled(false);
+				jTextFieldCuit.setEditable(false);
 			}
 			{
 				jTextFieldNombre = new JTextField();
 				this.add(jTextFieldNombre);
-				jTextFieldNombre.setBounds(313, 64, 230, 28);
+				jTextFieldNombre.setBounds(313, 111, 230, 28);
+				jTextFieldNombre.setEnabled(false);
+				jTextFieldNombre.setEditable(false);
 			}
 			{
 				jTextFieldPais = new JTextField();
 				this.add(jTextFieldPais);
-				jTextFieldPais.setBounds(313, 107, 230, 28);
+				jTextFieldPais.setBounds(313, 146, 230, 28);
+				jTextFieldPais.setEnabled(false);
+				jTextFieldPais.setEditable(false);
 			}
 			{
 				jTextFieldTelefono = new JTextField();
 				this.add(jTextFieldTelefono);
-				jTextFieldTelefono.setBounds(313, 150, 230, 28);
+				jTextFieldTelefono.setBounds(313, 181, 230, 28);
+				jTextFieldTelefono.setEnabled(false);
+				jTextFieldTelefono.setEditable(false);
 			}
 			{
 				jTextFieldDireccion = new JTextField();
 				this.add(jTextFieldDireccion);
-				jTextFieldDireccion.setBounds(313, 193, 230, 28);
+				jTextFieldDireccion.setBounds(313, 216, 230, 28);
+				jTextFieldDireccion.setEnabled(false);
+				jTextFieldDireccion.setEditable(false);
 			}
 			{
 				jTextFieldEmail = new JTextField();
 				this.add(jTextFieldEmail);
-				jTextFieldEmail.setBounds(313, 236, 230, 28);
+				jTextFieldEmail.setBounds(313, 251, 230, 28);
+				jTextFieldEmail.setEnabled(false);
+				jTextFieldEmail.setEditable(false);
 			}
 			{
 				jSeparator1 = new JSeparator();
@@ -150,20 +203,26 @@ public class ClienteAltaP extends javax.swing.JPanel {
 				jButtonConfirmar.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent evt) {
-						ClienteDTO cliente = new ClienteDTO();
 						cliente.setCuit(Integer.parseInt(jTextFieldCuit.getText()));
 						cliente.setDireccion(jTextFieldDireccion.getText());
 						cliente.setEmail(jTextFieldEmail.getText());
 						cliente.setNombre(jTextFieldNombre.getText());
 						cliente.setPais(jTextFieldPais.getText());
 						cliente.setTelefono(jTextFieldTelefono.getText());
-						Sistema.getInstancia().altaCliente(cliente);
+						Sistema.getInstancia().eliminarCliente(cliente);
 						jTextFieldCuit.setText("");
 						jTextFieldDireccion.setText("");
 						jTextFieldEmail.setText("");
 						jTextFieldNombre.setText("");
 						jTextFieldPais.setText("");
 						jTextFieldTelefono.setText("");
+
+						clientes.clear();
+						comboCliente.removeAllItems();
+						clientes = Sistema.getInstancia().listarClientes();
+						for (int i = 0; i < clientes.size(); i++)
+							comboCliente.addItem(clientes.get(i).getNombre());
+
 					}
 				});
 			}

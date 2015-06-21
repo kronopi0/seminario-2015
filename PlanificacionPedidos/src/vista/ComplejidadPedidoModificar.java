@@ -1,16 +1,16 @@
 package vista;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JSeparator;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
+import javax.swing.JLabel;
 
 import controlador.Sistema;
 import dto.ComplejidadPedidoDTO;
@@ -25,78 +25,72 @@ import dto.ComplejidadPedidoDTO;
  * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
  * ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class ModificarComplejidadPedido extends javax.swing.JFrame {
+public class ComplejidadPedidoModificar extends javax.swing.JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField jTextFieldFactor;
-	private JButton jButtonSalir;
-	private JButton jButtonConfirmar;
-	private JSeparator jSeparator1;
 	private JLabel jLabelFactor;
-	private JLabel jLabelSeleccionar;
+	private JTextField jTextFieldFactor;
+	private JSeparator jSeparator1;
+	private JButton jButtonConfirmar;
+	private JTabbedPane panel;
+	private JButton jButtonSalir;
+	private ComplejidadPedidoModificar instancia;
 	private List<ComplejidadPedidoDTO> complejidades;
 	private ComplejidadPedidoDTO complejidad;
 	private JComboBox<String> comboComplejidad;
 	private JLabel jLabelId;
 	private JTextField jTextFieldId;
+	private JLabel jLabelSeleccionar;
 
-	{
-		// Set Look & Feel
-		try {
-			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	/**
+	 * Auto-generated main method to display this JPanel inside a new JFrame.
+	 */
 
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				ModificarComplejidadPedido inst = new ModificarComplejidadPedido();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
-
-	public ModificarComplejidadPedido() {
+	public ComplejidadPedidoModificar(JTabbedPane p) {
 		super();
+		panel = p;
+		instancia = this;
 		initGUI();
+
 	}
 
 	private void initGUI() {
 		try {
-			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			getContentPane().setLayout(null);
-			this.setTitle("Modificar Complejidad Pedido");
-			{
-				jLabelSeleccionar = new JLabel();
-				getContentPane().add(jLabelSeleccionar);
-				jLabelSeleccionar.setText("Seleccionar una complejidad:");
-				jLabelSeleccionar.setBounds(90, 11, 193, 16);
-				jLabelSeleccionar.setFont(new java.awt.Font("SansSerif", 1, 12));
-			}
-			{
-				jLabelFactor = new JLabel();
-				getContentPane().add(jLabelFactor);
-				jLabelFactor.setText("Factor de tiempo:");
-				jLabelFactor.setBounds(44, 119, 105, 16);
-				jLabelFactor.setFont(new java.awt.Font("SansSerif", 1, 12));
-			}
+			setPreferredSize(new Dimension(676, 360));
+			this.setLayout(null);
 			{
 				jLabelId = new JLabel();
-				getContentPane().add(jLabelId);
-				jLabelId.setText("Id:");
-				jLabelId.setBounds(129, 83, 29, 18);
-				jLabelId.setFont(new java.awt.Font("SansSerif", 1, 12));
+				this.add(jLabelId);
+				jLabelId.setText("Id :");
+				jLabelId.setBounds(184, 104, 75, 38);
+				jLabelId.setFont(new java.awt.Font("SansSerif", 1, 13));
+			}
+
+			{
+				jLabelFactor = new JLabel();
+				this.add(jLabelFactor);
+				jLabelFactor.setText("Factor de tiempo:");
+				jLabelFactor.setBounds(184, 147, 129, 38);
+				jLabelFactor.setFont(new java.awt.Font("SansSerif", 1, 13));
+			}
+			{
+				jTextFieldId = new JTextField();
+				this.add(jTextFieldId);
+				jTextFieldId.setBounds(313, 108, 230, 28);
+				jTextFieldId.setEditable(false);
+				jTextFieldId.setEnabled(false);
+			}
+			{
+				jTextFieldFactor = new JTextField();
+				this.add(jTextFieldFactor);
+				jTextFieldFactor.setBounds(313, 151, 230, 28);
 			}
 			{
 				comboComplejidad = new JComboBox<String>();
-				getContentPane().add(comboComplejidad);
-				comboComplejidad.setBounds(59, 34, 254, 26);
+				this.add(comboComplejidad);
+				comboComplejidad.setBounds(220, 49, 254, 26);
 
 				complejidades = Sistema.getInstancia().listarComplejidades();
 				for (int i = 0; i < complejidades.size(); i++)
@@ -115,30 +109,25 @@ public class ModificarComplejidadPedido extends javax.swing.JFrame {
 				});
 
 			}
-
-			{
-				jTextFieldFactor = new JTextField();
-				getContentPane().add(jTextFieldFactor);
-				jTextFieldFactor.setBounds(177, 113, 140, 28);
-			}
-			{
-				jTextFieldId = new JTextField();
-				getContentPane().add(jTextFieldId);
-				jTextFieldId.setBounds(177, 77, 140, 28);
-				jTextFieldId.setEditable(false);
-				jTextFieldId.setEnabled(false);
-			}
 			{
 				jSeparator1 = new JSeparator();
-				getContentPane().add(jSeparator1);
-				jSeparator1.setBounds(0, 151, 391, 11);
+				this.add(jSeparator1);
+				jSeparator1.setBounds(0, 288, 700, 11);
+			}
+			{
+				jLabelSeleccionar = new JLabel();
+				this.add(jLabelSeleccionar);
+				jLabelSeleccionar.setText("Seleccionar una complejidad:");
+				jLabelSeleccionar.setBounds(255, 24, 193, 16);
+				jLabelSeleccionar.setFont(new java.awt.Font("SansSerif", 1, 12));
 			}
 			{
 				jButtonConfirmar = new JButton();
-				getContentPane().add(jButtonConfirmar);
+				jButtonConfirmar.setLayout(null);
+				this.add(jButtonConfirmar);
 				jButtonConfirmar.setText("Confirmar");
-				jButtonConfirmar.setBounds(79, 166, 86, 33);
-				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jButtonConfirmar.setBounds(183, 304, 91, 40);
+				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonConfirmar.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent evt) {
@@ -151,20 +140,19 @@ public class ModificarComplejidadPedido extends javax.swing.JFrame {
 			}
 			{
 				jButtonSalir = new JButton();
-				getContentPane().add(jButtonSalir);
+				this.add(jButtonSalir);
 				jButtonSalir.setText("Salir");
-				jButtonSalir.setBounds(209, 166, 85, 33);
-				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jButtonSalir.setBounds(396, 304, 91, 40);
+				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonSalir.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						dispose();
+						panel.remove(instancia);
 					}
 				});
 
 			}
-			pack();
-			this.setSize(400, 251);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

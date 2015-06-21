@@ -54,7 +54,7 @@ import entities.TipoPedido;
  * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
  * ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class ProgramarPedidos extends javax.swing.JFrame {
+public class PedidoProgramarVIEJO extends javax.swing.JFrame {
 
 	/**
 	 * 
@@ -102,14 +102,14 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				ProgramarPedidos inst = new ProgramarPedidos();
+				PedidoProgramarVIEJO inst = new PedidoProgramarVIEJO();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 
-	public ProgramarPedidos() {
+	public PedidoProgramarVIEJO() {
 		super();
 		initGUI();
 	}

@@ -25,7 +25,7 @@ import java.awt.GridLayout;
  * TableDemo is just like SimpleTableDemo, except that it uses a custom
  * TableModel.
  */
-public class TablaPedidosResueltosPorEmpleado extends JPanel {
+public class ReportePedidosResueltosPorEmpleado extends JPanel {
 
 	{
 		// Set Look & Feel
@@ -43,7 +43,7 @@ public class TablaPedidosResueltosPorEmpleado extends JPanel {
 	private static Object[][] data;
 	private boolean DEBUG = false;
 
-	public TablaPedidosResueltosPorEmpleado() {
+	public ReportePedidosResueltosPorEmpleado() {
 		super(new GridLayout(1, 0));
 
 		JTable table = new JTable(new MyTableModel());
@@ -161,7 +161,7 @@ public class TablaPedidosResueltosPorEmpleado extends JPanel {
 		frame.setLocationRelativeTo(null);
 
 		// Create and set up the content pane.
-		TablaPedidosResueltosPorEmpleado newContentPane = new TablaPedidosResueltosPorEmpleado();
+		ReportePedidosResueltosPorEmpleado newContentPane = new ReportePedidosResueltosPorEmpleado();
 		newContentPane.setOpaque(true); // content panes must be opaque
 		frame.setContentPane(newContentPane);
 

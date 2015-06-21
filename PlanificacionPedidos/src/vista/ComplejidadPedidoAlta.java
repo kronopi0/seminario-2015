@@ -1,17 +1,18 @@
 package vista;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JSeparator;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
+import javax.swing.JLabel;
 
 import controlador.Sistema;
 import dto.ComplejidadPedidoDTO;
+import dto.EmpleadoDTO;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
@@ -23,84 +24,74 @@ import dto.ComplejidadPedidoDTO;
  * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
  * ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class AltaComplejidadPedido extends javax.swing.JFrame {
+public class ComplejidadPedidoAlta extends javax.swing.JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel jLabelNombre;
-	private JTextField jTextFieldFactor;
-	private JButton jButtonSalir;
-	private JButton jButtonConfirmar;
-	private JSeparator jSeparator1;
-	private JTextField jTextFieldNombre;
 	private JLabel jLabelFactor;
+	private JTextField jTextFieldNombre;
+	private JTextField jTextFieldFactor;
+	private JSeparator jSeparator1;
+	private JButton jButtonConfirmar;
+	private JTabbedPane panel;
+	private JButton jButtonSalir;
+	private ComplejidadPedidoAlta instancia;
 
-	{
-		// Set Look & Feel
-		try {
-			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	/**
+	 * Auto-generated main method to display this JPanel inside a new JFrame.
+	 */
 
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				AltaComplejidadPedido inst = new AltaComplejidadPedido();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
-
-	public AltaComplejidadPedido() {
+	public ComplejidadPedidoAlta(JTabbedPane p) {
 		super();
+		panel = p;
+		instancia = this;
 		initGUI();
+
 	}
 
 	private void initGUI() {
 		try {
-			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			getContentPane().setLayout(null);
-			this.setTitle("Alta Complejidad Pedido");
+			setPreferredSize(new Dimension(676, 360));
+			this.setLayout(null);
 			{
 				jLabelNombre = new JLabel();
-				getContentPane().add(jLabelNombre);
+				this.add(jLabelNombre);
 				jLabelNombre.setText("Nombre :");
-				jLabelNombre.setBounds(24, 31, 51, 16);
-				jLabelNombre.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jLabelNombre.setBounds(184, 60, 75, 38);
+				jLabelNombre.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
+
 			{
 				jLabelFactor = new JLabel();
-				getContentPane().add(jLabelFactor);
-				jLabelFactor.setText("Factor tiempo:");
-				jLabelFactor.setBounds(24, 75, 87, 16);
-				jLabelFactor.setFont(new java.awt.Font("SansSerif", 1, 12));
+				this.add(jLabelFactor);
+				jLabelFactor.setText("Factor de tiempo:");
+				jLabelFactor.setBounds(184, 103, 129, 38);
+				jLabelFactor.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				jTextFieldNombre = new JTextField();
-				getContentPane().add(jTextFieldNombre);
-				jTextFieldNombre.setBounds(117, 25, 230, 28);
+				this.add(jTextFieldNombre);
+				jTextFieldNombre.setBounds(313, 64, 230, 28);
 			}
 			{
 				jTextFieldFactor = new JTextField();
-				getContentPane().add(jTextFieldFactor);
-				jTextFieldFactor.setBounds(117, 69, 230, 28);
+				this.add(jTextFieldFactor);
+				jTextFieldFactor.setBounds(313, 107, 230, 28);
 			}
 			{
 				jSeparator1 = new JSeparator();
-				getContentPane().add(jSeparator1);
-				jSeparator1.setBounds(-7, 113, 391, 11);
+				this.add(jSeparator1);
+				jSeparator1.setBounds(0, 288, 700, 11);
 			}
 			{
 				jButtonConfirmar = new JButton();
-				getContentPane().add(jButtonConfirmar);
+				jButtonConfirmar.setLayout(null);
+				this.add(jButtonConfirmar);
 				jButtonConfirmar.setText("Confirmar");
-				jButtonConfirmar.setBounds(75, 130, 86, 33);
-				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jButtonConfirmar.setBounds(183, 304, 91, 40);
+				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonConfirmar.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent evt) {
@@ -115,20 +106,19 @@ public class AltaComplejidadPedido extends javax.swing.JFrame {
 			}
 			{
 				jButtonSalir = new JButton();
-				getContentPane().add(jButtonSalir);
+				this.add(jButtonSalir);
 				jButtonSalir.setText("Salir");
-				jButtonSalir.setBounds(217, 131, 85, 33);
-				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jButtonSalir.setBounds(396, 304, 91, 40);
+				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonSalir.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						dispose();
+						panel.remove(instancia);
 					}
 				});
 
 			}
-			pack();
-			this.setSize(400, 218);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

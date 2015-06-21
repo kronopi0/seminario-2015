@@ -25,7 +25,7 @@ import dto.ClienteDTO;
  * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
  * ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class ClienteBajaP extends javax.swing.JPanel {
+public class ClienteModificar extends javax.swing.JPanel {
 	/**
 	 * 
 	 */
@@ -46,7 +46,7 @@ public class ClienteBajaP extends javax.swing.JPanel {
 	private JButton jButtonConfirmar;
 	private JTabbedPane panel;
 	private JButton jButtonSalir;
-	private ClienteBajaP instancia;
+	private ClienteModificar instancia;
 	private JLabel jLabelSeleccionar;
 	private JComboBox<String> comboCliente;
 	private List<ClienteDTO> clientes;
@@ -56,7 +56,7 @@ public class ClienteBajaP extends javax.swing.JPanel {
 	 * Auto-generated main method to display this JPanel inside a new JFrame.
 	 */
 
-	public ClienteBajaP(JTabbedPane p) {
+	public ClienteModificar(JTabbedPane p) {
 		super();
 		panel = p;
 		instancia = this;
@@ -157,36 +157,26 @@ public class ClienteBajaP extends javax.swing.JPanel {
 				jTextFieldNombre = new JTextField();
 				this.add(jTextFieldNombre);
 				jTextFieldNombre.setBounds(313, 111, 230, 28);
-				jTextFieldNombre.setEnabled(false);
-				jTextFieldNombre.setEditable(false);
 			}
 			{
 				jTextFieldPais = new JTextField();
 				this.add(jTextFieldPais);
 				jTextFieldPais.setBounds(313, 146, 230, 28);
-				jTextFieldPais.setEnabled(false);
-				jTextFieldPais.setEditable(false);
 			}
 			{
 				jTextFieldTelefono = new JTextField();
 				this.add(jTextFieldTelefono);
 				jTextFieldTelefono.setBounds(313, 181, 230, 28);
-				jTextFieldTelefono.setEnabled(false);
-				jTextFieldTelefono.setEditable(false);
 			}
 			{
 				jTextFieldDireccion = new JTextField();
 				this.add(jTextFieldDireccion);
 				jTextFieldDireccion.setBounds(313, 216, 230, 28);
-				jTextFieldDireccion.setEnabled(false);
-				jTextFieldDireccion.setEditable(false);
 			}
 			{
 				jTextFieldEmail = new JTextField();
 				this.add(jTextFieldEmail);
 				jTextFieldEmail.setBounds(313, 251, 230, 28);
-				jTextFieldEmail.setEnabled(false);
-				jTextFieldEmail.setEditable(false);
 			}
 			{
 				jSeparator1 = new JSeparator();
@@ -209,20 +199,13 @@ public class ClienteBajaP extends javax.swing.JPanel {
 						cliente.setNombre(jTextFieldNombre.getText());
 						cliente.setPais(jTextFieldPais.getText());
 						cliente.setTelefono(jTextFieldTelefono.getText());
-						Sistema.getInstancia().eliminarCliente(cliente);
+						Sistema.getInstancia().modificarCliente(cliente);
 						jTextFieldCuit.setText("");
 						jTextFieldDireccion.setText("");
 						jTextFieldEmail.setText("");
 						jTextFieldNombre.setText("");
 						jTextFieldPais.setText("");
 						jTextFieldTelefono.setText("");
-
-						clientes.clear();
-						comboCliente.removeAllItems();
-						clientes = Sistema.getInstancia().listarClientes();
-						for (int i = 0; i < clientes.size(); i++)
-							comboCliente.addItem(clientes.get(i).getNombre());
-
 					}
 				});
 			}

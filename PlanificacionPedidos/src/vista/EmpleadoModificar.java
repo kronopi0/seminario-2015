@@ -1,16 +1,16 @@
 package vista;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JSeparator;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
+import javax.swing.JLabel;
 
 import controlador.Sistema;
 import dto.EmpleadoDTO;
@@ -25,87 +25,61 @@ import dto.EmpleadoDTO;
  * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
  * ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class ModificarEmpleado extends javax.swing.JFrame {
+public class EmpleadoModificar extends javax.swing.JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private JTextField jTextFieldId;
 	private JLabel jLabelId;
 	private JLabel jLabelNombre;
-	private JTextField jTextFieldApellido;
-	private JButton jButtonSalir;
-	private JButton jButtonConfirmar;
-	private JSeparator jSeparator1;
-	private JTextField jTextFieldNombre;
-	private JTextField jTextFieldId;
 	private JLabel jLabelApellido;
-	private JLabel jLabelSeleccionar;
+	private JTextField jTextFieldNombre;
+	private JTextField jTextFieldApellido;
+	private JSeparator jSeparator1;
+	private JButton jButtonConfirmar;
+	private JTabbedPane panel;
+	private JButton jButtonSalir;
+	private EmpleadoModificar instancia;
 	private List<EmpleadoDTO> empleados;
 	private EmpleadoDTO empleado;
 	private JComboBox<String> comboEmpleado;
+	private JLabel jLabelSeleccionar;
 
-	{
-		// Set Look & Feel
-		try {
-			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	/**
+	 * Auto-generated main method to display this JPanel inside a new JFrame.
+	 */
 
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				ModificarEmpleado inst = new ModificarEmpleado();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
-
-	public ModificarEmpleado() {
+	public EmpleadoModificar(JTabbedPane p) {
 		super();
+		panel = p;
+		instancia = this;
 		initGUI();
+
 	}
 
 	private void initGUI() {
 		try {
-			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			getContentPane().setLayout(null);
-			this.setTitle("Modificar Empleado");
+			setPreferredSize(new Dimension(676, 360));
+			this.setLayout(null);
 			{
 				jLabelId = new JLabel();
-				getContentPane().add(jLabelId);
-				jLabelId.setText("Id:");
-				jLabelId.setBounds(36, 81, 47, 16);
-				jLabelId.setFont(new java.awt.Font("SansSerif", 1, 12));
-			}
-			{
-				jLabelSeleccionar = new JLabel();
-				getContentPane().add(jLabelSeleccionar);
-				jLabelSeleccionar.setText("Seleccionar un empleado:");
-				jLabelSeleccionar.setBounds(110, 11, 161, 16);
-				jLabelSeleccionar.setFont(new java.awt.Font("SansSerif", 1, 12));
+				this.add(jLabelId);
+				jLabelId.setText("Id :");
+				jLabelId.setBounds(185, 88, 75, 38);
+				jLabelId.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				jLabelNombre = new JLabel();
-				getContentPane().add(jLabelNombre);
+				this.add(jLabelNombre);
 				jLabelNombre.setText("Nombre :");
-				jLabelNombre.setBounds(33, 115, 51, 16);
-				jLabelNombre.setFont(new java.awt.Font("SansSerif", 1, 12));
-			}
-			{
-				jLabelApellido = new JLabel();
-				getContentPane().add(jLabelApellido);
-				jLabelApellido.setText("Apellido:");
-				jLabelApellido.setBounds(33, 149, 57, 16);
-				jLabelApellido.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jLabelNombre.setBounds(185, 130, 75, 38);
+				jLabelNombre.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
 			{
 				comboEmpleado = new JComboBox<String>();
-				getContentPane().add(comboEmpleado);
-				comboEmpleado.setBounds(59, 34, 254, 26);
+				this.add(comboEmpleado);
+				comboEmpleado.setBounds(212, 38, 254, 26);
 
 				empleados = Sistema.getInstancia().listarEmpleados();
 				for (int i = 0; i < empleados.size(); i++)
@@ -126,40 +100,54 @@ public class ModificarEmpleado extends javax.swing.JFrame {
 				});
 
 			}
-
+			{
+				jLabelSeleccionar = new JLabel();
+				this.add(jLabelSeleccionar);
+				jLabelSeleccionar.setText("Seleccionar un empleado:");
+				jLabelSeleccionar.setBounds(258, 15, 161, 16);
+				jLabelSeleccionar.setFont(new java.awt.Font("SansSerif", 1, 12));
+			}
+			{
+				jLabelApellido = new JLabel();
+				this.add(jLabelApellido);
+				jLabelApellido.setText("Apellido :");
+				jLabelApellido.setBounds(185, 173, 75, 38);
+				jLabelApellido.setFont(new java.awt.Font("SansSerif", 1, 13));
+			}
 			{
 				jTextFieldId = new JTextField();
-				getContentPane().add(jTextFieldId);
-				jTextFieldId.setBounds(104, 74, 114, 28);
-				jTextFieldId.setEnabled(false);
+				this.add(jTextFieldId);
+				jTextFieldId.setBounds(314, 92, 230, 28);
 				jTextFieldId.setEditable(false);
+				jTextFieldId.setEnabled(false);
 			}
 			{
 				jTextFieldNombre = new JTextField();
-				getContentPane().add(jTextFieldNombre);
-				jTextFieldNombre.setBounds(104, 108, 230, 28);
+				this.add(jTextFieldNombre);
+				jTextFieldNombre.setBounds(314, 134, 230, 28);
 			}
 			{
 				jTextFieldApellido = new JTextField();
-				getContentPane().add(jTextFieldApellido);
-				jTextFieldApellido.setBounds(104, 144, 230, 28);
+				this.add(jTextFieldApellido);
+				jTextFieldApellido.setBounds(314, 177, 230, 28);
 			}
 			{
 				jSeparator1 = new JSeparator();
-				getContentPane().add(jSeparator1);
-				jSeparator1.setBounds(0, 189, 391, 11);
+				this.add(jSeparator1);
+				jSeparator1.setBounds(0, 288, 700, 11);
 			}
 			{
 				jButtonConfirmar = new JButton();
-				getContentPane().add(jButtonConfirmar);
+				jButtonConfirmar.setLayout(null);
+				this.add(jButtonConfirmar);
 				jButtonConfirmar.setText("Confirmar");
-				jButtonConfirmar.setBounds(75, 200, 86, 33);
-				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jButtonConfirmar.setBounds(183, 304, 91, 40);
+				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonConfirmar.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent evt) {
 						empleado.setNombre(jTextFieldNombre.getText());
-						empleado.setApellido(jTextFieldNombre.getText());
+						empleado.setApellido(jTextFieldApellido.getText());
 						Sistema.getInstancia().modificarEmpleado(empleado);
 						jTextFieldId.setText("");
 						jTextFieldNombre.setText("");
@@ -169,20 +157,19 @@ public class ModificarEmpleado extends javax.swing.JFrame {
 			}
 			{
 				jButtonSalir = new JButton();
-				getContentPane().add(jButtonSalir);
+				this.add(jButtonSalir);
 				jButtonSalir.setText("Salir");
-				jButtonSalir.setBounds(218, 200, 85, 33);
-				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jButtonSalir.setBounds(396, 304, 91, 40);
+				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonSalir.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						dispose();
+						panel.remove(instancia);
 					}
 				});
 
 			}
-			pack();
-			this.setSize(400, 286);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

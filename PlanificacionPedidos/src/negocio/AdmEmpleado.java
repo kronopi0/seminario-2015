@@ -58,7 +58,7 @@ public class AdmEmpleado {
 
 	}
 
-	private Empleado toEntity(EmpleadoDTO c) {
+	public Empleado toEntity(EmpleadoDTO c) {
 		Empleado entity = new Empleado();
 		List<Disponibilidad> disponibilidades = new ArrayList<Disponibilidad>();
 

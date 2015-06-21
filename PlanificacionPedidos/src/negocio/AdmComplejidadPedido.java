@@ -50,7 +50,7 @@ public class AdmComplejidadPedido {
 		return dto;
 	}
 
-	private ComplejidadPedido toEntity(ComplejidadPedidoDTO c) {
+	public ComplejidadPedido toEntity(ComplejidadPedidoDTO c) {
 		ComplejidadPedido entity = new ComplejidadPedido();
 		entity.setId(c.getId());
 		entity.setNombre(c.getNombre());
