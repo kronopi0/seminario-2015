@@ -2,43 +2,60 @@ package vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
 import controlador.Sistema;
-import dao.ComplejidadPedidoDAO;
-import entities.ComplejidadPedido;
+import dto.ComplejidadPedidoDTO;
 
+/**
+ * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
+ * Builder, which is free for non-commercial use. If Jigloo is being used
+ * commercially (ie, by a corporation, company or business for any purpose
+ * whatever) then you should purchase a license for each developer using Jigloo.
+ * Please visit www.cloudgarden.com for details. Use of Jigloo implies
+ * acceptance of these licensing terms. A COMMERCIAL LICENSE HAS NOT BEEN
+ * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
+ * ANY CORPORATE OR COMMERCIAL PURPOSE.
+ */
 public class EliminarComplejidadPedido extends javax.swing.JFrame {
-
-	private JLabel jLabelNombre;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel jLabelId;
-	private JTextField jTextFieldId;
-	private JButton jButtonBuscar;
+	private JLabel jLabelNombre;
+	private JTextField jTextFieldFactor;
 	private JButton jButtonSalir;
-	private JButton jButtonEliminar;
+	private JButton jButtonConfirmar;
 	private JSeparator jSeparator1;
-	private JLabel jLabelFactorTiempo;
-	private JTextField jTextFieldFactorTiempo;
 	private JTextField jTextFieldNombre;
+	private JTextField jTextFieldId;
+	private JLabel jLabelFactor;
+	private JLabel jLabelSeleccionar;
+	private List<ComplejidadPedidoDTO> complejidades;
+	private ComplejidadPedidoDTO complejidad;
+	private JComboBox<String> comboComplejidad;
 
 	{
-		//Set Look & Feel
+		// Set Look & Feel
 		try {
 			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				EliminarComplejidadPedido inst = new EliminarComplejidadPedido();
 				inst.setLocationRelativeTo(null);
@@ -46,48 +63,115 @@ public class EliminarComplejidadPedido extends javax.swing.JFrame {
 			}
 		});
 	}
-	
+
 	public EliminarComplejidadPedido() {
 		super();
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			this.setTitle("Eliminar Complejidad Pedido");
+			this.setTitle("Baja Complejidad");
+			{
+				jLabelId = new JLabel();
+				getContentPane().add(jLabelId);
+				jLabelId.setText("Id:");
+				jLabelId.setBounds(101, 84, 29, 16);
+				jLabelId.setFont(new java.awt.Font("SansSerif", 1, 12));
+			}
+			{
+				jLabelSeleccionar = new JLabel();
+				getContentPane().add(jLabelSeleccionar);
+				jLabelSeleccionar.setText("Seleccionar una complejidad:");
+				jLabelSeleccionar.setBounds(98, 12, 181, 16);
+				jLabelSeleccionar.setFont(new java.awt.Font("SansSerif", 1, 12));
+			}
 			{
 				jLabelNombre = new JLabel();
 				getContentPane().add(jLabelNombre);
-				jLabelNombre.setText("Nombre :");
-				jLabelNombre.setBounds(24, 65, 51, 16);
+				jLabelNombre.setText("Nombre:");
+				jLabelNombre.setBounds(65, 117, 51, 16);
+				jLabelNombre.setFont(new java.awt.Font("SansSerif", 1, 12));
+			}
+			{
+				jLabelFactor = new JLabel();
+				getContentPane().add(jLabelFactor);
+				jLabelFactor.setText("Factor de tiempo:");
+				jLabelFactor.setBounds(14, 149, 108, 16);
+				jLabelFactor.setFont(new java.awt.Font("SansSerif", 1, 12));
+			}
+			{
+				comboComplejidad = new JComboBox<String>();
+				getContentPane().add(comboComplejidad);
+				comboComplejidad.setBounds(59, 34, 254, 26);
+
+				complejidades = Sistema.getInstancia().listarComplejidades();
+				for (int i = 0; i < complejidades.size(); i++)
+					comboComplejidad.addItem(complejidades.get(i).getNombre());
+
+				comboComplejidad.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent evt) {
+						for (int i = 0; i < complejidades.size(); i++)
+							if (comboComplejidad.getSelectedItem().toString().equals(complejidades.get(i).getNombre())) {
+								complejidad = complejidades.get(i);
+								jTextFieldFactor.setText(complejidad.getFactorTiempo() + "");
+								jTextFieldId.setText(complejidad.getId() + "");
+								jTextFieldNombre.setText(complejidad.getNombre() + "");
+							}
+					}
+				});
+
+			}
+
+			{
+				jTextFieldId = new JTextField();
+				getContentPane().add(jTextFieldId);
+				jTextFieldId.setBounds(127, 75, 114, 28);
+				jTextFieldId.setEnabled(false);
+				jTextFieldId.setEditable(false);
 			}
 			{
 				jTextFieldNombre = new JTextField();
 				getContentPane().add(jTextFieldNombre);
-				jTextFieldNombre.setBounds(121, 59, 202, 28);
+				jTextFieldNombre.setBounds(127, 109, 209, 28);
+				jTextFieldNombre.setEnabled(false);
+				jTextFieldNombre.setEditable(false);
+			}
+			{
+				jTextFieldFactor = new JTextField();
+				getContentPane().add(jTextFieldFactor);
+				jTextFieldFactor.setBounds(127, 143, 209, 28);
+				jTextFieldFactor.setEnabled(false);
+				jTextFieldFactor.setEditable(false);
 			}
 			{
 				jSeparator1 = new JSeparator();
 				getContentPane().add(jSeparator1);
-				jSeparator1.setBounds(-7, 150, 391, 11);
+				jSeparator1.setBounds(0, 189, 391, 11);
 			}
 			{
-				jButtonEliminar = new JButton();
-				getContentPane().add(jButtonEliminar);
-				jButtonEliminar.setText("Eliminar");
-				jButtonEliminar.setBounds(59, 173, 90, 28);
-				jButtonEliminar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) 
-					{
-						ComplejidadPedido complejidadPedido = new ComplejidadPedido();
-						complejidadPedido.setId(Integer.parseInt(jTextFieldId.getText()));
-						complejidadPedido.setNombre(jTextFieldNombre.getText());
-						complejidadPedido.setFactorTiempo(Float.parseFloat(jTextFieldFactorTiempo.getText()));
-						ComplejidadPedidoDAO.getInstancia().BajaComplejidadPedido(complejidadPedido);
+				jButtonConfirmar = new JButton();
+				getContentPane().add(jButtonConfirmar);
+				jButtonConfirmar.setText("Confirmar");
+				jButtonConfirmar.setBounds(75, 200, 86, 33);
+				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jButtonConfirmar.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent evt) {
+						Sistema.getInstancia().eliminarComplejidadPedido(complejidad);
+						jTextFieldId.setText("");
 						jTextFieldNombre.setText("");
-						jTextFieldFactorTiempo.setText("");
+						jTextFieldFactor.setText("");
+
+						complejidades.clear();
+						comboComplejidad.removeAllItems();
+						complejidades = Sistema.getInstancia().listarComplejidades();
+						for (int i = 0; i < complejidades.size(); i++)
+							comboComplejidad.addItem(complejidades.get(i).getNombre());
+
 					}
 				});
 			}
@@ -95,57 +179,18 @@ public class EliminarComplejidadPedido extends javax.swing.JFrame {
 				jButtonSalir = new JButton();
 				getContentPane().add(jButtonSalir);
 				jButtonSalir.setText("Salir");
-				jButtonSalir.setBounds(224, 173, 88, 28);
-				jButtonSalir.addActionListener(new ActionListener(){
-					public void actionPerformed(ActionEvent e){
+				jButtonSalir.setBounds(218, 200, 85, 33);
+				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 12));
+				jButtonSalir.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
-				
-				
-			}
-			{
-				jButtonBuscar = new JButton();
-				getContentPane().add(jButtonBuscar);
-				jButtonBuscar.setText("Buscar");
-				jButtonBuscar.setBounds(236, 19, 81, 28);
-				jButtonBuscar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) 
-					{
-						ComplejidadPedido complejidadPedidoAct = new ComplejidadPedido();
-						complejidadPedidoAct = ComplejidadPedidoDAO.getInstancia().buscarComplejidadPedido(Integer.parseInt(jTextFieldId.getText()));
-						jTextFieldNombre.setText(complejidadPedidoAct.getNombre());
-						jTextFieldFactorTiempo.setText(Float.toString(complejidadPedidoAct.getFactorTiempo()));
-					}
-				});
-				
-				
-				
-			}
-			{
-				jTextFieldId = new JTextField();
-				getContentPane().add(jTextFieldId);
-				jTextFieldId.setBounds(121, 19, 103, 28);
-			}
-			{
-				jLabelId = new JLabel();
-				getContentPane().add(jLabelId);
-				jLabelId.setText("Id :");
-				jLabelId.setBounds(24, 25, 16, 16);
-			}
-			{
-				jTextFieldFactorTiempo = new JTextField();
-				getContentPane().add(jTextFieldFactorTiempo);
-				jTextFieldFactorTiempo.setBounds(121, 99, 202, 28);
-			}
-			{
-				jLabelFactorTiempo = new JLabel();
-				getContentPane().add(jLabelFactorTiempo);
-				jLabelFactorTiempo.setText("Factor Tiempo :");
-				jLabelFactorTiempo.setBounds(24, 105, 85, 16);
+
 			}
 			pack();
-			this.setSize(400, 257);
+			this.setSize(400, 286);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

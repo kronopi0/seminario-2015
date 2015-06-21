@@ -48,6 +48,7 @@ public class ListarPedidosPorEstado extends javax.swing.JFrame {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				ListarPedidosPorEstado inst = new ListarPedidosPorEstado();
 				inst.setLocationRelativeTo(null);
@@ -89,6 +90,7 @@ public class ListarPedidosPorEstado extends javax.swing.JFrame {
 				jButtonSalir.setBounds(144, 110, 93, 33);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jButtonSalir.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						dispose();
 					}
@@ -104,6 +106,7 @@ public class ListarPedidosPorEstado extends javax.swing.JFrame {
 					comboCliente.addItem(estados[i]);
 
 				comboCliente.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						String eleccion = comboCliente.getSelectedItem().toString();
 
@@ -121,6 +124,7 @@ public class ListarPedidosPorEstado extends javax.swing.JFrame {
 						}
 
 						javax.swing.SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								TablaListarPedidos t = new TablaListarPedidos();
 								t.main(data);

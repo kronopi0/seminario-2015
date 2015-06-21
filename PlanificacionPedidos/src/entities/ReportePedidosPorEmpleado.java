@@ -6,7 +6,7 @@ public class ReportePedidosPorEmpleado {
 	private String nombre;
 	private String apellido;
 	private long cantidad;
-	
+
 	public ReportePedidosPorEmpleado() {
 		super();
 	}
@@ -50,5 +50,5 @@ public class ReportePedidosPorEmpleado {
 	public void setCantidad(long cantidad) {
 		this.cantidad = cantidad;
 	}
-	
+
 }

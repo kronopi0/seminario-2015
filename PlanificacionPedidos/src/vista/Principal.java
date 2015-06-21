@@ -39,16 +39,17 @@ public class Principal extends javax.swing.JFrame {
 	private Sistema sistema;
 	private JMenu jMenuClientes;
 	private JMenu jMenuEmpleados;
-	private JMenu jMenuComplejidades;
 	private JMenuItem altaMenuItem;
 	private AbstractButton modificarMenuItem;
 	private AbstractButton bajaMenuItem;
+	private JMenu jMenuComplejidadPedidos;
 
 	/**
 	 * Auto-generated main method to display this JFrame
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				Principal inst = new Principal();
 				inst.setLocationRelativeTo(null);
@@ -84,6 +85,7 @@ public class Principal extends javax.swing.JFrame {
 						jMenuPedidos.add(newFileMenuItem);
 						newFileMenuItem.setText("Nuevo");
 						newFileMenuItem.addActionListener(new ActionListener() {
+							@Override
 							public void actionPerformed(ActionEvent evt) {
 								AltaPedido app = new AltaPedido();
 								app.setVisible(true);
@@ -95,6 +97,7 @@ public class Principal extends javax.swing.JFrame {
 						jMenuPedidos.add(openFileMenuItem);
 						openFileMenuItem.setText("Programar");
 						openFileMenuItem.addActionListener(new ActionListener() {
+							@Override
 							public void actionPerformed(ActionEvent evt) {
 								ProgramarPedidos app = new ProgramarPedidos();
 								app.setVisible(true);
@@ -106,6 +109,7 @@ public class Principal extends javax.swing.JFrame {
 						jMenuPedidos.add(saveMenuItem);
 						saveMenuItem.setText("Finalizar");
 						saveMenuItem.addActionListener(new ActionListener() {
+							@Override
 							public void actionPerformed(ActionEvent evt) {
 								FinalizarPedido app = new FinalizarPedido();
 								app.setVisible(true);
@@ -125,6 +129,7 @@ public class Principal extends javax.swing.JFrame {
 						jMenuReportes.add(saveAsMenuItem);
 						saveAsMenuItem.setText("Listar pedidos según estado");
 						saveAsMenuItem.addActionListener(new ActionListener() {
+							@Override
 							public void actionPerformed(ActionEvent evt) {
 								ListarPedidosPorEstado app = new ListarPedidosPorEstado(sistema);
 								app.setVisible(true);
@@ -137,6 +142,7 @@ public class Principal extends javax.swing.JFrame {
 						jMenuReportes.add(cutMenuItem);
 						cutMenuItem.setText("Listar pedidos resueltos por empleado");
 						cutMenuItem.addActionListener(new ActionListener() {
+							@Override
 							public void actionPerformed(ActionEvent evt) {
 
 								List<ReportePedidosPorEmpleado> l = sistema.reporteCantidadDePedidosResueltosPorEmpleado();
@@ -153,6 +159,7 @@ public class Principal extends javax.swing.JFrame {
 								}
 
 								javax.swing.SwingUtilities.invokeLater(new Runnable() {
+									@Override
 									public void run() {
 										TablaPedidosResueltosPorEmpleado t = new TablaPedidosResueltosPorEmpleado();
 										t.main(data);
@@ -166,6 +173,7 @@ public class Principal extends javax.swing.JFrame {
 						jMenuReportes.add(copyMenuItem);
 						copyMenuItem.setText("Cumplimiento Fecha de Entrega");
 						copyMenuItem.addActionListener(new ActionListener() {
+							@Override
 							public void actionPerformed(ActionEvent evt) {
 								double porcentaje = sistema.reportePorcentajeDeCumplimientoFechaDeEntrega();
 								PorcentajeEntregaEnFecha app = new PorcentajeEntregaEnFecha(sistema, porcentaje);
@@ -176,24 +184,45 @@ public class Principal extends javax.swing.JFrame {
 					}
 
 					{
-						jMenuComplejidades = new JMenu();
-						jMenuBar1.add(jMenuComplejidades);
-						jMenuComplejidades.setText("Complejidades");
-						jMenuComplejidades.setFont(new java.awt.Font("SansSerif", 1, 12));
+						jMenuComplejidadPedidos = new JMenu();
+						jMenuBar1.add(jMenuComplejidadPedidos);
+						jMenuComplejidadPedidos.setText("Complejidades");
+						jMenuComplejidadPedidos.setFont(new java.awt.Font("SansSerif", 1, 12));
 						{
-							helpMenuItem = new JMenuItem();
-							jMenuComplejidades.add(helpMenuItem);
-							helpMenuItem.setText("Alta");
+							altaMenuItem = new JMenuItem();
+							jMenuComplejidadPedidos.add(altaMenuItem);
+							altaMenuItem.setText("Alta");
+							altaMenuItem.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent evt) {
+									AltaComplejidadPedido app = new AltaComplejidadPedido();
+									app.setVisible(true);
+								}
+							});
 						}
 						{
-							helpMenuItem = new JMenuItem();
-							jMenuComplejidades.add(helpMenuItem);
-							helpMenuItem.setText("Modificar");
+							modificarMenuItem = new JMenuItem();
+							jMenuComplejidadPedidos.add(modificarMenuItem);
+							modificarMenuItem.setText("Modificar");
+							modificarMenuItem.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent evt) {
+									ModificarComplejidadPedido app = new ModificarComplejidadPedido();
+									app.setVisible(true);
+								}
+							});
 						}
 						{
-							helpMenuItem = new JMenuItem();
-							jMenuComplejidades.add(helpMenuItem);
-							helpMenuItem.setText("Baja");
+							bajaMenuItem = new JMenuItem();
+							jMenuComplejidadPedidos.add(bajaMenuItem);
+							bajaMenuItem.setText("Baja");
+							bajaMenuItem.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent evt) {
+									EliminarComplejidadPedido app = new EliminarComplejidadPedido();
+									app.setVisible(true);
+								}
+							});
 						}
 					}
 					{
@@ -206,6 +235,7 @@ public class Principal extends javax.swing.JFrame {
 							jMenuClientes.add(altaMenuItem);
 							altaMenuItem.setText("Alta");
 							altaMenuItem.addActionListener(new ActionListener() {
+								@Override
 								public void actionPerformed(ActionEvent evt) {
 									AltaCliente app = new AltaCliente();
 									app.setVisible(true);
@@ -217,6 +247,7 @@ public class Principal extends javax.swing.JFrame {
 							jMenuClientes.add(modificarMenuItem);
 							modificarMenuItem.setText("Modificar");
 							modificarMenuItem.addActionListener(new ActionListener() {
+								@Override
 								public void actionPerformed(ActionEvent evt) {
 									ModificarCliente app = new ModificarCliente();
 									app.setVisible(true);
@@ -228,6 +259,7 @@ public class Principal extends javax.swing.JFrame {
 							jMenuClientes.add(bajaMenuItem);
 							bajaMenuItem.setText("Baja");
 							bajaMenuItem.addActionListener(new ActionListener() {
+								@Override
 								public void actionPerformed(ActionEvent evt) {
 									EliminarCliente app = new EliminarCliente();
 									app.setVisible(true);
@@ -241,19 +273,40 @@ public class Principal extends javax.swing.JFrame {
 						jMenuEmpleados.setText("Empleados");
 						jMenuEmpleados.setFont(new java.awt.Font("SansSerif", 1, 12));
 						{
-							helpMenuItem = new JMenuItem();
-							jMenuEmpleados.add(helpMenuItem);
-							helpMenuItem.setText("Alta");
+							altaMenuItem = new JMenuItem();
+							jMenuEmpleados.add(altaMenuItem);
+							altaMenuItem.setText("Alta");
+							altaMenuItem.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent evt) {
+									AltaEmpleado app = new AltaEmpleado();
+									app.setVisible(true);
+								}
+							});
 						}
 						{
-							helpMenuItem = new JMenuItem();
-							jMenuEmpleados.add(helpMenuItem);
-							helpMenuItem.setText("Modificar");
+							modificarMenuItem = new JMenuItem();
+							jMenuEmpleados.add(modificarMenuItem);
+							modificarMenuItem.setText("Modificar");
+							modificarMenuItem.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent evt) {
+									ModificarEmpleado app = new ModificarEmpleado();
+									app.setVisible(true);
+								}
+							});
 						}
 						{
-							helpMenuItem = new JMenuItem();
-							jMenuEmpleados.add(helpMenuItem);
-							helpMenuItem.setText("Baja");
+							bajaMenuItem = new JMenuItem();
+							jMenuEmpleados.add(bajaMenuItem);
+							bajaMenuItem.setText("Baja");
+							bajaMenuItem.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent evt) {
+									EliminarEmpleado app = new EliminarEmpleado();
+									app.setVisible(true);
+								}
+							});
 						}
 					}
 					{
@@ -266,6 +319,7 @@ public class Principal extends javax.swing.JFrame {
 							jMenuOtros.add(helpMenuItem);
 							helpMenuItem.setText("Integrantes");
 							helpMenuItem.addActionListener(new ActionListener() {
+								@Override
 								public void actionPerformed(ActionEvent evt) {
 									JOptionPane.showMessageDialog(null, "Integrantes:\n -Alen Freire, Manuel\n -Godoy, Juan Manuel\n -Sara, Eduardo");
 								}
@@ -276,6 +330,7 @@ public class Principal extends javax.swing.JFrame {
 							jMenuOtros.add(helpMenuItem);
 							helpMenuItem.setText("Salir");
 							helpMenuItem.addActionListener(new ActionListener() {
+								@Override
 								public void actionPerformed(ActionEvent evt) {
 									System.exit(0);
 								}

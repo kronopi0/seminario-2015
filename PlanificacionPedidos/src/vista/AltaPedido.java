@@ -16,11 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
-import org.joda.time.DateTime;
-
 import controlador.Sistema;
 import dao.ClienteDAO;
-import dao.PedidoDAO;
 import entities.Cliente;
 import entities.Pedido;
 
@@ -59,6 +56,7 @@ public class AltaPedido extends javax.swing.JFrame {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				AltaPedido inst = new AltaPedido();
 				inst.setLocationRelativeTo(null);
@@ -71,7 +69,6 @@ public class AltaPedido extends javax.swing.JFrame {
 		super();
 		initGUI();
 	}
-
 
 	private void initGUI() {
 		try {
@@ -140,8 +137,10 @@ public class AltaPedido extends javax.swing.JFrame {
 				jButtonConfirmar.setBounds(61, 267, 93, 35);
 				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jButtonConfirmar.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						if (jTextFieldFechaDeEntrega.getText().isEmpty() || jTextFieldPeriodicidad.getText().isEmpty() || jTextFieldDescripcion.getText().isEmpty()) {
+						if (jTextFieldFechaDeEntrega.getText().isEmpty() || jTextFieldPeriodicidad.getText().isEmpty()
+								|| jTextFieldDescripcion.getText().isEmpty()) {
 							JOptionPane.showMessageDialog(null, "Faltan completar campos.");
 						} else {
 							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -173,6 +172,7 @@ public class AltaPedido extends javax.swing.JFrame {
 				jButtonSalir.setBounds(218, 268, 93, 33);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jButtonSalir.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						dispose();
 					}
@@ -188,6 +188,7 @@ public class AltaPedido extends javax.swing.JFrame {
 					comboCliente.addItem(clientes.get(i).getNombre());
 
 				comboCliente.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						for (int i = 0; i < clientes.size(); i++)
 							if (comboCliente.getSelectedItem().toString().equals(clientes.get(i).getNombre()))

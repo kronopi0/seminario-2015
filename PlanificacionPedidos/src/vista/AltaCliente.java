@@ -55,6 +55,7 @@ public class AltaCliente extends javax.swing.JFrame {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				AltaCliente inst = new AltaCliente();
 				inst.setLocationRelativeTo(null);
@@ -157,6 +158,7 @@ public class AltaCliente extends javax.swing.JFrame {
 				jButtonConfirmar.setBounds(66, 280, 86, 33);
 				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jButtonConfirmar.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						ClienteDTO cliente = new ClienteDTO();
 						cliente.setCuit(Integer.parseInt(jTextFieldCuit.getText()));
@@ -182,6 +184,7 @@ public class AltaCliente extends javax.swing.JFrame {
 				jButtonSalir.setBounds(228, 280, 85, 33);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jButtonSalir.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}

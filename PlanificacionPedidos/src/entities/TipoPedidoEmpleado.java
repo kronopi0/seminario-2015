@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TIPOS_PEDIDO_EMPLEADO")
+@Table(name = "TIPOS_PEDIDO_EMPLEADO")
 public class TipoPedidoEmpleado {
 
 	@EmbeddedId
@@ -14,5 +14,5 @@ public class TipoPedidoEmpleado {
 	public TipoPedidoEmpleado() {
 		super();
 	}
-	
+
 }

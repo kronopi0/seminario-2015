@@ -18,29 +18,27 @@ import javax.swing.SwingUtilities;
 
 import org.joda.time.DateTime;
 
-
 /*import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-//import java.util.Calendar;
-import java.util.Date;
-//import java.util.GregorianCalendar;
-import java.util.List;
+ import java.awt.event.ActionListener;
+ import java.text.ParseException;
+ import java.text.SimpleDateFormat;
+ //import java.util.Calendar;
+ import java.util.Date;
+ //import java.util.GregorianCalendar;
+ import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
+ import javax.swing.JButton;
+ import javax.swing.JComboBox;
+ import javax.swing.JLabel;
+ import javax.swing.JOptionPane;
+ import javax.swing.JSeparator;
+ import javax.swing.JTextField;
+ import javax.swing.WindowConstants;
+ import javax.swing.SwingUtilities;
 
-import org.joda.time.DateTime;*/
+ import org.joda.time.DateTime;*/
 
 import controlador.Sistema;
-import dao.CalendarioDAO;
 import dao.PedidoDAO;
 import entities.ComplejidadPedido;
 import entities.Pedido;
@@ -102,6 +100,7 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				ProgramarPedidos inst = new ProgramarPedidos();
 				inst.setLocationRelativeTo(null);
@@ -114,7 +113,6 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 		super();
 		initGUI();
 	}
-
 
 	private void initGUI() {
 		try {
@@ -135,6 +133,7 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				pedido = pedidos.get(0);
 
 				jComboBoxPedidosSinFinalizar.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						for (int i = 0; i < pedidos.size(); i++)
 							if (jComboBoxPedidosSinFinalizar.getSelectedItem().toString().equals(pedidos.get(i).getDescripcion()))
@@ -158,9 +157,10 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				jButtonFinalizarPedido.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jButtonFinalizarPedido.setEnabled(false);
 				jButtonFinalizarPedido.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("botonOK.actionPerformed, event=" + evt);
-						//pedido.setFechaInicio(new Date());
+						// pedido.setFechaInicio(new Date());
 						SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 						try {
 							pedido.setFechaInicio(formatter.parse(jTextFieldFechaInicio.getText()));
@@ -174,7 +174,8 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						//JOptionPane.showMessageDialog(null, "Pedido programado.");
+						// JOptionPane.showMessageDialog(null,
+						// "Pedido programado.");
 					}
 				});
 			}
@@ -185,6 +186,7 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				jButtonSalir.setBounds(224, 411, 107, 34);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jButtonSalir.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						dispose();
 					}
@@ -202,6 +204,7 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				botonDetalles.setBounds(152, 78, 94, 30);
 				botonDetalles.setFont(new java.awt.Font("SansSerif", 1, 12));
 				botonDetalles.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("botonDetalles.actionPerformed, event=" + evt);
 
@@ -216,10 +219,10 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 						else
 							c = "Periodicidad:  " + pedido.getPeriodicidad() + " días\n\n";
 						String d = "Cliente:  " + pedido.getCliente().getNombre() + "\n";
-						String e = "Fecha de solicitud:  " + Integer.parseInt(solicitud.toString("dd")) + "/" + Integer.parseInt(solicitud.toString("MM")) + "/"
-								+ Integer.parseInt(solicitud.toString("YYYY")) + "\n";
-						String f = "Fecha de entrega esperada:  " + Integer.parseInt(entrega.toString("dd")) + "/" + Integer.parseInt(entrega.toString("MM")) + "/"
-								+ Integer.parseInt(entrega.toString("YYYY")) + "\n";
+						String e = "Fecha de solicitud:  " + Integer.parseInt(solicitud.toString("dd")) + "/"
+								+ Integer.parseInt(solicitud.toString("MM")) + "/" + Integer.parseInt(solicitud.toString("YYYY")) + "\n";
+						String f = "Fecha de entrega esperada:  " + Integer.parseInt(entrega.toString("dd")) + "/"
+								+ Integer.parseInt(entrega.toString("MM")) + "/" + Integer.parseInt(entrega.toString("YYYY")) + "\n";
 
 						JOptionPane.showMessageDialog(null, a + b + c + d + e + f);
 					}
@@ -242,6 +245,7 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				}
 
 				comboTipo.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("comboTipo.actionPerformed, event=" + evt);
 
@@ -257,7 +261,7 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				comboComplejidad = new JComboBox<String>();
 				getContentPane().add(comboComplejidad);
 				comboComplejidad.setBounds(89, 227, 216, 26);
-				
+
 				complejidades = PedidoDAO.getInstancia().getComplejidades();
 
 				for (int i = 0; i < complejidades.size(); i++) {
@@ -265,26 +269,28 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				}
 
 				comboComplejidad.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("comboComplejidad.actionPerformed, event=" + evt);
 						for (int i = 0; i < tipos.size(); i++)
 							if (comboComplejidad.getSelectedItem().toString().equals(complejidades.get(i).getNombre()))
 								complejidad = complejidades.get(i);
 						jButtonFinalizarPedido.setEnabled(true);
-						//Fecha Desde
+						// Fecha Desde
 						DateTime solicitud = new DateTime(new Date());
-						jTextFieldFechapedidoDesde.setText(Integer.parseInt(solicitud.toString("dd")) + "/" + Integer.parseInt(solicitud.toString("MM"))+ "/" + Integer.parseInt(solicitud.toString("YYYY")));
-						
-						//Fecha Hasta
-						//duracion en dias
-						float d = (tipo.getCantDias()*complejidad.getFactorTiempo());
+						jTextFieldFechapedidoDesde.setText(Integer.parseInt(solicitud.toString("dd")) + "/"
+								+ Integer.parseInt(solicitud.toString("MM")) + "/" + Integer.parseInt(solicitud.toString("YYYY")));
+
+						// Fecha Hasta
+						// duracion en dias
+						float d = (tipo.getCantDias() * complejidad.getFactorTiempo());
 						int dur = 0;
-						if(d>(int)d){
-							dur = (int)d+1;
-						}else{
-							dur = (int)d;
+						if (d > (int) d) {
+							dur = (int) d + 1;
+						} else {
+							dur = (int) d;
 						}
-						
+
 						String solicitud1 = null;
 						try {
 							solicitud1 = Sistema.getInstancia().sumarRestarDiasFecha(pedido.getFechaEntrega(), -dur);
@@ -294,13 +300,13 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 						}
 						jTextFieldFechaPedidoHasta.setText(solicitud1);
 
-				        jTextFieldFechaPedidoHasta.setEnabled(false);
+						jTextFieldFechaPedidoHasta.setEnabled(false);
 						jTextFieldFechapedidoDesde.setEnabled(false);
 					}
 
 				});
 				complejidad = complejidades.get(0);
-				
+
 			}
 			{
 				jLabel1 = new JLabel();
@@ -325,7 +331,7 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				jLabel3 = new JLabel();
 				getContentPane().add(jLabel3);
 				jLabel3.setText("Ingresar fecha de inicio del pedido entre:");
-				jLabel3.setFont(new java.awt.Font("SansSerif",1,12));
+				jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jLabel3.setBounds(42, 307, 231, 16);
 			}
 			{
@@ -348,7 +354,7 @@ public class ProgramarPedidos extends javax.swing.JFrame {
 				jLabel4 = new JLabel();
 				getContentPane().add(jLabel4);
 				jLabel4.setText("Fecha de inicio del pedido :");
-				jLabel4.setFont(new java.awt.Font("SansSerif",1,12));
+				jLabel4.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jLabel4.setBounds(42, 359, 231, 16);
 			}
 			pack();

@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.List;
 
 import dto.ClienteDTO;
+import dto.ComplejidadPedidoDTO;
+import dto.EmpleadoDTO;
 import negocio.AdmCliente;
 import negocio.AdmComplejidadPedido;
 import negocio.AdmEmpleado;
@@ -104,6 +106,44 @@ public class Sistema {
 
 	public void eliminarCliente(ClienteDTO cliente) {
 		AdmCliente.getInstancia().eliminarCliente(cliente);
+	}
 
+	/*
+	 * EMPLEADOS
+	 */
+	public List<EmpleadoDTO> listarEmpleados() {
+		return AdmEmpleado.getInstancia().listarEmpleados();
+	}
+
+	public void altaEmpleado(EmpleadoDTO empleado) {
+		AdmEmpleado.getInstancia().AltaEmpleado(empleado);
+	}
+
+	public void modificarEmpleado(EmpleadoDTO empleado) {
+		AdmEmpleado.getInstancia().ModificarEmpleado(empleado);
+	}
+
+	public void eliminarEmpleado(EmpleadoDTO empleado) {
+		AdmEmpleado.getInstancia().eliminarEmpleado(empleado);
+	}
+
+	/*
+	 * COMPLEJIDAD PEDIDO
+	 */
+
+	public void altaComplejidadPedidoo(ComplejidadPedidoDTO c) {
+		AdmComplejidadPedido.getInstancia().AltaComplejidadPedido(c);
+	}
+
+	public List<ComplejidadPedidoDTO> listarComplejidades() {
+		return AdmComplejidadPedido.getInstancia().listarComplejidades();
+	}
+
+	public void modificarComplejidadPedido(ComplejidadPedidoDTO complejidad) {
+		AdmComplejidadPedido.getInstancia().ModificarComplejidadPedido(complejidad);
+	}
+
+	public void eliminarComplejidadPedido(ComplejidadPedidoDTO complejidad) {
+		AdmComplejidadPedido.getInstancia().eliminarComplejidadPedido(complejidad);
 	}
 }

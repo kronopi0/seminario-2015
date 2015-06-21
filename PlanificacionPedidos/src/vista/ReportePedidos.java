@@ -1,4 +1,5 @@
 package vista;
+
 import java.awt.Container;
 import java.awt.GridLayout;
 
@@ -11,19 +12,16 @@ import javax.swing.SwingUtilities;
 
 import controlador.Sistema;
 
-
 /**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
+ * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
+ * Builder, which is free for non-commercial use. If Jigloo is being used
+ * commercially (ie, by a corporation, company or business for any purpose
+ * whatever) then you should purchase a license for each developer using Jigloo.
+ * Please visit www.cloudgarden.com for details. Use of Jigloo implies
+ * acceptance of these licensing terms. A COMMERCIAL LICENSE HAS NOT BEEN
+ * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
+ * ANY CORPORATE OR COMMERCIAL PURPOSE.
+ */
 public class ReportePedidos extends javax.swing.JFrame {
 	private JScrollPane jScrollPaneScroll;
 	private JLabel jLabelReporte;
@@ -33,6 +31,7 @@ public class ReportePedidos extends javax.swing.JFrame {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				ReportePedidos inst = new ReportePedidos();
 				inst.setLocationRelativeTo(null);
@@ -40,16 +39,16 @@ public class ReportePedidos extends javax.swing.JFrame {
 			}
 		});
 	}
-	
+
 	public ReportePedidos(Sistema s) {
 		super();
 		sistema = s;
 		initGUI();
 	}
-	
+
 	public ReportePedidos() {
 	}
-	
+
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -57,14 +56,14 @@ public class ReportePedidos extends javax.swing.JFrame {
 			setTitle("Reporte de Pedidos");
 			{
 				{
-					Container panel=this.getContentPane();
-					panel.setLayout(new GridLayout(1,1));
-					this.texto=new JTextArea();
+					Container panel = this.getContentPane();
+					panel.setLayout(new GridLayout(1, 1));
+					this.texto = new JTextArea();
 					panel.add(texto);
-					
+
 				}
 			}
-			
+
 			pack();
 			this.setSize(900, 700);
 		} catch (Exception e) {

@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="COMPLEJIDADES_EMPLEADO")
+@Table(name = "COMPLEJIDADES_EMPLEADO")
 public class ComplejidadEmpleado {
 
 	@EmbeddedId
@@ -22,5 +22,5 @@ public class ComplejidadEmpleado {
 	public void setId(ComplejidadEmpleadoID id) {
 		this.id = id;
 	}
-	
+
 }

@@ -55,7 +55,7 @@ public class PedidoDAO {
 		sesion.beginTransaction();
 		Query q = sesion.createQuery("SELECT p FROM Pedido p WHERE p.estado = :estado");
 		q.setString("estado", estado);
-		pedidos = (List<Pedido>) q.list();
+		pedidos = q.list();
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
@@ -65,14 +65,15 @@ public class PedidoDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<ReportePedidosPorEmpleado> getCantidadDePedidosResueltosPorEmpleado() {
-		List<ReportePedidosPorEmpleado> reportes = new ArrayList<ReportePedidosPorEmpleado>();;
+		List<ReportePedidosPorEmpleado> reportes = new ArrayList<ReportePedidosPorEmpleado>();
+		;
 		Session sesion = sf.openSession();
-		
+
 		sesion.beginTransaction();
 		Query q = sesion.createQuery("SELECT new entities.ReportePedidosPorEmpleado(e.idEmpleado, e.nombre, e.apellido, COUNT(*) as cant) "
 				+ "FROM Pedido p join p.empleado e WHERE p.estado = :estado GROUP BY e.idEmpleado, e.nombre, e.apellido");
 		q.setString("estado", "Finalizado");
-		reportes = (List<ReportePedidosPorEmpleado>) q.list();
+		reportes = q.list();
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
@@ -101,9 +102,9 @@ public class PedidoDAO {
 		sesion.flush();
 		sesion.close();
 
-		porcentaje = (double)pedidosCumplidosOk/totalPedidosFinalizados;
-		return porcentaje*100;
-		
+		porcentaje = (double) pedidosCumplidosOk / totalPedidosFinalizados;
+		return porcentaje * 100;
+
 	}
 
 	public void programarPedido(Pedido p) {
@@ -116,11 +117,11 @@ public class PedidoDAO {
 		sesion.close();
 		System.out.println("ID PEDIDO: " + p.getId());
 	}
-	
+
 	public void finalizarPedido(Pedido p) {
 		p.setEstado("Finalizado");
 		p.setFechaFinalizado(new Date());
-			
+
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
 		sesion.update(p);
@@ -128,14 +129,14 @@ public class PedidoDAO {
 		sesion.flush();
 		sesion.close();
 	}
-	
+
 	public Integer getCantidadDiasHabiles(Pedido pedido) {
 		Disponibilidad disp;
 		Session sesion = sf.openSession();
-		
+
 		sesion.beginTransaction();
-		disp = (Disponibilidad) sesion.createSQLQuery("diashabiles :fechaDesde, :fechaHasta").addEntity(Disponibilidad.class).
-				setParameter("fechaDesde", pedido.getFechaSolicitud()).setParameter("fechaHasta", pedido.getFechaEntrega()).uniqueResult();
+		disp = (Disponibilidad) sesion.createSQLQuery("diashabiles :fechaDesde, :fechaHasta").addEntity(Disponibilidad.class)
+				.setParameter("fechaDesde", pedido.getFechaSolicitud()).setParameter("fechaHasta", pedido.getFechaEntrega()).uniqueResult();
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();

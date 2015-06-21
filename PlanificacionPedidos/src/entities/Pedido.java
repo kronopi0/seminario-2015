@@ -34,7 +34,7 @@ public class Pedido {
 	private Date fechaSolicitud;
 	private Date fechaInicio;
 	private Date fechaFinalizado;
-	
+
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}

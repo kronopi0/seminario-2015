@@ -1,23 +1,23 @@
-package negocio;
+package dto;
 
 import java.util.Date;
 
-public class AdmDisponibilidad {
+public class DisponibilidadDTO {
 
-	private int idDisponibilidad;
+	private Integer idDisponibilidad;
 	private Date fechaInicio;
 	private Date fechaFin;
 	private Integer cantidadDias;
 
-	public AdmDisponibilidad() {
+	public DisponibilidadDTO() {
 		super();
 	}
 
-	public int getId() {
+	public Integer getIdDisponibilidad() {
 		return idDisponibilidad;
 	}
 
-	public void setId(int idDisponibilidad) {
+	public void setIdDisponibilidad(Integer idDisponibilidad) {
 		this.idDisponibilidad = idDisponibilidad;
 	}
 

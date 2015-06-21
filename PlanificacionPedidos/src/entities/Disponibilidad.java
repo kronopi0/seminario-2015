@@ -19,11 +19,10 @@ public class Disponibilidad {
 	private Date fechaFin;
 	private Integer cantidadDias;
 
-
 	public Disponibilidad() {
 		super();
 	}
-	
+
 	public Integer getIdDisponibilidad() {
 		return idDisponibilidad;
 	}
@@ -31,7 +30,7 @@ public class Disponibilidad {
 	public void setIdDisponibilidad(Integer idDisponibilidad) {
 		this.idDisponibilidad = idDisponibilidad;
 	}
-	
+
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}

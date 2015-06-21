@@ -17,7 +17,7 @@ public class HibernateUtil {
 			config.addAnnotatedClass(Pedido.class);
 			config.addAnnotatedClass(PedidoProgramado.class);
 			config.addAnnotatedClass(PedidoProgramadoID.class);
-			config.addAnnotatedClass(TipoPedido.class);	
+			config.addAnnotatedClass(TipoPedido.class);
 			config.addAnnotatedClass(ComplejidadEmpleado.class);
 			config.addAnnotatedClass(ComplejidadEmpleadoID.class);
 			config.addAnnotatedClass(TipoPedidoEmpleado.class);

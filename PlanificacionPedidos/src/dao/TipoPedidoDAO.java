@@ -16,14 +16,14 @@ public class TipoPedidoDAO {
 	private static TipoPedidoDAO instancia = null;
 	private static SessionFactory sf = null;
 
-	public static TipoPedidoDAO getInstancia(){
-		if(instancia == null){
+	public static TipoPedidoDAO getInstancia() {
+		if (instancia == null) {
 			sf = HibernateUtil.getSessionFactory();
 			instancia = new TipoPedidoDAO();
-		} 
+		}
 		return instancia;
 	}
-	
+
 	public TipoPedido buscarTipoPedido(String tipoPedido) {
 		TipoPedido tp;
 		Session sesion = sf.openSession();
@@ -38,19 +38,19 @@ public class TipoPedidoDAO {
 
 		return tp;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<TipoPedido> getTiposDePedido() {
 		List<TipoPedido> tipos = new ArrayList<TipoPedido>();
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
 		Query q = sesion.createQuery("SELECT p FROM TipoPedido p");
-		tipos = (List<TipoPedido>) q.list();
+		tipos = q.list();
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
 
 		return tipos;
 	}
-	
+
 }

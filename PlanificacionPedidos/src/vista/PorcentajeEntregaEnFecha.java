@@ -29,8 +29,7 @@ public class PorcentajeEntregaEnFecha extends javax.swing.JFrame {
 	{
 		// Set Look & Feel
 		try {
-			javax.swing.UIManager
-					.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,6 +45,7 @@ public class PorcentajeEntregaEnFecha extends javax.swing.JFrame {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				PorcentajeEntregaEnFecha inst = new PorcentajeEntregaEnFecha();
 				inst.setVisible(true);
@@ -69,11 +69,9 @@ public class PorcentajeEntregaEnFecha extends javax.swing.JFrame {
 			{
 				jLabelPedidosPendientes = new JLabel();
 				getContentPane().add(jLabelPedidosPendientes);
-				jLabelPedidosPendientes
-						.setText("Porcentaje de pedidos resueltos:");
+				jLabelPedidosPendientes.setText("Porcentaje de pedidos resueltos:");
 				jLabelPedidosPendientes.setBounds(59, 15, 243, 19);
-				jLabelPedidosPendientes.setFont(new java.awt.Font("Segoe UI",
-						1, 14));
+				jLabelPedidosPendientes.setFont(new java.awt.Font("Segoe UI", 1, 14));
 			}
 			{
 				jButtonSalir = new JButton();
@@ -82,6 +80,7 @@ public class PorcentajeEntregaEnFecha extends javax.swing.JFrame {
 				jButtonSalir.setBounds(123, 142, 90, 28);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jButtonSalir.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						dispose();
 					}
@@ -92,11 +91,10 @@ public class PorcentajeEntregaEnFecha extends javax.swing.JFrame {
 				getContentPane().add(porcentaje);
 				porcentaje.setBounds(140, 53, 89, 59);
 				porcentaje.setText("45%");
-				porcentaje.setFont(new java.awt.Font("SansSerif",1,24));
+				porcentaje.setFont(new java.awt.Font("SansSerif", 1, 24));
 				System.out.println(por);
-				porcentaje.setText(por+"%");
-				
-				
+				porcentaje.setText(por + "%");
+
 			}
 			pack();
 			this.setSize(350, 219);

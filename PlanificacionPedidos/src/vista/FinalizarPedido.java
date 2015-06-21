@@ -61,6 +61,7 @@ public class FinalizarPedido extends javax.swing.JFrame {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				FinalizarPedido inst = new FinalizarPedido();
 				inst.setLocationRelativeTo(null);
@@ -73,7 +74,6 @@ public class FinalizarPedido extends javax.swing.JFrame {
 		super();
 		initGUI();
 	}
-
 
 	private void initGUI() {
 		try {
@@ -88,9 +88,10 @@ public class FinalizarPedido extends javax.swing.JFrame {
 
 				pedidos = PedidoDAO.getInstancia().getPedidos("Programado");
 				for (int i = 0; i < pedidos.size(); i++)
-				jComboBoxPedidosSinFinalizar.addItem(pedidos.get(i).getDescripcion());
+					jComboBoxPedidosSinFinalizar.addItem(pedidos.get(i).getDescripcion());
 
 				jComboBoxPedidosSinFinalizar.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						for (int i = 0; i < pedidos.size(); i++)
 							if (jComboBoxPedidosSinFinalizar.getSelectedItem().toString().equals(pedidos.get(i).getDescripcion()))
@@ -112,6 +113,7 @@ public class FinalizarPedido extends javax.swing.JFrame {
 				jButtonFinalizarPedido.setBounds(55, 145, 120, 35);
 				jButtonFinalizarPedido.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jButtonFinalizarPedido.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("jButtonFinalizarPedido.actionPerformed, event=" + evt);
 						try {
@@ -131,6 +133,7 @@ public class FinalizarPedido extends javax.swing.JFrame {
 				jButtonSalir.setBounds(226, 146, 107, 34);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 12));
 				jButtonSalir.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						dispose();
 					}
@@ -148,6 +151,7 @@ public class FinalizarPedido extends javax.swing.JFrame {
 				botonDetalles.setBounds(152, 84, 94, 30);
 				botonDetalles.setFont(new java.awt.Font("SansSerif", 1, 12));
 				botonDetalles.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("botonDetalles.actionPerformed, event=" + evt);
 
@@ -162,10 +166,10 @@ public class FinalizarPedido extends javax.swing.JFrame {
 						else
 							c = "Periodicidad:  " + pedido.getPeriodicidad() + " días\n\n";
 						String d = "Cliente:  " + pedido.getCliente().getNombre() + "\n";
-						String e = "Fecha de solicitud:  " + Integer.parseInt(solicitud.toString("dd")) + "/" + Integer.parseInt(solicitud.toString("MM")) + "/"
-								+ Integer.parseInt(solicitud.toString("YYYY")) + "\n";
-						String f = "Fecha de entrega esperada:  " + Integer.parseInt(entrega.toString("dd")) + "/" + Integer.parseInt(entrega.toString("MM")) + "/"
-								+ Integer.parseInt(entrega.toString("YYYY")) + "\n";
+						String e = "Fecha de solicitud:  " + Integer.parseInt(solicitud.toString("dd")) + "/"
+								+ Integer.parseInt(solicitud.toString("MM")) + "/" + Integer.parseInt(solicitud.toString("YYYY")) + "\n";
+						String f = "Fecha de entrega esperada:  " + Integer.parseInt(entrega.toString("dd")) + "/"
+								+ Integer.parseInt(entrega.toString("MM")) + "/" + Integer.parseInt(entrega.toString("YYYY")) + "\n";
 
 						JOptionPane.showMessageDialog(null, a + b + c + d + e + f);
 					}

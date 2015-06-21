@@ -14,16 +14,16 @@ public class DisponibilidadDAO {
 	private static DisponibilidadDAO instancia = null;
 	private static SessionFactory sf = null;
 
-	public static DisponibilidadDAO getInstancia(){
-		if(instancia == null){
+	public static DisponibilidadDAO getInstancia() {
+		if (instancia == null) {
 			sf = HibernateUtil.getSessionFactory();
 			instancia = new DisponibilidadDAO();
-		} 
+		}
 		return instancia;
 	}
-	
+
 	// ALTAS
-	public void grabarDisponibilidad(Disponibilidad disponibilidad){
+	public void grabarDisponibilidad(Disponibilidad disponibilidad) {
 		Session session = sf.openSession();
 		session.beginTransaction();
 		session.persist(disponibilidad);
@@ -31,19 +31,19 @@ public class DisponibilidadDAO {
 		session.getTransaction().commit();
 		session.close();
 	}
-	
-	//MODIFICAR
-	public void ModificarDisponibilidad(Disponibilidad disponibilidad){
+
+	// MODIFICAR
+	public void ModificarDisponibilidad(Disponibilidad disponibilidad) {
 		Session session = sf.openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(disponibilidad);  
+		session.saveOrUpdate(disponibilidad);
 		session.flush();
 		session.getTransaction().commit();
 		session.close();
 	}
-	
-	//ELIMINAR
-	public void BajaDisponibilidad(Disponibilidad disponibilidad){
+
+	// ELIMINAR
+	public void BajaDisponibilidad(Disponibilidad disponibilidad) {
 		Session session = sf.openSession();
 		session.beginTransaction();
 		session.delete(disponibilidad);
@@ -51,16 +51,16 @@ public class DisponibilidadDAO {
 		session.getTransaction().commit();
 		session.close();
 	}
-	
+
 	// BUSCAR
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Disponibilidad> buscarDisponibilidadPorEmpleado(int idEmpleado) {
 		List<Disponibilidad> disponibilidades = new ArrayList<Disponibilidad>();
 		Session sesion = sf.openSession();
 		String query = "disponibilidad " + idEmpleado;
 		sesion.beginTransaction();
-		disponibilidades = (List<Disponibilidad>) sesion.createSQLQuery(query).addEntity(Disponibilidad.class).list();
+		disponibilidades = sesion.createSQLQuery(query).addEntity(Disponibilidad.class).list();
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();

@@ -9,24 +9,24 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ComplejidadPedido;
 import entities.Empleado;
+import entities.ComplejidadPedido;
 import entities.TipoPedido;
 
 public class EmpleadoDAO {
 	private static EmpleadoDAO instancia = null;
 	private static SessionFactory sf = null;
 
-	public static EmpleadoDAO getInstancia(){
-		if(instancia == null){
+	public static EmpleadoDAO getInstancia() {
+		if (instancia == null) {
 			sf = HibernateUtil.getSessionFactory();
 			instancia = new EmpleadoDAO();
-		} 
+		}
 		return instancia;
 	}
-	
+
 	// ALTAS
-	public void grabarEmpleado(Empleado empleado){
+	public void grabarEmpleado(Empleado empleado) {
 		Session session = sf.openSession();
 		session.beginTransaction();
 		session.persist(empleado);
@@ -34,19 +34,19 @@ public class EmpleadoDAO {
 		session.getTransaction().commit();
 		session.close();
 	}
-	
-	//MODIFICAR
-	public void actualizarEmpleado(Empleado empleado){
+
+	// MODIFICAR
+	public void actualizarEmpleado(Empleado empleado) {
 		Session session = sf.openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(empleado);  
+		session.saveOrUpdate(empleado);
 		session.flush();
 		session.getTransaction().commit();
 		session.close();
 	}
-	
-	//ELIMINAR
-	public void BajaEmpleado(Empleado empleado){
+
+	// ELIMINAR
+	public void BajaEmpleado(Empleado empleado) {
 		Session session = sf.openSession();
 		session.beginTransaction();
 		session.delete(empleado);
@@ -54,9 +54,9 @@ public class EmpleadoDAO {
 		session.getTransaction().commit();
 		session.close();
 	}
-	
+
 	// BUSCAR
-	
+
 	public Empleado buscarEmpleado(int id) {
 		Empleado e;
 		Session sesion = sf.openSession();
@@ -78,11 +78,26 @@ public class EmpleadoDAO {
 		Session sesion = sf.openSession();
 		String query = "empleados_capacitados " + complejidad.getNombre() + ", " + tipo.getDescripcion();
 		sesion.beginTransaction();
-		empleados = (List<Empleado>) sesion.createSQLQuery(query).addEntity(Empleado.class).list();
+		empleados = sesion.createSQLQuery(query).addEntity(Empleado.class).list();
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
 		return empleados;
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	public List<Empleado> getEmpleados() {
+		List<Empleado> Empleados = new ArrayList<Empleado>();
+		Session sesion = sf.openSession();
+
+		sesion.beginTransaction();
+		Query q = sesion.createQuery("SELECT e FROM Empleado e");
+		Empleados = q.list();
+		sesion.getTransaction().commit();
+		sesion.flush();
+		sesion.close();
+
+		return Empleados;
+	}
+
 }

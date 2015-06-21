@@ -8,10 +8,10 @@ import javax.persistence.Embeddable;
 public class ComplejidadEmpleadoID implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private int idEmpleado;
 	private int idComplejidad;
-	
+
 	public ComplejidadEmpleadoID() {
 		super();
 	}
@@ -31,5 +31,5 @@ public class ComplejidadEmpleadoID implements Serializable {
 	public void setIdComplejidadPedido(int idComplejidad) {
 		this.idComplejidad = idComplejidad;
 	}
-	
+
 }
