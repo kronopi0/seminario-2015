@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import controlador.Sistema;
-import entities.Pedido;
 import entities.ReportePedidosPorEmpleado;
 
 /**
@@ -147,76 +146,43 @@ public class Principal extends javax.swing.JFrame {
 					{
 						saveAsMenuItem = new JMenuItem();
 						jMenuReportes.add(saveAsMenuItem);
-						saveAsMenuItem.setText("Listar pedidos pendientes");
+						saveAsMenuItem.setText("Pedidos Pendientes");
 						saveAsMenuItem.addActionListener(new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent evt) {
 
-								List<Pedido> pedidos = sistema.getPedidos("pendiente");
+								String[] columnasPedidosPendientes = { "Id", "Descripción", "Cliente", "Fecha" };
+								ReporteTemplate tab = new ReporteTemplate(panel, Sistema.getInstancia().reportePedidosPorEstado("pendiente"), columnasPedidosPendientes);
+								panel.addTab("Pedidos Pendientes", tab);
 
-								final Object[][] data = new Object[pedidos.size()][4];
-
-								for (int i = 0; i < pedidos.size(); i++) {
-
-									Pedido p = pedidos.get(i);
-									data[i][0] = Integer.toString(p.getId());
-									data[i][1] = p.getDescripcion();
-									data[i][2] = p.getCliente().getNombre();
-									data[i][3] = p.getFechaSolicitud();
-								}
-
-								ReportePedidosSegunEstado tab = new ReportePedidosSegunEstado();
-								tab.main(data);
 							}
 						});
 					}
 					{
 						saveAsMenuItem = new JMenuItem();
 						jMenuReportes.add(saveAsMenuItem);
-						saveAsMenuItem.setText("Listar pedidos programados");
+						saveAsMenuItem.setText("Pedidos Programados");
 						saveAsMenuItem.addActionListener(new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent evt) {
-								List<Pedido> pedidos = sistema.getPedidos("programado");
 
-								final Object[][] data = new Object[pedidos.size()][4];
-
-								for (int i = 0; i < pedidos.size(); i++) {
-
-									Pedido p = pedidos.get(i);
-									data[i][0] = Integer.toString(p.getId());
-									data[i][1] = p.getDescripcion();
-									data[i][2] = p.getCliente().getNombre();
-									data[i][3] = p.getFechaSolicitud();
-								}
-
-								ReportePedidosSegunEstado tab = new ReportePedidosSegunEstado();
-								tab.main(data);
+								String[] columnasPedidosProgramados = { "Id", "Descripción", "Cliente", "Fecha" };
+								ReporteTemplate tab = new ReporteTemplate(panel, Sistema.getInstancia().reportePedidosPorEstado("programado"), columnasPedidosProgramados);
+								panel.addTab("Pedidos Programados", tab);
 							}
 						});
 					}
 					{
 						saveAsMenuItem = new JMenuItem();
 						jMenuReportes.add(saveAsMenuItem);
-						saveAsMenuItem.setText("Listar pedidos finalizados");
+						saveAsMenuItem.setText("Pedidos Finalizados");
 						saveAsMenuItem.addActionListener(new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent evt) {
-								List<Pedido> pedidos = sistema.getPedidos("finalizado");
 
-								final Object[][] data = new Object[pedidos.size()][4];
-
-								for (int i = 0; i < pedidos.size(); i++) {
-
-									Pedido p = pedidos.get(i);
-									data[i][0] = Integer.toString(p.getId());
-									data[i][1] = p.getDescripcion();
-									data[i][2] = p.getCliente().getNombre();
-									data[i][3] = p.getFechaSolicitud();
-								}
-
-								ReportePedidosSegunEstado tab = new ReportePedidosSegunEstado();
-								tab.main(data);
+								String[] columnasPedidosFinalizados = { "Id", "Descripción", "Cliente", "Fecha" };
+								ReporteTemplate tab = new ReporteTemplate(panel, Sistema.getInstancia().reportePedidosPorEstado("finalizado"), columnasPedidosFinalizados);
+								panel.addTab("Pedidos Finalizados", tab);
 							}
 						});
 					}
@@ -427,7 +393,7 @@ public class Principal extends javax.swing.JFrame {
 						JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 						add(picLabel);
 						picLabel.setBounds(137, 112, 430, 215);
-						
+
 					}
 				}
 			}

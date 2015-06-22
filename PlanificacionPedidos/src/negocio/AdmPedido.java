@@ -2,7 +2,6 @@ package negocio;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -10,11 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import dao.PedidoDAO;
-import dto.ClienteDTO;
-import dto.ComplejidadPedidoDTO;
-import dto.EmpleadoDTO;
 import dto.PedidoDTO;
-import dto.TipoPedidoDTO;
 import entities.ComplejidadPedido;
 import entities.Disponibilidad;
 import entities.Empleado;
@@ -256,4 +251,20 @@ public class AdmPedido {
 		return entity;
 
 	}
+
+	public String[][] reportePedidosPorEstado(String estado) {
+
+		List<Pedido> pedidos = getPedidos(estado);
+		String[][] data = new String[pedidos.size()][4];
+
+		for (int i = 0; i < pedidos.size(); i++) {
+			Pedido p = pedidos.get(i);
+			data[i][0] = Integer.toString(p.getId());
+			data[i][1] = p.getDescripcion();
+			data[i][2] = p.getCliente().getNombre();
+			data[i][3] = p.getFechaSolicitud() + "";
+		}
+		return data;
+	}
+
 }

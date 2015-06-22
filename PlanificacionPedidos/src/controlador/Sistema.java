@@ -89,6 +89,10 @@ public class Sistema {
 		return AdmPedido.getInstancia().getCantidadDePedidosResueltosPorEmpleado();
 	}
 
+	public String[][] reportePedidosPorEstado(String estado) {
+		return AdmPedido.getInstancia().reportePedidosPorEstado(estado);
+	}
+
 	/*
 	 * GESTION DE CLIENTES
 	 */
@@ -147,4 +151,5 @@ public class Sistema {
 	public void eliminarComplejidadPedido(ComplejidadPedidoDTO complejidad) {
 		AdmComplejidadPedido.getInstancia().eliminarComplejidadPedido(complejidad);
 	}
+
 }
