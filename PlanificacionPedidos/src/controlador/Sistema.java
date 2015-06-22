@@ -1,6 +1,7 @@
 package controlador;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import dto.ClienteDTO;
@@ -68,12 +69,12 @@ public class Sistema {
 		return AdmPedido.getInstancia().getPedidos(estado);
 	}
 
-	public List<TipoPedido> getTiposgetTiposDePedido() {
+	public List<TipoPedido> getTiposDePedido() {
 		return AdmTipoPedido.getInstancia().getTiposDePedido();
 	}
-
-	public List<ComplejidadPedido> getComplejidades() {
-		return AdmComplejidadPedido.getInstancia().getComplejidadesPedido();
+	
+	public String sumarRestarDiasFecha(Date fechaEntrega, int dias) throws ParseException {
+		return AdmPedido.getInstancia().sumarRestarDiasFecha(fechaEntrega, dias);
 	}
 
 	/*
@@ -149,6 +150,10 @@ public class Sistema {
 
 	public void eliminarComplejidadPedido(ComplejidadPedidoDTO complejidad) {
 		AdmComplejidadPedido.getInstancia().eliminarComplejidadPedido(complejidad);
+	}
+	
+	public List<ComplejidadPedido> getComplejidadesPedido() {
+		return AdmComplejidadPedido.getInstancia().getComplejidadesPedido();
 	}
 
 }

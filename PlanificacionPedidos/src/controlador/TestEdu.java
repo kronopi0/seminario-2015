@@ -24,7 +24,7 @@ public class TestEdu {
 		Sistema sistema = new Sistema();
 
 		List<Pedido> pedidos = sistema.getPedidos("Pendiente");
-
+		/*
 		System.out.println("Pedidos pendientes: \n");
 		for (Pedido p : pedidos)
 			System.out.println(p.getId() + "  " + p.getDescripcion());
@@ -49,10 +49,6 @@ public class TestEdu {
 		for (Empleado e : empleadosCapacitados)
 			System.out.println(e.getId() + "  " + e.getNombre() + "  " + e.getApellido());
 
-		/*
-		 * List<Calendario> calendario = sistema.getCalendario();
-		 * System.out.println("---- CALENDARIO 2015 ----\n"); for (Calendario c
-		 * : calendario) System.out.println(c.getId() + "  " + c.getFecha());
 		 */
 	}
 

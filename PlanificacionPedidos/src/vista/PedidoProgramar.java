@@ -213,7 +213,7 @@ public class PedidoProgramar extends javax.swing.JPanel {
 				this.add(comboTipo);
 				comboTipo.setBounds(418, 53, 216, 26);
 
-				tipos = Sistema.getInstancia().getTipos();
+				tipos = Sistema.getInstancia().getTiposDePedido();
 
 				for (int i = 0; i < tipos.size(); i++) {
 					comboTipo.addItem((tipos.get(i).getDescripcion()));
@@ -237,7 +237,7 @@ public class PedidoProgramar extends javax.swing.JPanel {
 				getContentPane().add(comboComplejidad);
 				comboComplejidad.setBounds(418, 123, 216, 26);
 
-				complejidades = PedidoDAO.getInstancia().getComplejidades();
+				complejidades = Sistema.getInstancia().getComplejidadesPedido();
 
 				for (int i = 0; i < complejidades.size(); i++) {
 					comboComplejidad.addItem((complejidades.get(i).getNombre()));
@@ -258,7 +258,7 @@ public class PedidoProgramar extends javax.swing.JPanel {
 
 						// Fecha Hasta
 						// duracion en dias
-						float d = (tipo.getCantDias() * complejidad.getFactorTiempo());
+						float d = (tipo.getTiempo() * complejidad.getFactorTiempo());
 						int dur = 0;
 						if (d > (int) d) {
 							dur = (int) d + 1;
