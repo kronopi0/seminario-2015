@@ -14,7 +14,6 @@ import entities.ComplejidadPedido;
 import entities.Disponibilidad;
 import entities.Empleado;
 import entities.Pedido;
-import entities.ReportePedidosPorEmpleado;
 import entities.TipoPedido;
 
 public class AdmPedido {
@@ -198,27 +197,10 @@ public class AdmPedido {
 		return fechaaux;
 	}
 
-	public Double getPorcentajeDeCumplimientoFechaDeEntrega() {
-		return dao.getPorcentajeDeCumplimientoFechaDeEntrega();
-	}
-
-	public List<ReportePedidosPorEmpleado> getCantidadDePedidosResueltosPorEmpleado() {
-		return dao.getCantidadDePedidosResueltosPorEmpleado();
-	}
-
 	public void altaPedido(PedidoDTO p) {
 		dao.guardarPedido(toEntity(p));
 
 	}
-
-	// private PedidoDTO toDTO(Pedido c) {
-	// PedidoDTO dto = new PedidoDTO();
-	// dto.setId(c.getId());
-	// dto.setNombre(c.getNombre());
-	// dto.setApellido(c.getApellido());
-	// return dto;
-	//
-	// }
 
 	private Pedido toEntity(PedidoDTO dto) {
 		Pedido entity = new Pedido();
@@ -250,6 +232,19 @@ public class AdmPedido {
 
 		return entity;
 
+	}
+
+	/*
+	 * REPORTES
+	 */
+
+	public Double getPorcentajeDeCumplimientoFechaDeEntrega() {
+		return dao.getPorcentajeDeCumplimientoFechaDeEntrega();
+	}
+
+	public String[][] getPedidosResueltosPorEmpleado() {
+		return null;
+		// TODO
 	}
 
 	public String[][] reportePedidosPorEstado(String estado) {

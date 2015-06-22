@@ -16,7 +16,6 @@ import entities.Cliente;
 import entities.ComplejidadPedido;
 import entities.Empleado;
 import entities.Pedido;
-import entities.ReportePedidosPorEmpleado;
 import entities.TipoPedido;
 
 public class Sistema {
@@ -81,16 +80,16 @@ public class Sistema {
 	 * REPORTES
 	 */
 
-	public Double reportePorcentajeDeCumplimientoFechaDeEntrega() {
-		return AdmPedido.getInstancia().getPorcentajeDeCumplimientoFechaDeEntrega();
-	}
-
-	public List<ReportePedidosPorEmpleado> reporteCantidadDePedidosResueltosPorEmpleado() {
-		return AdmPedido.getInstancia().getCantidadDePedidosResueltosPorEmpleado();
+	public String[][] reporteResueltosPorEmpleado() {
+		return AdmPedido.getInstancia().getPedidosResueltosPorEmpleado();
 	}
 
 	public String[][] reportePedidosPorEstado(String estado) {
 		return AdmPedido.getInstancia().reportePedidosPorEstado(estado);
+	}
+
+	public Double reporteCumplimientoFechas() {
+		return AdmPedido.getInstancia().getPorcentajeDeCumplimientoFechaDeEntrega();
 	}
 
 	/*

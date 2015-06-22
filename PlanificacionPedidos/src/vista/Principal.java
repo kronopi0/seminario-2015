@@ -4,13 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.List;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import controlador.Sistema;
-import entities.ReportePedidosPorEmpleado;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
@@ -50,7 +47,6 @@ public class Principal extends javax.swing.JFrame {
 	private JMenuItem newFileMenuItem;
 	private JMenu jMenuPedidos;
 	private JMenuBar jMenuBar1;
-	private Sistema sistema;
 	private JMenu jMenuClientes;
 	private JMenu jMenuEmpleados;
 	private JMenuItem altaMenuItem;
@@ -63,7 +59,7 @@ public class Principal extends javax.swing.JFrame {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			@Override
+
 			public void run() {
 				Principal inst = new Principal();
 				inst.setLocationRelativeTo(null);
@@ -74,7 +70,7 @@ public class Principal extends javax.swing.JFrame {
 
 	public Principal() {
 		super();
-		sistema = Sistema.getInstancia();
+		Sistema.getInstancia();
 		initGUI();
 	}
 
@@ -104,10 +100,10 @@ public class Principal extends javax.swing.JFrame {
 						jMenuPedidos.add(newFileMenuItem);
 						newFileMenuItem.setText("Nuevo");
 						newFileMenuItem.addActionListener(new ActionListener() {
-							@Override
+
 							public void actionPerformed(ActionEvent evt) {
-								PedidoAlta tab = new PedidoAlta(panel);
-								panel.addTab("Generar Pedido", tab);
+								PedidoAlta tabPedidoAlta = new PedidoAlta(panel);
+								panel.addTab("Generar Pedido", tabPedidoAlta);
 							}
 						});
 					}
@@ -116,10 +112,10 @@ public class Principal extends javax.swing.JFrame {
 						jMenuPedidos.add(openFileMenuItem);
 						openFileMenuItem.setText("Programar");
 						openFileMenuItem.addActionListener(new ActionListener() {
-							@Override
+
 							public void actionPerformed(ActionEvent evt) {
-								PedidoProgramar tab = new PedidoProgramar(panel);
-								panel.addTab("Programar Pedido", tab);
+								PedidoProgramar tabPedidoProgramar = new PedidoProgramar(panel);
+								panel.addTab("Programar Pedido", tabPedidoProgramar);
 							}
 						});
 					}
@@ -128,10 +124,10 @@ public class Principal extends javax.swing.JFrame {
 						jMenuPedidos.add(saveMenuItem);
 						saveMenuItem.setText("Finalizar");
 						saveMenuItem.addActionListener(new ActionListener() {
-							@Override
+
 							public void actionPerformed(ActionEvent evt) {
-								PedidoFinalizar tab = new PedidoFinalizar(panel);
-								panel.addTab("Finalizar Pedido", tab);
+								PedidoFinalizar tabPedidoFinalizar = new PedidoFinalizar(panel);
+								panel.addTab("Finalizar Pedido", tabPedidoFinalizar);
 							}
 						});
 					}
@@ -148,12 +144,13 @@ public class Principal extends javax.swing.JFrame {
 						jMenuReportes.add(saveAsMenuItem);
 						saveAsMenuItem.setText("Pedidos Pendientes");
 						saveAsMenuItem.addActionListener(new ActionListener() {
-							@Override
+
 							public void actionPerformed(ActionEvent evt) {
 
 								String[] columnasPedidosPendientes = { "Id", "Descripción", "Cliente", "Fecha" };
-								ReporteTemplate tab = new ReporteTemplate(panel, Sistema.getInstancia().reportePedidosPorEstado("pendiente"), columnasPedidosPendientes);
-								panel.addTab("Pedidos Pendientes", tab);
+								ReporteTemplate tabPedidosPendientes = new ReporteTemplate(panel, Sistema.getInstancia().reportePedidosPorEstado("pendiente"),
+										columnasPedidosPendientes);
+								panel.addTab("Pedidos Pendientes", tabPedidosPendientes);
 
 							}
 						});
@@ -163,12 +160,13 @@ public class Principal extends javax.swing.JFrame {
 						jMenuReportes.add(saveAsMenuItem);
 						saveAsMenuItem.setText("Pedidos Programados");
 						saveAsMenuItem.addActionListener(new ActionListener() {
-							@Override
+
 							public void actionPerformed(ActionEvent evt) {
 
 								String[] columnasPedidosProgramados = { "Id", "Descripción", "Cliente", "Fecha" };
-								ReporteTemplate tab = new ReporteTemplate(panel, Sistema.getInstancia().reportePedidosPorEstado("programado"), columnasPedidosProgramados);
-								panel.addTab("Pedidos Programados", tab);
+								ReporteTemplate tabPedidosProgramados = new ReporteTemplate(panel, Sistema.getInstancia().reportePedidosPorEstado("programado"),
+										columnasPedidosProgramados);
+								panel.addTab("Pedidos Programados", tabPedidosProgramados);
 							}
 						});
 					}
@@ -177,12 +175,13 @@ public class Principal extends javax.swing.JFrame {
 						jMenuReportes.add(saveAsMenuItem);
 						saveAsMenuItem.setText("Pedidos Finalizados");
 						saveAsMenuItem.addActionListener(new ActionListener() {
-							@Override
+
 							public void actionPerformed(ActionEvent evt) {
 
 								String[] columnasPedidosFinalizados = { "Id", "Descripción", "Cliente", "Fecha" };
-								ReporteTemplate tab = new ReporteTemplate(panel, Sistema.getInstancia().reportePedidosPorEstado("finalizado"), columnasPedidosFinalizados);
-								panel.addTab("Pedidos Finalizados", tab);
+								ReporteTemplate tabPedidosFinalizados = new ReporteTemplate(panel, Sistema.getInstancia().reportePedidosPorEstado("finalizado"),
+										columnasPedidosFinalizados);
+								panel.addTab("Pedidos Finalizados", tabPedidosFinalizados);
 							}
 						});
 					}
@@ -190,45 +189,29 @@ public class Principal extends javax.swing.JFrame {
 					{
 						cutMenuItem = new JMenuItem();
 						jMenuReportes.add(cutMenuItem);
-						cutMenuItem.setText("Listar pedidos resueltos por empleado");
+						cutMenuItem.setText("Pedidos resueltos por empleado (FALTA)");
 						cutMenuItem.addActionListener(new ActionListener() {
-							@Override
+
 							public void actionPerformed(ActionEvent evt) {
+								String[] columnasResueltosPorEmpleado = { "Id", "Descripción", "Cliente", "Fecha" };
+								ReporteTemplate tabResueltosPorEmpleado = new ReporteTemplate(panel, Sistema.getInstancia().reporteResueltosPorEmpleado(),
+										columnasResueltosPorEmpleado);
+								panel.addTab("Pedidos Finalizados", tabResueltosPorEmpleado);
 
-								List<ReportePedidosPorEmpleado> l = sistema.reporteCantidadDePedidosResueltosPorEmpleado();
-
-								final Object[][] data = new Object[l.size()][4];
-
-								for (int i = 0; i < l.size(); i++) {
-
-									ReportePedidosPorEmpleado p = l.get(i);
-									data[i][0] = Integer.toString(p.getId());
-									data[i][1] = p.getNombre();
-									data[i][2] = p.getApellido();
-									data[i][3] = p.getCantidad();
-								}
-
-								javax.swing.SwingUtilities.invokeLater(new Runnable() {
-									@Override
-									public void run() {
-										ReportePedidosResueltosPorEmpleado t = new ReportePedidosResueltosPorEmpleado();
-										t.main(data);
-									}
-								});
 							}
 						});
 					}
 					{
 						copyMenuItem = new JMenuItem();
 						jMenuReportes.add(copyMenuItem);
-						copyMenuItem.setText("Cumplimiento Fecha de Entrega");
+						copyMenuItem.setText("% Cumplimiento con Fecha de Entrega (FALTA)");
 						copyMenuItem.addActionListener(new ActionListener() {
-							@Override
+
 							public void actionPerformed(ActionEvent evt) {
-								double porcentaje = sistema.reportePorcentajeDeCumplimientoFechaDeEntrega();
-								ReportePorcentajeEntregaEnFecha tab = new ReportePorcentajeEntregaEnFecha(sistema, porcentaje);
-								tab.setVisible(true);
-								tab.setLocationRelativeTo(null);
+								
+								ReporteCumplimientoFechas tabReporteCumplimientoFechas = new ReporteCumplimientoFechas(panel, Sistema.getInstancia().reporteCumplimientoFechas());
+								panel.addTab("% Cumplimiento Fechas", tabReporteCumplimientoFechas);
+
 							}
 						});
 					}
@@ -243,10 +226,10 @@ public class Principal extends javax.swing.JFrame {
 							jMenuComplejidadPedidos.add(altaMenuItem);
 							altaMenuItem.setText("Alta");
 							altaMenuItem.addActionListener(new ActionListener() {
-								@Override
+
 								public void actionPerformed(ActionEvent evt) {
-									ComplejidadPedidoAlta tab = new ComplejidadPedidoAlta(panel);
-									panel.addTab("Agregar Complejidad", tab);
+									ComplejidadPedidoAlta tabComplejidadPedidoAlta = new ComplejidadPedidoAlta(panel);
+									panel.addTab("Agregar Complejidad", tabComplejidadPedidoAlta);
 								}
 							});
 						}
@@ -255,10 +238,10 @@ public class Principal extends javax.swing.JFrame {
 							jMenuComplejidadPedidos.add(modificarMenuItem);
 							modificarMenuItem.setText("Modificar");
 							modificarMenuItem.addActionListener(new ActionListener() {
-								@Override
+
 								public void actionPerformed(ActionEvent evt) {
-									ComplejidadPedidoModificar tab = new ComplejidadPedidoModificar(panel);
-									panel.addTab("Modificar Complejidad", tab);
+									ComplejidadPedidoModificar tabComplejidadPedidoModificar = new ComplejidadPedidoModificar(panel);
+									panel.addTab("Modificar Complejidad", tabComplejidadPedidoModificar);
 								}
 							});
 						}
@@ -267,10 +250,10 @@ public class Principal extends javax.swing.JFrame {
 							jMenuComplejidadPedidos.add(bajaMenuItem);
 							bajaMenuItem.setText("Baja");
 							bajaMenuItem.addActionListener(new ActionListener() {
-								@Override
+
 								public void actionPerformed(ActionEvent evt) {
-									ComplejidadPedidoBaja tab = new ComplejidadPedidoBaja(panel);
-									panel.addTab("Eliminar Complejidad", tab);
+									ComplejidadPedidoBaja tabComplejidadPedidoBaja = new ComplejidadPedidoBaja(panel);
+									panel.addTab("Eliminar Complejidad", tabComplejidadPedidoBaja);
 								}
 							});
 						}
@@ -285,10 +268,10 @@ public class Principal extends javax.swing.JFrame {
 							jMenuClientes.add(altaMenuItem);
 							altaMenuItem.setText("Alta");
 							altaMenuItem.addActionListener(new ActionListener() {
-								@Override
+
 								public void actionPerformed(ActionEvent evt) {
-									ClienteAlta tab = new ClienteAlta(panel);
-									panel.addTab("Agregar Cliente", tab);
+									ClienteAlta tabClienteAlta = new ClienteAlta(panel);
+									panel.addTab("Agregar Cliente", tabClienteAlta);
 
 								}
 							});
@@ -298,10 +281,10 @@ public class Principal extends javax.swing.JFrame {
 							jMenuClientes.add(modificarMenuItem);
 							modificarMenuItem.setText("Modificar");
 							modificarMenuItem.addActionListener(new ActionListener() {
-								@Override
+
 								public void actionPerformed(ActionEvent evt) {
-									ClienteModificar tab = new ClienteModificar(panel);
-									panel.addTab("Modificar Cliente", tab);
+									ClienteModificar tabClienteModificar = new ClienteModificar(panel);
+									panel.addTab("Modificar Cliente", tabClienteModificar);
 								}
 							});
 						}
@@ -310,10 +293,10 @@ public class Principal extends javax.swing.JFrame {
 							jMenuClientes.add(bajaMenuItem);
 							bajaMenuItem.setText("Baja");
 							bajaMenuItem.addActionListener(new ActionListener() {
-								@Override
+
 								public void actionPerformed(ActionEvent evt) {
-									ClienteBaja tab = new ClienteBaja(panel);
-									panel.addTab("Eliminar Cliente", tab);
+									ClienteBaja tabClienteBaja = new ClienteBaja(panel);
+									panel.addTab("Eliminar Cliente", tabClienteBaja);
 								}
 							});
 						}
@@ -328,10 +311,10 @@ public class Principal extends javax.swing.JFrame {
 							jMenuEmpleados.add(altaMenuItem);
 							altaMenuItem.setText("Alta");
 							altaMenuItem.addActionListener(new ActionListener() {
-								@Override
+
 								public void actionPerformed(ActionEvent evt) {
-									EmpleadoAlta tab = new EmpleadoAlta(panel);
-									panel.addTab("Agregar Empleado", tab);
+									EmpleadoAlta tabEmpleadoAlta = new EmpleadoAlta(panel);
+									panel.addTab("Agregar Empleado", tabEmpleadoAlta);
 
 								}
 							});
@@ -341,10 +324,10 @@ public class Principal extends javax.swing.JFrame {
 							jMenuEmpleados.add(modificarMenuItem);
 							modificarMenuItem.setText("Modificar");
 							modificarMenuItem.addActionListener(new ActionListener() {
-								@Override
+
 								public void actionPerformed(ActionEvent evt) {
-									EmpleadoModificar tab = new EmpleadoModificar(panel);
-									panel.addTab("Modificar Empleado", tab);
+									EmpleadoModificar tabEmpleadoModificar = new EmpleadoModificar(panel);
+									panel.addTab("Modificar Empleado", tabEmpleadoModificar);
 								}
 							});
 						}
@@ -353,10 +336,10 @@ public class Principal extends javax.swing.JFrame {
 							jMenuEmpleados.add(bajaMenuItem);
 							bajaMenuItem.setText("Baja");
 							bajaMenuItem.addActionListener(new ActionListener() {
-								@Override
+
 								public void actionPerformed(ActionEvent evt) {
-									EmpleadoBaja tab = new EmpleadoBaja(panel);
-									panel.addTab("Eliminar Empleado", tab);
+									EmpleadoBaja tabEmpleadoBaja = new EmpleadoBaja(panel);
+									panel.addTab("Eliminar Empleado", tabEmpleadoBaja);
 								}
 							});
 						}
@@ -371,10 +354,10 @@ public class Principal extends javax.swing.JFrame {
 							jMenuOtros.add(helpMenuItem);
 							helpMenuItem.setText("Integrantes");
 							helpMenuItem.addActionListener(new ActionListener() {
-								@Override
+
 								public void actionPerformed(ActionEvent evt) {
-									Integrantes tab = new Integrantes(panel);
-									panel.addTab("Integrantes", tab);
+									Integrantes tabIntegrantes = new Integrantes(panel);
+									panel.addTab("Integrantes", tabIntegrantes);
 								}
 							});
 						}
@@ -383,7 +366,7 @@ public class Principal extends javax.swing.JFrame {
 							jMenuOtros.add(helpMenuItem);
 							helpMenuItem.setText("Salir");
 							helpMenuItem.addActionListener(new ActionListener() {
-								@Override
+
 								public void actionPerformed(ActionEvent evt) {
 									System.exit(0);
 								}
