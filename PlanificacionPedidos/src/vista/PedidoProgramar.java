@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -168,7 +169,7 @@ public class PedidoProgramar extends javax.swing.JPanel {
 				jLabel5 = new JLabel();
 				this.add(jLabel5);
 				jLabel5.setText("4) Ingresar fecha de inicio:");
-				jLabel5.setBounds(260, 226, 163, 16);
+				jLabel5.setBounds(260, 222, 163, 16);
 				jLabel5.setFont(new java.awt.Font("SansSerif", 1, 12));
 			}
 
@@ -196,7 +197,7 @@ public class PedidoProgramar extends javax.swing.JPanel {
 			{
 				jTextFieldFecha = new JTextField();
 				this.add(jTextFieldFecha);
-				jTextFieldFecha.setBounds(251, 249, 179, 27);
+				jTextFieldFecha.setBounds(251, 247, 179, 27);
 				jTextFieldFecha.setEnabled(true);
 				jTextFieldFecha.setText("dd/mm/aaaa");
 			}
@@ -268,7 +269,10 @@ public class PedidoProgramar extends javax.swing.JPanel {
 					public void actionPerformed(ActionEvent evt) {
 
 						try {
+							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+							pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
 							Sistema.getInstancia().programarPedido(pedido, tipo, complejidad);
+
 						} catch (ParseException e) {
 							e.printStackTrace();
 						}
