@@ -8,6 +8,7 @@ import dto.ClienteDTO;
 import dto.ComplejidadPedidoDTO;
 import dto.EmpleadoDTO;
 import dto.PedidoDTO;
+import dto.TipoPedidoDTO;
 import negocio.AdmCliente;
 import negocio.AdmComplejidadPedido;
 import negocio.AdmEmpleado;
@@ -136,12 +137,12 @@ public class Sistema {
 	 * COMPLEJIDAD PEDIDO
 	 */
 
-	public void altaComplejidadPedidoo(ComplejidadPedidoDTO c) {
-		AdmComplejidadPedido.getInstancia().AltaComplejidadPedido(c);
-	}
-
 	public List<ComplejidadPedidoDTO> listarComplejidades() {
 		return AdmComplejidadPedido.getInstancia().listarComplejidades();
+	}
+
+	public void altaComplejidadPedidoo(ComplejidadPedidoDTO c) {
+		AdmComplejidadPedido.getInstancia().AltaComplejidadPedido(c);
 	}
 
 	public void modificarComplejidadPedido(ComplejidadPedidoDTO complejidad) {
@@ -154,6 +155,26 @@ public class Sistema {
 
 	public List<ComplejidadPedido> getComplejidadesPedido() {
 		return AdmComplejidadPedido.getInstancia().getComplejidadesPedido();
+	}
+
+	/*
+	 * TIPO PEDIDO
+	 */
+	public void altaTipoPedidoo(TipoPedidoDTO c) {
+		AdmTipoPedido.getInstancia().AltaTipoPedido(c);
+	}
+
+	public void modificarTipoPedido(TipoPedidoDTO Tipo) {
+		AdmTipoPedido.getInstancia().ModificarTipoPedido(Tipo);
+	}
+
+	public void eliminarTipoPedido(TipoPedidoDTO Tipo) {
+		AdmTipoPedido.getInstancia().eliminarTipoPedido(Tipo);
+	}
+
+	public List<TipoPedidoDTO> listarTiposPedido() {
+		AdmTipoPedido.getInstancia().getTiposDePedido();
+		return null;
 	}
 
 }

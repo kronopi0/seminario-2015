@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -53,6 +54,7 @@ public class Principal extends javax.swing.JFrame {
 	private JMenuItem modificarMenuItem;
 	private JMenuItem bajaMenuItem;
 	private JMenu jMenuComplejidadPedidos;
+	private JMenu jMenuTipoPedidos;
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -204,18 +206,59 @@ public class Principal extends javax.swing.JFrame {
 					{
 						copyMenuItem = new JMenuItem();
 						jMenuReportes.add(copyMenuItem);
-						copyMenuItem.setText("% Cumplimiento con Fecha de Entrega");
+						copyMenuItem.setText("Cumplimiento con Fecha de Entrega");
 						copyMenuItem.addActionListener(new ActionListener() {
 
 							public void actionPerformed(ActionEvent evt) {
 
 								ReporteCumplimientoFechas tabReporteCumplimientoFechas = new ReporteCumplimientoFechas(panel, Sistema.getInstancia().reporteCumplimientoFechas());
-								panel.addTab("% Cumplimiento Fechas", tabReporteCumplimientoFechas);
+								panel.addTab("Cumplimiento Fechas", tabReporteCumplimientoFechas);
 
 							}
 						});
 					}
+					{
+						jMenuTipoPedidos = new JMenu();
+						jMenuBar1.add(jMenuTipoPedidos);
+						jMenuTipoPedidos.setText("Tipos");
+						jMenuTipoPedidos.setFont(new java.awt.Font("SansSerif", 1, 12));
+						{
+							altaMenuItem = new JMenuItem();
+							jMenuTipoPedidos.add(altaMenuItem);
+							altaMenuItem.setText("Alta");
+							altaMenuItem.addActionListener(new ActionListener() {
 
+								public void actionPerformed(ActionEvent evt) {
+									TipoPedidoAlta tabTipoPedidoAlta = new TipoPedidoAlta(panel);
+									panel.addTab("Agregar Tipo", tabTipoPedidoAlta);
+								}
+							});
+						}
+						{
+							modificarMenuItem = new JMenuItem();
+							jMenuTipoPedidos.add(modificarMenuItem);
+							modificarMenuItem.setText("Modificar");
+							modificarMenuItem.addActionListener(new ActionListener() {
+
+								public void actionPerformed(ActionEvent evt) {
+									TipoPedidoModificar tabTipoPedidoModificar = new TipoPedidoModificar(panel);
+									panel.addTab("Modificar Tipo", tabTipoPedidoModificar);
+								}
+							});
+						}
+						{
+							bajaMenuItem = new JMenuItem();
+							jMenuTipoPedidos.add(bajaMenuItem);
+							bajaMenuItem.setText("Baja");
+							bajaMenuItem.addActionListener(new ActionListener() {
+
+								public void actionPerformed(ActionEvent evt) {
+									TipoPedidoBaja tabTipoPedidoBaja = new TipoPedidoBaja(panel);
+									panel.addTab("Eliminar Tipo", tabTipoPedidoBaja);
+								}
+							});
+						}
+					}
 					{
 						jMenuComplejidadPedidos = new JMenu();
 						jMenuBar1.add(jMenuComplejidadPedidos);
