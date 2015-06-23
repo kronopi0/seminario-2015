@@ -64,7 +64,7 @@ public class PedidoDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<ReportePedidosPorEmpleado> getCantidadDePedidosResueltosPorEmpleado() {
+	public List<ReportePedidosPorEmpleado> getReportesResueltosPorEmpleadoDTO() {
 		List<ReportePedidosPorEmpleado> reportes = new ArrayList<ReportePedidosPorEmpleado>();
 		Session sesion = sf.openSession();
 

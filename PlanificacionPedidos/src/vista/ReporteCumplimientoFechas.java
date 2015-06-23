@@ -57,14 +57,15 @@ public class ReporteCumplimientoFechas extends javax.swing.JPanel {
 				jLabelLabel1 = new JLabel();
 				this.add(jLabelLabel1);
 				jLabelLabel1.setText("Pedidos finalizados en fecha:");
-				jLabelLabel1.setBounds(199, 23, 260, 47);
+				jLabelLabel1.setBounds(208, 28, 260, 47);
 				jLabelLabel1.setFont(new java.awt.Font("SansSerif", 1, 18));
 			}
 			{
 				jLabelValor = new JLabel();
 				this.add(jLabelValor);
-				jLabelValor.setText("15%");
-				jLabelValor.setBounds(298, 87, 60, 46);
+				System.out.println(valor);
+				jLabelValor.setText(valor+"%");
+				jLabelValor.setBounds(292, 74, 108, 66);
 				jLabelValor.setFont(new java.awt.Font("Tahoma", 1, 24));
 			}
 

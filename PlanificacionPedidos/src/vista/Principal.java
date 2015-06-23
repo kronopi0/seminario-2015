@@ -189,14 +189,14 @@ public class Principal extends javax.swing.JFrame {
 					{
 						cutMenuItem = new JMenuItem();
 						jMenuReportes.add(cutMenuItem);
-						cutMenuItem.setText("Pedidos resueltos por empleado (FALTA)");
+						cutMenuItem.setText("Pedidos resueltos por empleado");
 						cutMenuItem.addActionListener(new ActionListener() {
 
 							public void actionPerformed(ActionEvent evt) {
-								String[] columnasResueltosPorEmpleado = { "Id", "Descripción", "Cliente", "Fecha" };
+								String[] columnasResueltosPorEmpleado = { "Id", "Nombre", "Apellido", "Cantidad" };
 								ReporteTemplate tabResueltosPorEmpleado = new ReporteTemplate(panel, Sistema.getInstancia().reporteResueltosPorEmpleado(),
 										columnasResueltosPorEmpleado);
-								panel.addTab("Pedidos Finalizados", tabResueltosPorEmpleado);
+								panel.addTab("Pedidos resueltos por empleado", tabResueltosPorEmpleado);
 
 							}
 						});
@@ -204,11 +204,11 @@ public class Principal extends javax.swing.JFrame {
 					{
 						copyMenuItem = new JMenuItem();
 						jMenuReportes.add(copyMenuItem);
-						copyMenuItem.setText("% Cumplimiento con Fecha de Entrega (FALTA)");
+						copyMenuItem.setText("% Cumplimiento con Fecha de Entrega");
 						copyMenuItem.addActionListener(new ActionListener() {
 
 							public void actionPerformed(ActionEvent evt) {
-								
+
 								ReporteCumplimientoFechas tabReporteCumplimientoFechas = new ReporteCumplimientoFechas(panel, Sistema.getInstancia().reporteCumplimientoFechas());
 								panel.addTab("% Cumplimiento Fechas", tabReporteCumplimientoFechas);
 
