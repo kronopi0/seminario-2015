@@ -72,7 +72,7 @@ public class Sistema {
 	public List<TipoPedido> getTiposDePedido() {
 		return AdmTipoPedido.getInstancia().getTiposDePedido();
 	}
-	
+
 	public String sumarRestarDiasFecha(Date fechaEntrega, int dias) throws ParseException {
 		return AdmPedido.getInstancia().sumarRestarDiasFecha(fechaEntrega, dias);
 	}
@@ -151,7 +151,7 @@ public class Sistema {
 	public void eliminarComplejidadPedido(ComplejidadPedidoDTO complejidad) {
 		AdmComplejidadPedido.getInstancia().eliminarComplejidadPedido(complejidad);
 	}
-	
+
 	public List<ComplejidadPedido> getComplejidadesPedido() {
 		return AdmComplejidadPedido.getInstancia().getComplejidadesPedido();
 	}

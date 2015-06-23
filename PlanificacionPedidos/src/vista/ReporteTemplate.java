@@ -42,10 +42,8 @@ public class ReporteTemplate extends javax.swing.JPanel {
 	private JTabbedPane panel;
 	private String[][] datos;
 	private String[] columnas;
-
 	private JButton jButtonSalir;
-
-	private static ReporteTemplate instancia;
+	private ReporteTemplate instancia;
 
 	public ReporteTemplate(JTabbedPane p, String[][] d, String[] c) {
 		super();
