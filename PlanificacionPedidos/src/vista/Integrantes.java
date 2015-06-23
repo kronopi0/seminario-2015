@@ -1,6 +1,5 @@
 package vista;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +7,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
@@ -71,7 +69,7 @@ public class Integrantes extends javax.swing.JPanel {
 				this.add(jLabelKantar);
 				jLabelKantar.setText("Kantar World Panel");
 				jLabelKantar.setBounds(238, 10, 190, 50);
-				jLabelKantar.setFont(new java.awt.Font("SansSerif",2,20));
+				jLabelKantar.setFont(new java.awt.Font("SansSerif", 2, 20));
 			}
 
 			{
@@ -123,7 +121,7 @@ public class Integrantes extends javax.swing.JPanel {
 				jButtonSalir.setBounds(285, 300, 91, 40);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonSalir.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent e) {
 						panel.remove(instancia);
 					}

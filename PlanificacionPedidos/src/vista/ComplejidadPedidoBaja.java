@@ -99,7 +99,7 @@ public class ComplejidadPedidoBaja extends javax.swing.JPanel {
 					comboComplejidad.addItem(complejidades.get(i).getNombre());
 
 				comboComplejidad.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent evt) {
 						for (int i = 0; i < complejidades.size(); i++)
 							if (comboComplejidad.getSelectedItem().toString().equals(complejidades.get(i).getNombre())) {
@@ -131,7 +131,7 @@ public class ComplejidadPedidoBaja extends javax.swing.JPanel {
 				jButtonConfirmar.setBounds(183, 304, 91, 40);
 				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonConfirmar.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent evt) {
 						Sistema.getInstancia().eliminarComplejidadPedido(complejidad);
 						jTextFieldId.setText("");
@@ -139,7 +139,7 @@ public class ComplejidadPedidoBaja extends javax.swing.JPanel {
 
 						complejidades.clear();
 						comboComplejidad.removeAllItems();
-						complejidades = Sistema.getInstancia().listarComplejidades();
+						complejidades.addAll(Sistema.getInstancia().listarComplejidades());
 						for (int i = 0; i < complejidades.size(); i++)
 							comboComplejidad.addItem(complejidades.get(i).getNombre());
 
@@ -153,7 +153,7 @@ public class ComplejidadPedidoBaja extends javax.swing.JPanel {
 				jButtonSalir.setBounds(396, 304, 91, 40);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonSalir.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent e) {
 						panel.remove(instancia);
 					}

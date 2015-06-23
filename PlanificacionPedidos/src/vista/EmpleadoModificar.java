@@ -86,7 +86,7 @@ public class EmpleadoModificar extends javax.swing.JPanel {
 					comboEmpleado.addItem(empleados.get(i).getApellido());
 
 				comboEmpleado.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent evt) {
 						for (int i = 0; i < empleados.size(); i++)
 							if (comboEmpleado.getSelectedItem().toString().equals(empleados.get(i).getApellido())) {
@@ -144,7 +144,7 @@ public class EmpleadoModificar extends javax.swing.JPanel {
 				jButtonConfirmar.setBounds(183, 304, 91, 40);
 				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonConfirmar.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent evt) {
 						empleado.setNombre(jTextFieldNombre.getText());
 						empleado.setApellido(jTextFieldApellido.getText());
@@ -152,6 +152,12 @@ public class EmpleadoModificar extends javax.swing.JPanel {
 						jTextFieldId.setText("");
 						jTextFieldNombre.setText("");
 						jTextFieldApellido.setText("");
+
+						empleados.clear();
+						comboEmpleado.removeAllItems();
+						empleados.addAll(Sistema.getInstancia().listarEmpleados());
+						for (int i = 0; i < empleados.size(); i++)
+							comboEmpleado.addItem(empleados.get(i).getNombre());
 					}
 				});
 			}
@@ -162,7 +168,7 @@ public class EmpleadoModificar extends javax.swing.JPanel {
 				jButtonSalir.setBounds(396, 304, 91, 40);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonSalir.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent e) {
 						panel.remove(instancia);
 					}

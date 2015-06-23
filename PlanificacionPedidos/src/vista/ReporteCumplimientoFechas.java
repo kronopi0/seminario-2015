@@ -7,11 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
-
-import controlador.Sistema;
-import dto.ClienteDTO;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
@@ -64,7 +60,7 @@ public class ReporteCumplimientoFechas extends javax.swing.JPanel {
 				jLabelValor = new JLabel();
 				this.add(jLabelValor);
 				System.out.println(valor);
-				jLabelValor.setText(valor+"%");
+				jLabelValor.setText(valor + "%");
 				jLabelValor.setBounds(292, 74, 108, 66);
 				jLabelValor.setFont(new java.awt.Font("Tahoma", 1, 24));
 			}
@@ -81,7 +77,7 @@ public class ReporteCumplimientoFechas extends javax.swing.JPanel {
 				jButtonSalir.setBounds(283, 305, 91, 40);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonSalir.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent e) {
 						panel.remove(instancia);
 					}

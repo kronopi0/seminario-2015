@@ -219,10 +219,9 @@ public class ClienteBaja extends javax.swing.JPanel {
 
 						clientes.clear();
 						comboCliente.removeAllItems();
-						clientes = Sistema.getInstancia().listarClientes();
+						clientes.addAll(Sistema.getInstancia().listarClientes());
 						for (int i = 0; i < clientes.size(); i++)
 							comboCliente.addItem(clientes.get(i).getNombre());
-
 					}
 				});
 			}

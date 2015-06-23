@@ -206,9 +206,17 @@ public class ClienteModificar extends javax.swing.JPanel {
 						jTextFieldNombre.setText("");
 						jTextFieldPais.setText("");
 						jTextFieldTelefono.setText("");
+
+						clientes.clear();
+						comboCliente.removeAllItems();
+						clientes.addAll(Sistema.getInstancia().listarClientes());
+						for (int i = 0; i < clientes.size(); i++)
+							comboCliente.addItem(clientes.get(i).getNombre());
+
 					}
 				});
 			}
+
 			{
 				jButtonSalir = new JButton();
 				this.add(jButtonSalir);

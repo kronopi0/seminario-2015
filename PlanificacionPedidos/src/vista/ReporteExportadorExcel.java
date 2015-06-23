@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 import java.io.DataOutputStream;
@@ -20,10 +16,6 @@ import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
-/**
- * 
- * @author IdlhDeveloper
- */
 public class ReporteExportadorExcel {
 	private File file;
 	private List<JTable> tabla;

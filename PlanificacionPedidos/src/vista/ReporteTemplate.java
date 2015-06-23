@@ -68,7 +68,7 @@ public class ReporteTemplate extends javax.swing.JPanel {
 				jButtonGuardar.setBounds(183, 319, 86, 41);
 				jButtonGuardar.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonGuardar.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent evt) {
 						ReporteExportadorExcel e = new ReporteExportadorExcel();
 						e.Dialogo(JTable1);
@@ -83,7 +83,7 @@ public class ReporteTemplate extends javax.swing.JPanel {
 				jButtonSalir.setBounds(396, 319, 93, 41);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonSalir.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent e) {
 						panel.remove(instancia);
 					}

@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 
 import controlador.Sistema;
 import dto.ComplejidadPedidoDTO;
-import dto.EmpleadoDTO;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
@@ -93,7 +92,7 @@ public class ComplejidadPedidoAlta extends javax.swing.JPanel {
 				jButtonConfirmar.setBounds(183, 304, 91, 40);
 				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonConfirmar.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent evt) {
 						ComplejidadPedidoDTO c = new ComplejidadPedidoDTO();
 						c.setNombre(jTextFieldNombre.getText());
@@ -111,7 +110,7 @@ public class ComplejidadPedidoAlta extends javax.swing.JPanel {
 				jButtonSalir.setBounds(396, 304, 91, 40);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonSalir.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent e) {
 						panel.remove(instancia);
 					}

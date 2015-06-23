@@ -29,17 +29,21 @@ insert into CLIENTES values (33333, 'Coca-Cola', 'Argentina', '4555-3333', 'Belg
 GO
 
 --EMPLEADOS
-insert into EMPLEADOS values (12601231, 'Juan', 'Alen')
+insert into EMPLEADOS values (111111, 'Juan', 'Godoy')
 GO
-insert into EMPLEADOS values (1362378, 'Juan Manuel', 'Godoy')
+insert into EMPLEADOS values (222222, 'Manuel', 'Alen')
 GO
-insert into EMPLEADOS values (1358354, 'Godoy', 'Martinez')
+insert into EMPLEADOS values (333333, 'Roberto', 'Giordano')
 GO
-insert into EMPLEADOS values (1260341, 'Martinez', 'Alen')
+insert into EMPLEADOS values (444444, 'Ana', 'Fenza')
 GO
-insert into EMPLEADOS values (13665378, 'Juan Manuel', 'Martinez Godoy')
+insert into EMPLEADOS values (555555, 'Eduardo', 'Sara')
 GO
-insert into EMPLEADOS values (1352854, 'Godoy', 'Juan')
+insert into EMPLEADOS values (666666, 'Maria Julia', 'Alsogaray')
+GO
+insert into EMPLEADOS values (777777, 'Carlos', 'Menem')
+GO
+insert into EMPLEADOS values (888888, 'Javier', 'Saviola')
 GO
 
 --COMPLEJIDADES_EMPLEADO
