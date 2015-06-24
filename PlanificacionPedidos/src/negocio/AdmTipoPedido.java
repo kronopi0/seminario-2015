@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.TipoPedidoDAO;
@@ -30,6 +31,27 @@ public class AdmTipoPedido {
 		return dao.getTiposDePedido();
 	}
 
+	public List<TipoPedidoDTO> getTiposDePedidoDTO() {
+		List<TipoPedido> entities = dao.getTiposDePedido();
+		List<TipoPedidoDTO> result = new ArrayList<TipoPedidoDTO>();
+
+		for (int i = 0; i < entities.size(); i++)
+			result.add(toDTO(entities.get(i)));
+
+		return result;
+	}
+
+	public TipoPedidoDTO toDTO(TipoPedido t) {
+
+		TipoPedidoDTO result = new TipoPedidoDTO();
+
+		result.setIdTipoPedido(t.getIdTipoPedido());
+		result.setDescripcion(t.getDescripcion());
+		result.setTiempo(t.getTiempo());
+
+		return result;
+	}
+
 	public TipoPedido toEntity(TipoPedidoDTO t) {
 
 		TipoPedido entity = new TipoPedido();
@@ -40,20 +62,14 @@ public class AdmTipoPedido {
 	}
 
 	public void AltaTipoPedido(TipoPedidoDTO c) {
-		// dao.grabarTipoPedido(toEntity(c));
+		dao.grabarTipoPedido(toEntity(c));
 	}
 
 	public void ModificarTipoPedido(TipoPedidoDTO c) {
-		// dao.ModificarTipoPedido(toEntity(c));
+		dao.ModificarTipoPedido(toEntity(c));
 	}
 
 	public void eliminarTipoPedido(TipoPedidoDTO TipoPedido) {
-		// dao.BajaTipoPedido(toEntity(TipoPedido));
+		dao.BajaTipoPedido(toEntity(TipoPedido));
 	}
-
-	public void listarTiposPedido() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

@@ -86,11 +86,10 @@ public class Sistema {
 	public String sumarRestarDiasFecha(Date fechaEntrega, int dias) throws ParseException {
 		return AdmPedido.getInstancia().sumarRestarDiasFecha(fechaEntrega, dias);
 	}
-	
+
 	public List<Empleado> getEmpleadosCapacitadosYDisponibles(Pedido pedido) throws ParseException {
 		return AdmPedido.getInstancia().getEmpleadosCapacitadosYDisponibles(pedido);
 	}
-
 
 	/*
 	 * REPORTES
@@ -195,8 +194,7 @@ public class Sistema {
 	}
 
 	public List<TipoPedidoDTO> listarTiposPedido() {
-		AdmTipoPedido.getInstancia().getTiposDePedido();
-		return null;
+		return AdmTipoPedido.getInstancia().getTiposDePedidoDTO();
 	}
 
 }

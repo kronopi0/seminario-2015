@@ -9,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import entities.ComplejidadPedido;
 import entities.TipoPedido;
 
 public class TipoPedidoDAO {
@@ -22,6 +23,36 @@ public class TipoPedidoDAO {
 			instancia = new TipoPedidoDAO();
 		}
 		return instancia;
+	}
+
+	// ALTAS
+	public void grabarTipoPedido(TipoPedido TipoPedido) {
+		Session session = sf.openSession();
+		session.beginTransaction();
+		session.persist(TipoPedido);
+		session.flush();
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	// MODIFICAR
+	public void ModificarTipoPedido(TipoPedido TipoPedido) {
+		Session session = sf.openSession();
+		session.beginTransaction();
+		session.saveOrUpdate(TipoPedido);
+		session.flush();
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	// ELIMINAR
+	public void BajaTipoPedido(TipoPedido TipoPedido) {
+		Session session = sf.openSession();
+		session.beginTransaction();
+		session.delete(TipoPedido);
+		session.flush();
+		session.getTransaction().commit();
+		session.close();
 	}
 
 	public TipoPedido buscarTipoPedido(String tipoPedido) {
