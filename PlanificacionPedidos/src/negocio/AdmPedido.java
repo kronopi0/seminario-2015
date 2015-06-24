@@ -35,7 +35,7 @@ public class AdmPedido {
 	public List<Pedido> getPedidos(String estado) {
 		return dao.getPedidos(estado);
 	}
-
+	//PROBANDO A VER SI SE ROMPIO EL GITHUB
 	public void finalizarPedido(Pedido p) throws ParseException {
 		p.setEstado("Finalizado");
 		p.setFechaFinalizado(new Date());
