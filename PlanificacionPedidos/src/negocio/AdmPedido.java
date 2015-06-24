@@ -2,6 +2,7 @@ package negocio;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -66,103 +67,6 @@ public class AdmPedido {
 
 		dao.actualizarPedido(p);
 	}
-
-	/*
-	 * public List<Empleado> getEmpleadosCapacitadosYDisponibles(Pedido pedido,
-	 * TipoPedido tipo, ComplejidadPedido complejidad) throws ParseException {
-	 * List<Empleado> empleadosCapacitadosYDisponibles = new
-	 * ArrayList<Empleado>();
-	 * 
-	 * pedido.setEstado("Programado"); pedido.setComplejidad(complejidad);
-	 * pedido.setTipoPedido(tipo);
-	 * 
-	 * // duracion en dias int duracion = Math.round(tipo.getTiempo() *
-	 * complejidad.getFactorTiempo());
-	 * 
-	 * String mensaje = "";
-	 * 
-	 * // Con la fecha de inicio y duracion en dias busco la fecha hasta Date
-	 * fechaInicioTarea = pedido.getFechaInicio(); SimpleDateFormat formatter =
-	 * new SimpleDateFormat("dd/MM/yyyy"); Date fechaFinTarea =
-	 * formatter.parse(this.sumarRestarDiasFecha(pedido.getFechaInicio(),
-	 * duracion));
-	 * 
-	 * // listado de id de empleados que cumplen complejidad List<Empleado>
-	 * empleadosCapacitados =
-	 * AdmEmpleado.getInstancia().getEmpleadosCapacitados(tipo, complejidad);
-	 * 
-	 * // Cantidad de dias habiles entre fechaSolicitud y fechaEntregaEsperada
-	 * Integer diasHabiles = dao.getCantidadDiasHabiles(pedido);
-	 * 
-	 * // Por normas de la empresa el pedido no puede tener un caso mas de 1
-	 * empleado // Si hay empleados capacitados if (empleadosCapacitados.size()
-	 * > 0) { if (duracion <= diasHabiles) { // busco empleados libres en rango
-	 * de fechas de empleadosCapacitados for(Empleado e: empleadosCapacitados) {
-	 * List<Disponibilidad> disponibilidadesDelEmpleadoCapacitado =
-	 * e.getDisponibilidades();
-	 * 
-	 * if (disponibilidadesDelEmpleadoCapacitado.size() > 0) {
-	 * for(Disponibilidad d: disponibilidadesDelEmpleadoCapacitado) { String
-	 * StrfechaEmpleadoInicio = this.sumarRestarDiasFecha(d.getFechaInicio(),
-	 * -1); String StrfechaEmpleadoFin =
-	 * this.sumarRestarDiasFecha(d.getFechaFin(), 1); Date fechaEmpleadoInicio =
-	 * formatter.parse(StrfechaEmpleadoInicio); Date fechaEmpleadoFin =
-	 * formatter.parse(StrfechaEmpleadoFin);
-	 * 
-	 * if(!fechaInicioTarea.after(fechaEmpleadoInicio) &&
-	 * !fechaInicioTarea.before(fechaEmpleadoFin)) {
-	 * if(!fechaFinTarea.after(fechaEmpleadoInicio) &&
-	 * !fechaFinTarea.before(fechaEmpleadoFin)) {
-	 * empleadosCapacitadosYDisponibles.add(e); } } } } else { // Si el empleado
-	 * no tiene cargada ninguna Disponibilidad lo agrego directamente
-	 * empleadosCapacitadosYDisponibles.add(e); }
-	 * 
-	 * } // Si todos los empleados capacitados estan ocupados if
-	 * (empleadosCapacitadosYDisponibles.size() == 0) { mensaje =
-	 * "No hay empleados Disponibles para este pedido";
-	 * JOptionPane.showMessageDialog(null, mensaje, "OK",
-	 * JOptionPane.INFORMATION_MESSAGE); } } else { // Si los días habiles es
-	 * mejor a la cantidad de días necesarios mensaje =
-	 * "La Fecha de Entrega debe ser " + (duracion - diasHabiles) +
-	 * " día/s habile/s más de la Fecha de Entrega pactada";
-	 * JOptionPane.showMessageDialog(null, mensaje, "OK",
-	 * JOptionPane.INFORMATION_MESSAGE); } } else { // Si no hay empleados que
-	 * cumplen con la Condición de Tipo de // Pedido y/o Complejidad mensaje =
-	 * "No hay empleados que cumplan con la Condición de Tipo de Pedido y/o Complejidad "
-	 * ; JOptionPane.showMessageDialog(null, mensaje, "OK",
-	 * JOptionPane.INFORMATION_MESSAGE); }
-	 * 
-	 * return empleadosCapacitadosYDisponibles;
-	 * 
-	 * }
-	 * 
-	 * public void programarPedido(Pedido pedido, Empleado empleado) throws
-	 * ParseException { // duracion en dias int duracion =
-	 * Math.round(pedido.getTipoPedido().getTiempo() *
-	 * pedido.getComplejidad().getFactorTiempo());
-	 * 
-	 * String mensaje = "";
-	 * 
-	 * // Con la fecha de inicio y duracion en dias busco la fecha hasta Date
-	 * fechaInicioTarea = pedido.getFechaInicio(); SimpleDateFormat formatter =
-	 * new SimpleDateFormat("dd/MM/yyyy"); Date fechaFinTarea =
-	 * formatter.parse(this.sumarRestarDiasFecha(pedido.getFechaInicio(),
-	 * duracion));
-	 * 
-	 * // Programar Pedido pedido.setEmpleado(empleado);
-	 * dao.actualizarPedido(pedido);
-	 * 
-	 * // Agregar Disponibilidad Disponibilidad disp = new Disponibilidad();
-	 * disp.setFechaInicio(fechaInicioTarea); disp.setFechaFin(fechaFinTarea);
-	 * disp.setCantidadDias(duracion); empleado.agregarDisponibilidad(disp);
-	 * AdmEmpleado.getInstancia().actualizarEmpleado(empleado);
-	 * 
-	 * mensaje = "Empleado Asignado  id : " + empleado.getId() + " Nombre : " +
-	 * empleado.getNombre() + " Apellido : " + empleado.getApellido();
-	 * JOptionPane.showMessageDialog(null, mensaje, "OK",
-	 * JOptionPane.INFORMATION_MESSAGE); JOptionPane.showMessageDialog(null,
-	 * "Pedido programado."); }
-	 */
 
 	public void programarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) throws ParseException {
 		pedido.setEstado("Programado");
@@ -296,6 +200,101 @@ public class AdmPedido {
 		return fechaaux;
 	}
 
+	public List<Empleado> getEmpleadosCapacitadosYDisponibles(Pedido pedido) throws ParseException {
+		List<Empleado> empleadosCapacitadosYDisponibles = new ArrayList<Empleado>();
+
+		// Calculo la duración total en días que demanda el pedido
+		int duracion = Math.round(pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+		System.out.println("DURACION TOTAL: " + duracion);
+
+		// Con la fecha de inicio del pedido junto con su duración en días calculo la fecha fin
+		Date fechaInicioTarea = pedido.getFechaInicio();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date fechaFinTarea = formatter.parse(this.sumarRestarDiasFecha(pedido.getFechaInicio(), duracion));
+
+		// Obtengo los empleados que están capacitados para realizar el pedido
+		List<Empleado> empleadosCapacitados = AdmEmpleado.getInstancia().getEmpleadosCapacitados(pedido.getTipoPedido(), 
+				pedido.getComplejidad());
+
+		// Obtengo la cantidad de días hábiles entre la fecha de inicio y la fecha de entrega del pedido
+		Integer diasHabiles = dao.getCantidadDiasHabiles(pedido);
+
+		// Si hay empleados capacitados
+		if (empleadosCapacitados.size() > 0) {
+			// Compruebo que la duración del pedido no exceda a la cantidad de días hábiles disponibles hasta 
+			// la fecha de entrega
+			if (duracion <= diasHabiles) {
+				// Para cada empleado verifico si está disponible dentro del rango fecha inicio y fecha fin del pedido
+				for(Empleado e: empleadosCapacitados) {
+					int disponible = 1;
+					List<Disponibilidad> disponibilidadesDelEmpleadoCapacitado = e.getDisponibilidades();
+					// Si el empleado tiene disponibilidades dadas de alta
+					if (disponibilidadesDelEmpleadoCapacitado.size() > 0) {
+						for(Disponibilidad d: disponibilidadesDelEmpleadoCapacitado) {
+
+							String StrfechaEmpleadoInicio = this.sumarRestarDiasFecha(d.getFechaInicio(), -1);
+							String StrfechaEmpleadoFin = this.sumarRestarDiasFecha(d.getFechaFin(), 1);
+							Date fechaEmpleadoInicio = formatter.parse(StrfechaEmpleadoInicio);
+							Date fechaEmpleadoFin = formatter.parse(StrfechaEmpleadoFin);
+
+							// caso1
+							if ((fechaEmpleadoInicio.equals(fechaInicioTarea)) && (fechaEmpleadoFin.equals(fechaFinTarea)))
+								disponible = 0;
+
+							// caso2
+							if ((fechaInicioTarea.before(fechaEmpleadoFin)) && (fechaEmpleadoFin.before(fechaFinTarea)))
+								disponible = 0;
+
+							// caso3
+							if ((fechaInicioTarea.before(fechaEmpleadoInicio)) && (fechaEmpleadoInicio.before(fechaFinTarea)))
+								disponible = 0;
+							
+							// caso4
+							if ((fechaEmpleadoInicio.before(fechaInicioTarea)) && (fechaInicioTarea.before(fechaEmpleadoFin)))
+								disponible = 0;
+						}
+					}
+					if (disponible == 1)
+						empleadosCapacitadosYDisponibles.add(e);
+				}
+			}
+			
+		}
+		
+		return empleadosCapacitadosYDisponibles;
+		
+	}
+	
+	public void programarPedido(Pedido pedido, Empleado empleado) throws ParseException {
+		// Calculo la duración total en días que demanda el pedido
+		int duracion = Math.round(pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+		String mensaje = "";
+
+		// Con la fecha de inicio del pedido junto con su duración en días calculo la fecha fin
+		Date fechaInicioTarea = pedido.getFechaInicio();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date fechaFinTarea = formatter.parse(this.sumarRestarDiasFecha(pedido.getFechaInicio(), duracion));
+
+		// Programo el pedido
+		pedido.setEstado("Programado");
+		pedido.setEmpleado(empleado);
+		dao.actualizarPedido(pedido);
+
+		// Genero la disponibilidad y se la cargo al empleado
+		Disponibilidad disp = new Disponibilidad();
+		disp.setFechaInicio(fechaInicioTarea);
+		disp.setFechaFin(fechaFinTarea);
+		disp.setCantidadDias(duracion);
+		empleado.agregarDisponibilidad(disp);
+		AdmEmpleado.getInstancia().actualizarEmpleado(empleado);
+
+		mensaje = "Empleado Asignado  id : " + empleado.getId() + " Nombre : " + empleado.getNombre() + " Apellido : "
+				+ empleado.getApellido();
+		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Pedido programado.");
+
+	}
+	
 	public void altaPedido(PedidoDTO p) {
 		dao.guardarPedido(toEntity(p));
 

@@ -271,6 +271,8 @@ public class PedidoProgramar extends javax.swing.JPanel {
 						try {
 							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 							pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
+							//pedido.setComplejidad(complejidad);
+							//pedido.setTipoPedido(tipo);
 							Sistema.getInstancia().programarPedido(pedido, tipo, complejidad);
 
 						} catch (ParseException e) {
