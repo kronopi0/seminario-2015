@@ -37,6 +37,14 @@ public class AdmEmpleado {
 		return dao.getEmpleadosCapacitados(tipo, complejidad);
 	}
 
+	public List<EmpleadoDTO> getEmpleadosCapacitadosDTO(TipoPedido tipo, ComplejidadPedido complejidad) {
+		List<EmpleadoDTO> dtos = new ArrayList<EmpleadoDTO>();
+		List<Empleado> entities = dao.getEmpleadosCapacitados(tipo, complejidad);
+		for (int i = 0; i < entities.size(); i++)
+			dtos.add(toDTO(entities.get(i)));
+		return dtos;
+	}
+
 	public void AltaEmpleado(EmpleadoDTO Empleado) {
 		dao.grabarEmpleado(toEntity(Empleado));
 	}

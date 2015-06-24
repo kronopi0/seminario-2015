@@ -70,11 +70,11 @@ public class Sistema {
 	public void liberarDisponibilidadPedido(Pedido pedido) throws ParseException {
 		AdmDisponibilidad.getInstancia().liberarDisponibilidadPedido(pedido);
 	}
-	
+
 	public void reprogramarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) throws ParseException {
 		AdmPedido.getInstancia().programarPedido(pedido, tipo, complejidad);
 	}
-	
+
 	public List<Pedido> getPedidos(String estado) {
 		return AdmPedido.getInstancia().getPedidos(estado);
 	}
@@ -140,6 +140,14 @@ public class Sistema {
 
 	public void eliminarEmpleado(EmpleadoDTO empleado) {
 		AdmEmpleado.getInstancia().eliminarEmpleado(empleado);
+	}
+
+	public List<Empleado> getEmpleadosCapacitados(TipoPedido tipo, ComplejidadPedido complejidad) {
+		return AdmEmpleado.getInstancia().getEmpleadosCapacitados(tipo, complejidad);
+	}
+
+	public List<EmpleadoDTO> getEmpleadosCapacitadosDTO(TipoPedido tipo, ComplejidadPedido complejidad) {
+		return AdmEmpleado.getInstancia().getEmpleadosCapacitadosDTO(tipo, complejidad);
 	}
 
 	/*
