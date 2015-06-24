@@ -19,6 +19,7 @@ import negocio.AdmEmpleado;
 import controlador.Sistema;
 import dto.EmpleadoDTO;
 import entities.ComplejidadPedido;
+import entities.Empleado;
 import entities.Pedido;
 import entities.TipoPedido;
 
@@ -68,6 +69,7 @@ public class PedidoProgramar extends javax.swing.JPanel {
 	private JLabel jLabel10;
 	private JComboBox<String> comboEmpleado;
 	private List<EmpleadoDTO> empleados;
+	private List<Empleado> empleadoss;
 	private EmpleadoDTO empleado;
 
 	/**
@@ -293,15 +295,16 @@ public class PedidoProgramar extends javax.swing.JPanel {
 						try {
 							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 							pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
-							// pedido.setComplejidad(complejidad);
-							// pedido.setTipoPedido(tipo);
-							empleados = Sistema.getInstancia().getEmpleadosCapacitadosDTO(tipo, complejidad);
+							pedido.setComplejidad(complejidad);
+							pedido.setTipoPedido(tipo);
+							//empleados = Sistema.getInstancia().getEmpleadosCapacitadosDTO(tipo, complejidad);
+							empleadoss = Sistema.getInstancia().getEmpleadosCapacitadosYDisponibles(pedido);
 
-							if (empleados.size() == 0)
+							if (empleadoss.size() == 0)
 								JOptionPane.showMessageDialog(null, "No hay empleados disponibles para los requisitos seleccionados");
 							else
-								for (int i = 0; i < empleados.size(); i++)
-									comboEmpleado.addItem(empleados.get(i).getApellido());
+								for (int i = 0; i < empleadoss.size(); i++)
+									comboEmpleado.addItem(empleadoss.get(i).getApellido());
 
 						} catch (ParseException e) {
 							e.printStackTrace();

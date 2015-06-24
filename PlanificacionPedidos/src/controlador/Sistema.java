@@ -86,6 +86,11 @@ public class Sistema {
 	public String sumarRestarDiasFecha(Date fechaEntrega, int dias) throws ParseException {
 		return AdmPedido.getInstancia().sumarRestarDiasFecha(fechaEntrega, dias);
 	}
+	
+	public List<Empleado> getEmpleadosCapacitadosYDisponibles(Pedido pedido) throws ParseException {
+		return AdmPedido.getInstancia().getEmpleadosCapacitadosYDisponibles(pedido);
+	}
+
 
 	/*
 	 * REPORTES
