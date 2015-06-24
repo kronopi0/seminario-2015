@@ -15,6 +15,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import negocio.AdmEmpleado;
 import controlador.Sistema;
 import dto.EmpleadoDTO;
 import entities.ComplejidadPedido;
@@ -187,7 +188,7 @@ public class PedidoProgramar extends javax.swing.JPanel {
 			{
 				comboEmpleado = new JComboBox<String>();
 				this.add(comboEmpleado);
-				comboEmpleado.setBounds(411, 232, 224, 26);
+				comboEmpleado.setBounds(409, 232, 220, 26);
 				comboEmpleado.addActionListener(new ActionListener() {
 
 					public void actionPerformed(ActionEvent evt) {
@@ -283,7 +284,7 @@ public class PedidoProgramar extends javax.swing.JPanel {
 				jButtonEmpleados.setLayout(null);
 				this.add(jButtonEmpleados);
 				jButtonEmpleados.setText("Buscar Empleados");
-				jButtonEmpleados.setBounds(452, 136, 157, 30);
+				jButtonEmpleados.setBounds(442, 135, 157, 30);
 				jButtonEmpleados.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonEmpleados.addActionListener(new ActionListener() {
 
@@ -324,9 +325,7 @@ public class PedidoProgramar extends javax.swing.JPanel {
 						try {
 							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 							pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
-							// pedido.setComplejidad(complejidad);
-							// pedido.setTipoPedido(tipo);
-							// pedido.setEmpleado(empleado);
+							pedido.setEmpleado(AdmEmpleado.getInstancia().toEntity(empleado));
 							Sistema.getInstancia().programarPedido(pedido, tipo, complejidad);
 
 						} catch (ParseException e) {
