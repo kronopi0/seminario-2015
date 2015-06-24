@@ -15,17 +15,17 @@ insert into COMPLEJIDADES_PEDIDOS values ('Baja', 1)
 GO
 
 --CLIENTES
-insert into CLIENTES values (11111, 'ArcosDorados', 'Argentina', '4555-1463', 'Sarasa 415', 'contacto@arcos.com')
+insert into CLIENTES values (111, 'ArcosDorados', 'Argentina', '4555-1463', 'Sarasa 415', 'contacto@arcos.com')
 GO
-insert into CLIENTES values (44444, 'Matarazzo', 'Argentina', '4554-1111', 'Villa 31', 'contacto@matarazzo.com')
+insert into CLIENTES values (222, 'Danone', 'Argentina', '4555-2242', 'Cabildo 5643', 'contacto@danone.com')
 GO
-insert into CLIENTES values (55555, 'UADE', 'Argentina', '4555-1535', 'Italia 2', 'contacto@uade.com')
+insert into CLIENTES values (333, 'Coca-Cola', 'Argentina', '4555-3333', 'Belgrano 467', 'contacto@coca-cola.com')
 GO
-insert into CLIENTES values (66666, 'Unilever', 'Argentina', '4754-1111', 'Reconquista 415', 'contacto@unilever.com')
+insert into CLIENTES values (444, 'Matarazzo', 'Argentina', '4554-1111', 'Villa 31', 'contacto@matarazzo.com')
 GO
-insert into CLIENTES values (22222, 'Danone', 'Argentina', '4555-2242', 'Cabildo 5643', 'contacto@danone.com')
+insert into CLIENTES values (555, 'UADE', 'Argentina', '4555-1535', 'Italia 2', 'contacto@uade.com')
 GO
-insert into CLIENTES values (33333, 'Coca-Cola', 'Argentina', '4555-3333', 'Belgrano 467', 'contacto@coca-cola.com')
+insert into CLIENTES values (666, 'Unilever', 'Argentina', '4754-1111', 'Reconquista 415', 'contacto@unilever.com')
 GO
 
 --EMPLEADOS
@@ -35,54 +35,56 @@ insert into EMPLEADOS values (222222, 'Manuel', 'Alen')
 GO
 insert into EMPLEADOS values (333333, 'Roberto', 'Giordano')
 GO
-insert into EMPLEADOS values (444444, 'Ana', 'Fenza')
+insert into EMPLEADOS values (444444, 'Eduardo', 'Sara')
 GO
-insert into EMPLEADOS values (555555, 'Eduardo', 'Sara')
-GO
-insert into EMPLEADOS values (666666, 'Maria Julia', 'Alsogaray')
-GO
-insert into EMPLEADOS values (777777, 'Carlos', 'Menem')
-GO
-insert into EMPLEADOS values (888888, 'Javier', 'Saviola')
+insert into EMPLEADOS values (555555, 'Carlos', 'Menem')
 GO
 
 --COMPLEJIDADES_EMPLEADO
-INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (1362378,1)
+INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (111111,1)
 GO
-INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (1358354,1)
+INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (111111,2)
 GO
-INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (1358354,2)
+INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (111111,3)
 GO
-INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (1260341,2)
+INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (222222,2)
 GO
-INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (1358354,3)
+INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (333333,2)
 GO
-INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (13665378,3)
+INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (333333,3)
 GO
-INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (1352854,3)
+INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (444444,2)
+GO
+INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (444444,3)
+GO
+INSERT INTO COMPLEJIDADES_EMPLEADO VALUES (555555,3)
 GO
 
 --TIPOS_PEDIDO_EMPLEADO
-INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (1362378,2)
+INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (111111,1)
 GO
-INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (1358354,1)
+INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (111111,2)
 GO
-INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (1260341,2)
+INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (111111,3)
 GO
-INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (1358354,3)
+INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (222222,1)
 GO
-INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (1358354,2)
+INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (333333,1)
 GO
-INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (13665378,1)
+INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (333333,2)
 GO
-INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (1352854,3)
+INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (444444,1)
+GO
+INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (444444,2)
+GO
+INSERT INTO TIPOS_PEDIDO_EMPLEADO VALUES (555555,1)
 GO
 
-
+/*
 --PEDIDOS Programados
 
 INSERT INTO PEDIDOS VALUES
-           ( 'Reporte temprano',
+           ( 'Reporte mensual',
            0,
 			getdate(),
 			null,
@@ -91,11 +93,11 @@ INSERT INTO PEDIDOS VALUES
            'Programado',
            1,
            3,
-		   11111,
+		   111,
            1362378)
 GO
 INSERT INTO PEDIDOS VALUES
-           ( 'Informe temprano',
+           ( 'Informe semanal',
            0,
 			getdate(),
 			null,
@@ -104,11 +106,11 @@ INSERT INTO PEDIDOS VALUES
            'Programado',
            3,
            1,
-		   11111,
+		   111,
            1362378)
 GO
 INSERT INTO PEDIDOS VALUES
-           ( 'Reporte genial',
+           ( 'Reporte trimestral',
            0,
 			getdate(),
 			null,
@@ -117,11 +119,11 @@ INSERT INTO PEDIDOS VALUES
            'Programado',
            2,
            1,
-		   11111,
+		   111,
            1352854)
 GO
 INSERT INTO PEDIDOS VALUES
-           ( 'Soy un pedido',
+           ( 'Reporte custom',
            0,
 			getdate(),
 			null,
@@ -130,27 +132,27 @@ INSERT INTO PEDIDOS VALUES
            'Programado',
            1,
            3,
-		   11111,
+		   111,
            1352854)
 GO
 
 --PEDIDOS pendientes
 
 INSERT INTO PEDIDOS VALUES
-           ( 'Reporte temprano',
+           ( 'Reporte mensual',
            0,
 			getdate(),
 			null,
 			getdate()+5,
 			null,
-           'Pendiente',
+          'Pendiente',
 			null,
            null,
-		   11111,
+		   111,
            null)
 GO
 INSERT INTO PEDIDOS VALUES
-           ( 'Informe temprano',
+           ( 'Informe semanal',
            0,
 			getdate(),
 			null,
@@ -159,11 +161,11 @@ INSERT INTO PEDIDOS VALUES
            'Pendiente',
            null,
            null,
-		   11111,
+		   111,
            null)
 GO
 INSERT INTO PEDIDOS VALUES
-           ( 'Reporte genial',
+           ( 'Reporte trimestral',
            0,
 			getdate(),
 			null,
@@ -172,12 +174,12 @@ INSERT INTO PEDIDOS VALUES
            'Pendiente',
             null,
            null,
-		   11111,
+		   111,
            null)
 GO
 INSERT INTO PEDIDOS VALUES
-           ( 'Soy un pedido',
-           0,
+           ( 'Reporte custom',
+            0,
 			getdate(),
 			null,
 			getdate()+5,
@@ -185,60 +187,66 @@ INSERT INTO PEDIDOS VALUES
            'Pendiente',
            null,
            null,
-		   11111,
+		   111,
            null)
 GO
+*/
+
 --PEDIDOS finalizados
 
-INSERT INTO PEDIDOS VALUES
-           ( 'Reporte temprano',
-           0,
+INSERT INTO PEDIDOS(descripcion, periodicidad, fechaSolicitud, fechaInicio, fechaFinalizado, fechaEntrega,
+	estado, idComplejidad, idTipoPedido, cuit, idEmpleado) VALUES
+           ('TEST - Reporte mensual',
+           	0,
+			getdate(),
 			getdate(),
 			getdate()+7,
 			getdate()+5,
-			null,
            'Finalizado',
-           1,
-           1,
-		   11111,
-           1358354)
+           	1,
+           	1,
+		   	111,
+           	111111)
 GO
-INSERT INTO PEDIDOS VALUES
-           ( 'Informe temprano',
-           0,
+INSERT INTO PEDIDOS(descripcion, periodicidad, fechaSolicitud, fechaInicio, fechaFinalizado, fechaEntrega,
+	estado, idComplejidad, idTipoPedido, cuit, idEmpleado) VALUES
+           ('TEST - Informe semanal',
+           	0,
+			getdate(),
 			getdate(),
 			getdate()+6,
 			getdate()+3,
-			null,
            'Finalizado',
-           1,
-          2,
-		   11111,
-           1358354)
+           	1,
+          	2,
+		   	111,
+           	111111)
 GO
-INSERT INTO PEDIDOS VALUES
-           ( 'Reporte genial',
-           0,
+INSERT INTO PEDIDOS(descripcion, periodicidad, fechaSolicitud, fechaInicio, fechaFinalizado, fechaEntrega,
+	estado, idComplejidad, idTipoPedido, cuit, idEmpleado) VALUES
+           ('TEST - Reporte trimestral',
+           	0,
+			getdate(),
 			getdate(),
 			getdate()+7,
 			getdate()+9,
-			null,
            'Finalizado',
-           3,
-           1,
-		   11111,
-           1358354)
+          	3,
+           	1,
+		   	111,
+           	333333)
 GO
-INSERT INTO PEDIDOS VALUES
-           ( 'Soy un pedido',
-           0,
+INSERT INTO PEDIDOS(descripcion, periodicidad, fechaSolicitud, fechaInicio, fechaFinalizado, fechaEntrega,
+	estado, idComplejidad, idTipoPedido, cuit, idEmpleado) VALUES
+           ('TEST - Reporte custom',
+           	0,
+			getdate(),
 			getdate(),
 			getdate()+7,
 			getdate()+5,
-			null,
            'Finalizado',
-           1,
-           2,
-		   11111,
-           1358354)
+           	1,
+           	2,
+		   	111,
+           	333333)
 GO

@@ -9,8 +9,8 @@ inner join Complejidades_Pedidos cp on cp.idcomplejidad=ce.idcomplejidad
 inner join Tipos_Pedido_Empleado tpe on tpe.idempleado=e.idempleado
 inner join Tipos_Pedido tp on tp.idtipopedido=tpe.idtipopedido
 where cp.nombre like @complejidad and tp.descripcion like @tipoEstudio
+GO
 
---------------------------------------------------------------------------------------------------------------
 --2.
 create procedure diashabiles
 @fechaDesde datetime,
@@ -31,4 +31,4 @@ if (select max(idDisponibilidad) from Disponibilidades) is not null
 
 --Devuelvo como resultado la Dispobilidad
 select @idDisponibilidad as idDisponibilidad, @fechaDesde as fechaInicio, @fechaHasta as fechaFin, @cantidadDias as cantidadDias
-
+GO
