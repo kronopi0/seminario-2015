@@ -135,7 +135,7 @@ public class PedidoDAO {
 
 		sesion.beginTransaction();
 		disp = (Disponibilidad) sesion.createSQLQuery("diashabiles :fechaDesde, :fechaHasta").addEntity(Disponibilidad.class)
-				.setParameter("fechaDesde", pedido.getFechaSolicitud()).setParameter("fechaHasta", pedido.getFechaEntrega()).uniqueResult();
+				.setParameter("fechaDesde", pedido.getFechaInicio()).setParameter("fechaHasta", pedido.getFechaEntrega()).uniqueResult();
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
