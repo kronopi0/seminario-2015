@@ -29,7 +29,8 @@ public class Principal extends javax.swing.JFrame {
 	{
 		// Set Look & Feel
 		try {
-			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+			javax.swing.UIManager
+					.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -79,7 +80,8 @@ public class Principal extends javax.swing.JFrame {
 			{
 				getContentPane().setLayout(null);
 				this.setTitle("Kantar World Panel");
-				getContentPane().setBackground(new java.awt.Color(149, 156, 172));
+				getContentPane().setBackground(
+						new java.awt.Color(149, 156, 172));
 				{
 					panel = new JTabbedPane();
 					getContentPane().add(panel);
@@ -111,25 +113,31 @@ public class Principal extends javax.swing.JFrame {
 						openFileMenuItem = new JMenuItem();
 						jMenuPedidos.add(openFileMenuItem);
 						openFileMenuItem.setText("Programar");
-						openFileMenuItem.addActionListener(new ActionListener() {
+						openFileMenuItem
+								.addActionListener(new ActionListener() {
 
-							public void actionPerformed(ActionEvent evt) {
-								PedidoProgramar tabPedidoProgramar = new PedidoProgramar(panel);
-								panel.addTab("Programar Pedido", tabPedidoProgramar);
-							}
-						});
+									public void actionPerformed(ActionEvent evt) {
+										PedidoProgramar tabPedidoProgramar = new PedidoProgramar(
+												panel);
+										panel.addTab("Programar Pedido",
+												tabPedidoProgramar);
+									}
+								});
 					}
 					{
 						openFileMenuItem = new JMenuItem();
 						jMenuPedidos.add(openFileMenuItem);
 						openFileMenuItem.setText("Reprogramar");
-						openFileMenuItem.addActionListener(new ActionListener() {
+						openFileMenuItem
+								.addActionListener(new ActionListener() {
 
-							public void actionPerformed(ActionEvent evt) {
-								PedidoReprogramar tabPedidoReprogramar = new PedidoReprogramar(panel);
-								panel.addTab("Reprogramar Pedido", tabPedidoReprogramar);
-							}
-						});
+									public void actionPerformed(ActionEvent evt) {
+										PedidoReprogramar tabPedidoReprogramar = new PedidoReprogramar(
+												panel);
+										panel.addTab("Reprogramar Pedido",
+												tabPedidoReprogramar);
+									}
+								});
 					}
 					{
 						saveMenuItem = new JMenuItem();
@@ -138,8 +146,10 @@ public class Principal extends javax.swing.JFrame {
 						saveMenuItem.addActionListener(new ActionListener() {
 
 							public void actionPerformed(ActionEvent evt) {
-								PedidoFinalizar tabPedidoFinalizar = new PedidoFinalizar(panel);
-								panel.addTab("Finalizar Pedido", tabPedidoFinalizar);
+								PedidoFinalizar tabPedidoFinalizar = new PedidoFinalizar(
+										panel);
+								panel.addTab("Finalizar Pedido",
+										tabPedidoFinalizar);
 							}
 						});
 					}
@@ -150,7 +160,8 @@ public class Principal extends javax.swing.JFrame {
 					jMenuReportes = new JMenu();
 					jMenuBar1.add(jMenuReportes);
 					jMenuReportes.setText("Reportes");
-					jMenuReportes.setFont(new java.awt.Font("SansSerif", 1, 12));
+					jMenuReportes
+							.setFont(new java.awt.Font("SansSerif", 1, 12));
 					{
 						saveAsMenuItem = new JMenuItem();
 						jMenuReportes.add(saveAsMenuItem);
@@ -159,10 +170,15 @@ public class Principal extends javax.swing.JFrame {
 
 							public void actionPerformed(ActionEvent evt) {
 
-								String[] columnasPedidosPendientes = { "Id", "Descripción", "Cliente", "Fecha" };
-								ReporteTemplate tabPedidosPendientes = new ReporteTemplate(panel, Sistema.getInstancia().reportePedidosPorEstado("pendiente"),
+								String[] columnasPedidosPendientes = { "Id",
+										"Descripción", "Cliente", "Fecha" };
+								ReporteTemplate tabPedidosPendientes = new ReporteTemplate(
+										panel, Sistema.getInstancia()
+												.reportePedidosPorEstado(
+														"pendiente"),
 										columnasPedidosPendientes);
-								panel.addTab("Pedidos Pendientes", tabPedidosPendientes);
+								panel.addTab("Pedidos Pendientes",
+										tabPedidosPendientes);
 
 							}
 						});
@@ -175,10 +191,15 @@ public class Principal extends javax.swing.JFrame {
 
 							public void actionPerformed(ActionEvent evt) {
 
-								String[] columnasPedidosProgramados = { "Id", "Descripción", "Cliente", "Fecha" };
-								ReporteTemplate tabPedidosProgramados = new ReporteTemplate(panel, Sistema.getInstancia().reportePedidosPorEstado("programado"),
+								String[] columnasPedidosProgramados = { "Id",
+										"Descripción", "Cliente", "Fecha" };
+								ReporteTemplate tabPedidosProgramados = new ReporteTemplate(
+										panel, Sistema.getInstancia()
+												.reportePedidosPorEstado(
+														"programado"),
 										columnasPedidosProgramados);
-								panel.addTab("Pedidos Programados", tabPedidosProgramados);
+								panel.addTab("Pedidos Programados",
+										tabPedidosProgramados);
 							}
 						});
 					}
@@ -190,10 +211,15 @@ public class Principal extends javax.swing.JFrame {
 
 							public void actionPerformed(ActionEvent evt) {
 
-								String[] columnasPedidosFinalizados = { "Id", "Descripción", "Cliente", "Fecha" };
-								ReporteTemplate tabPedidosFinalizados = new ReporteTemplate(panel, Sistema.getInstancia().reportePedidosPorEstado("finalizado"),
+								String[] columnasPedidosFinalizados = { "Id",
+										"Descripción", "Cliente", "Fecha" };
+								ReporteTemplate tabPedidosFinalizados = new ReporteTemplate(
+										panel, Sistema.getInstancia()
+												.reportePedidosPorEstado(
+														"finalizado"),
 										columnasPedidosFinalizados);
-								panel.addTab("Pedidos Finalizados", tabPedidosFinalizados);
+								panel.addTab("Pedidos Finalizados",
+										tabPedidosFinalizados);
 							}
 						});
 					}
@@ -205,10 +231,14 @@ public class Principal extends javax.swing.JFrame {
 						cutMenuItem.addActionListener(new ActionListener() {
 
 							public void actionPerformed(ActionEvent evt) {
-								String[] columnasResueltosPorEmpleado = { "Id", "Nombre", "Apellido", "Cantidad" };
-								ReporteTemplate tabResueltosPorEmpleado = new ReporteTemplate(panel, Sistema.getInstancia().reporteResueltosPorEmpleado(),
+								String[] columnasResueltosPorEmpleado = { "Id",
+										"Nombre", "Apellido", "Cantidad" };
+								ReporteTemplate tabResueltosPorEmpleado = new ReporteTemplate(
+										panel, Sistema.getInstancia()
+												.reporteResueltosPorEmpleado(),
 										columnasResueltosPorEmpleado);
-								panel.addTab("Pedidos resueltos por empleado", tabResueltosPorEmpleado);
+								panel.addTab("Pedidos resueltos por empleado",
+										tabResueltosPorEmpleado);
 
 							}
 						});
@@ -216,13 +246,17 @@ public class Principal extends javax.swing.JFrame {
 					{
 						copyMenuItem = new JMenuItem();
 						jMenuReportes.add(copyMenuItem);
-						copyMenuItem.setText("% Cumplimiento con Fecha de Entrega");
+						copyMenuItem
+								.setText("% Cumplimiento con Fecha de Entrega");
 						copyMenuItem.addActionListener(new ActionListener() {
 
 							public void actionPerformed(ActionEvent evt) {
 
-								ReporteCumplimientoFechas tabReporteCumplimientoFechas = new ReporteCumplimientoFechas(panel, Sistema.getInstancia().reporteCumplimientoFechas());
-								panel.addTab("% Cumplimiento Fechas", tabReporteCumplimientoFechas);
+								ReporteCumplimientoFechas tabReporteCumplimientoFechas = new ReporteCumplimientoFechas(
+										panel, Sistema.getInstancia()
+												.reporteCumplimientoFechas());
+								panel.addTab("% Cumplimiento Fechas",
+										tabReporteCumplimientoFechas);
 
 							}
 						});
@@ -232,162 +266,214 @@ public class Principal extends javax.swing.JFrame {
 						jMenuComplejidadPedidos = new JMenu();
 						jMenuBar1.add(jMenuComplejidadPedidos);
 						jMenuComplejidadPedidos.setText("Complejidades");
-						jMenuComplejidadPedidos.setFont(new java.awt.Font("SansSerif", 1, 12));
+						jMenuComplejidadPedidos.setFont(new java.awt.Font(
+								"SansSerif", 1, 12));
 						{
 							altaMenuItem = new JMenuItem();
 							jMenuComplejidadPedidos.add(altaMenuItem);
 							altaMenuItem.setText("Alta");
-							altaMenuItem.addActionListener(new ActionListener() {
+							altaMenuItem
+									.addActionListener(new ActionListener() {
 
-								public void actionPerformed(ActionEvent evt) {
-									ComplejidadPedidoAlta tabComplejidadPedidoAlta = new ComplejidadPedidoAlta(panel);
-									panel.addTab("Agregar Complejidad", tabComplejidadPedidoAlta);
-								}
-							});
+										public void actionPerformed(
+												ActionEvent evt) {
+											ComplejidadPedidoAlta tabComplejidadPedidoAlta = new ComplejidadPedidoAlta(
+													panel);
+											panel.addTab("Agregar Complejidad",
+													tabComplejidadPedidoAlta);
+										}
+									});
 						}
 						{
 							modificarMenuItem = new JMenuItem();
 							jMenuComplejidadPedidos.add(modificarMenuItem);
 							modificarMenuItem.setText("Modificar");
-							modificarMenuItem.addActionListener(new ActionListener() {
+							modificarMenuItem
+									.addActionListener(new ActionListener() {
 
-								public void actionPerformed(ActionEvent evt) {
-									ComplejidadPedidoModificar tabComplejidadPedidoModificar = new ComplejidadPedidoModificar(panel);
-									panel.addTab("Modificar Complejidad", tabComplejidadPedidoModificar);
-								}
-							});
+										public void actionPerformed(
+												ActionEvent evt) {
+											ComplejidadPedidoModificar tabComplejidadPedidoModificar = new ComplejidadPedidoModificar(
+													panel);
+											panel.addTab(
+													"Modificar Complejidad",
+													tabComplejidadPedidoModificar);
+										}
+									});
 						}
 						{
 							bajaMenuItem = new JMenuItem();
 							jMenuComplejidadPedidos.add(bajaMenuItem);
 							bajaMenuItem.setText("Baja");
-							bajaMenuItem.addActionListener(new ActionListener() {
+							bajaMenuItem
+									.addActionListener(new ActionListener() {
 
-								public void actionPerformed(ActionEvent evt) {
-									ComplejidadPedidoBaja tabComplejidadPedidoBaja = new ComplejidadPedidoBaja(panel);
-									panel.addTab("Eliminar Complejidad", tabComplejidadPedidoBaja);
-								}
-							});
+										public void actionPerformed(
+												ActionEvent evt) {
+											ComplejidadPedidoBaja tabComplejidadPedidoBaja = new ComplejidadPedidoBaja(
+													panel);
+											panel.addTab(
+													"Eliminar Complejidad",
+													tabComplejidadPedidoBaja);
+										}
+									});
 						}
 					}
 					{
 						jMenuClientes = new JMenu();
 						jMenuBar1.add(jMenuClientes);
 						jMenuClientes.setText("Clientes");
-						jMenuClientes.setFont(new java.awt.Font("SansSerif", 1, 12));
+						jMenuClientes.setFont(new java.awt.Font("SansSerif", 1,
+								12));
 						{
 							altaMenuItem = new JMenuItem();
 							jMenuClientes.add(altaMenuItem);
 							altaMenuItem.setText("Alta");
-							altaMenuItem.addActionListener(new ActionListener() {
+							altaMenuItem
+									.addActionListener(new ActionListener() {
 
-								public void actionPerformed(ActionEvent evt) {
-									ClienteAlta tabClienteAlta = new ClienteAlta(panel);
-									panel.addTab("Agregar Cliente", tabClienteAlta);
+										public void actionPerformed(
+												ActionEvent evt) {
+											ClienteAlta tabClienteAlta = new ClienteAlta(
+													panel);
+											panel.addTab("Agregar Cliente",
+													tabClienteAlta);
 
-								}
-							});
+										}
+									});
 						}
 						{
 							modificarMenuItem = new JMenuItem();
 							jMenuClientes.add(modificarMenuItem);
 							modificarMenuItem.setText("Modificar");
-							modificarMenuItem.addActionListener(new ActionListener() {
+							modificarMenuItem
+									.addActionListener(new ActionListener() {
 
-								public void actionPerformed(ActionEvent evt) {
-									ClienteModificar tabClienteModificar = new ClienteModificar(panel);
-									panel.addTab("Modificar Cliente", tabClienteModificar);
-								}
-							});
+										public void actionPerformed(
+												ActionEvent evt) {
+											ClienteModificar tabClienteModificar = new ClienteModificar(
+													panel);
+											panel.addTab("Modificar Cliente",
+													tabClienteModificar);
+										}
+									});
 						}
 						{
 							bajaMenuItem = new JMenuItem();
 							jMenuClientes.add(bajaMenuItem);
 							bajaMenuItem.setText("Baja");
-							bajaMenuItem.addActionListener(new ActionListener() {
+							bajaMenuItem
+									.addActionListener(new ActionListener() {
 
-								public void actionPerformed(ActionEvent evt) {
-									ClienteBaja tabClienteBaja = new ClienteBaja(panel);
-									panel.addTab("Eliminar Cliente", tabClienteBaja);
-								}
-							});
+										public void actionPerformed(
+												ActionEvent evt) {
+											ClienteBaja tabClienteBaja = new ClienteBaja(
+													panel);
+											panel.addTab("Eliminar Cliente",
+													tabClienteBaja);
+										}
+									});
 						}
 					}
 					{
 						jMenuEmpleados = new JMenu();
 						jMenuBar1.add(jMenuEmpleados);
 						jMenuEmpleados.setText("Empleados");
-						jMenuEmpleados.setFont(new java.awt.Font("SansSerif", 1, 12));
+						jMenuEmpleados.setFont(new java.awt.Font("SansSerif",
+								1, 12));
 						{
 							altaMenuItem = new JMenuItem();
 							jMenuEmpleados.add(altaMenuItem);
 							altaMenuItem.setText("Alta");
-							altaMenuItem.addActionListener(new ActionListener() {
+							altaMenuItem
+									.addActionListener(new ActionListener() {
 
-								public void actionPerformed(ActionEvent evt) {
-									EmpleadoAlta tabEmpleadoAlta = new EmpleadoAlta(panel);
-									panel.addTab("Agregar Empleado", tabEmpleadoAlta);
+										public void actionPerformed(
+												ActionEvent evt) {
+											EmpleadoAlta tabEmpleadoAlta = new EmpleadoAlta(
+													panel);
+											panel.addTab("Agregar Empleado",
+													tabEmpleadoAlta);
 
-								}
-							});
+										}
+									});
 						}
 						{
 							modificarMenuItem = new JMenuItem();
 							jMenuEmpleados.add(modificarMenuItem);
 							modificarMenuItem.setText("Modificar");
-							modificarMenuItem.addActionListener(new ActionListener() {
+							modificarMenuItem
+									.addActionListener(new ActionListener() {
 
-								public void actionPerformed(ActionEvent evt) {
-									EmpleadoModificar tabEmpleadoModificar = new EmpleadoModificar(panel);
-									panel.addTab("Modificar Empleado", tabEmpleadoModificar);
-								}
-							});
+										public void actionPerformed(
+												ActionEvent evt) {
+											EmpleadoModificar tabEmpleadoModificar = new EmpleadoModificar(
+													panel);
+											panel.addTab("Modificar Empleado",
+													tabEmpleadoModificar);
+										}
+									});
 						}
 						{
 							bajaMenuItem = new JMenuItem();
 							jMenuEmpleados.add(bajaMenuItem);
 							bajaMenuItem.setText("Baja");
-							bajaMenuItem.addActionListener(new ActionListener() {
+							bajaMenuItem
+									.addActionListener(new ActionListener() {
 
-								public void actionPerformed(ActionEvent evt) {
-									EmpleadoBaja tabEmpleadoBaja = new EmpleadoBaja(panel);
-									panel.addTab("Eliminar Empleado", tabEmpleadoBaja);
-								}
-							});
+										public void actionPerformed(
+												ActionEvent evt) {
+											EmpleadoBaja tabEmpleadoBaja = new EmpleadoBaja(
+													panel);
+											panel.addTab("Eliminar Empleado",
+													tabEmpleadoBaja);
+										}
+									});
 						}
 					}
 					{
 						jMenuOtros = new JMenu();
 						jMenuBar1.add(jMenuOtros);
 						jMenuOtros.setText("Otros");
-						jMenuOtros.setFont(new java.awt.Font("SansSerif", 1, 12));
+						jMenuOtros
+								.setFont(new java.awt.Font("SansSerif", 1, 12));
 						{
 							helpMenuItem = new JMenuItem();
 							jMenuOtros.add(helpMenuItem);
 							helpMenuItem.setText("Integrantes");
-							helpMenuItem.addActionListener(new ActionListener() {
+							helpMenuItem
+									.addActionListener(new ActionListener() {
 
-								public void actionPerformed(ActionEvent evt) {
-									Integrantes tabIntegrantes = new Integrantes(panel);
-									panel.addTab("Integrantes", tabIntegrantes);
-								}
-							});
+										public void actionPerformed(
+												ActionEvent evt) {
+											Integrantes tabIntegrantes = new Integrantes(
+													panel);
+											panel.addTab("Integrantes",
+													tabIntegrantes);
+										}
+									});
 						}
 						{
 							helpMenuItem = new JMenuItem();
 							jMenuOtros.add(helpMenuItem);
 							helpMenuItem.setText("Salir");
-							helpMenuItem.addActionListener(new ActionListener() {
+							helpMenuItem
+									.addActionListener(new ActionListener() {
 
-								public void actionPerformed(ActionEvent evt) {
-									System.exit(0);
-								}
-							});
+										public void actionPerformed(
+												ActionEvent evt) {
+											System.exit(0);
+										}
+									});
 						}
-						BufferedImage myPicture = ImageIO.read(new File("img/kantar.png"));
+						BufferedImage myPicture = ImageIO.read(new File(
+								"img/kantar.png"));
 						JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 						add(picLabel);
 						picLabel.setBounds(137, 112, 430, 215);
+
+						ImageIcon icon = new ImageIcon("img/icon.jpg");
+						this.setIconImage(icon.getImage());
 
 					}
 				}
