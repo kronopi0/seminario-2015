@@ -1,48 +1,37 @@
 package negocio;
 
-import java.util.Date;
+import java.text.ParseException;
+import javax.swing.JOptionPane;
+
+import dao.DisponibilidadDAO;
+import entities.Disponibilidad;
+import entities.Pedido;
 
 public class AdmDisponibilidad {
 
-	private int idDisponibilidad;
-	private Date fechaInicio;
-	private Date fechaFin;
-	private Integer cantidadDias;
+	private static AdmDisponibilidad instancia;
+	private static DisponibilidadDAO dao;
 
-	public AdmDisponibilidad() {
-		super();
+	public static AdmDisponibilidad getInstancia() {
+		if (instancia == null)
+			instancia = new AdmDisponibilidad();
+		return instancia;
 	}
 
-	public int getId() {
-		return idDisponibilidad;
+	private AdmDisponibilidad() {
+		dao = DisponibilidadDAO.getInstancia();
 	}
+	
+	public void liberarDisponibilidadPedido(Pedido p) throws ParseException {
 
-	public void setId(int idDisponibilidad) {
-		this.idDisponibilidad = idDisponibilidad;
-	}
-
-	public Date getFechaInicio() {
-		return fechaInicio;
-	}
-
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
-
-	public Date getFechaFin() {
-		return fechaFin;
-	}
-
-	public void setFechaFin(Date fechaFin) {
-		this.fechaFin = fechaFin;
-	}
-
-	public Integer getCantidadDias() {
-		return cantidadDias;
-	}
-
-	public void setCantidadDias(Integer cantidadDias) {
-		this.cantidadDias = cantidadDias;
+		String mensaje = "Entra a liberarDisponibilidadPedido ";
+		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
+		
+		for (Disponibilidad d : p.getEmpleado().getDisponibilidades()) {
+			if (d.getFechaInicio().compareTo(p.getFechaInicio()) == 0) {
+				dao.BajaDisponibilidad(d);
+			}
+		}
 	}
 
 }

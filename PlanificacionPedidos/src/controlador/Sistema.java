@@ -11,6 +11,7 @@ import dto.PedidoDTO;
 import dto.TipoPedidoDTO;
 import negocio.AdmCliente;
 import negocio.AdmComplejidadPedido;
+import negocio.AdmDisponibilidad;
 import negocio.AdmEmpleado;
 import negocio.AdmPedido;
 import negocio.AdmTipoPedido;
@@ -67,7 +68,7 @@ public class Sistema {
 	}
 
 	public void liberarDisponibilidadPedido(Pedido pedido) throws ParseException {
-		AdmPedido.getInstancia().liberarDisponibilidadPedido(pedido);
+		AdmDisponibilidad.getInstancia().liberarDisponibilidadPedido(pedido);
 	}
 	
 	public void reprogramarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) throws ParseException {
