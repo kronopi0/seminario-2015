@@ -131,6 +131,10 @@ public class AdmPedido {
 								disponible = 0;
 							}
 							// caso4
+							if ((fechaInicioTarea.before(fechaEmpleadoInicio)) && (fechaEmpleadoFin.before(fechaInicioTarea))) {
+								disponible = 0;
+							}
+							// caso5
 							if ((fechaEmpleadoInicio.before(fechaInicioTarea)) && (fechaInicioTarea.before(fechaEmpleadoFin))) {
 								disponible = 0;
 							}
