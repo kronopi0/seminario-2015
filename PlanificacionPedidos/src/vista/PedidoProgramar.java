@@ -15,9 +15,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-import negocio.AdmEmpleado;
 import controlador.Sistema;
-import dto.EmpleadoDTO;
 import entities.ComplejidadPedido;
 import entities.Empleado;
 import entities.Pedido;
@@ -68,9 +66,8 @@ public class PedidoProgramar extends javax.swing.JPanel {
 	private JButton jButtonEmpleados;
 	private JLabel jLabel10;
 	private JComboBox<String> comboEmpleado;
-	private List<EmpleadoDTO> empleados;
-	private List<Empleado> empleadoss;
-	private EmpleadoDTO empleado;
+	private List<Empleado> empleados;
+	private Empleado empleado;
 
 	/**
 	 * Auto-generated main method to display this JPanel inside a new JFrame.
@@ -191,6 +188,7 @@ public class PedidoProgramar extends javax.swing.JPanel {
 				comboEmpleado = new JComboBox<String>();
 				this.add(comboEmpleado);
 				comboEmpleado.setBounds(409, 232, 220, 26);
+				comboEmpleado.setEnabled(false);
 				comboEmpleado.addActionListener(new ActionListener() {
 
 					public void actionPerformed(ActionEvent evt) {
@@ -272,7 +270,7 @@ public class PedidoProgramar extends javax.swing.JPanel {
 
 				comboComplejidad.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						for (int i = 0; i < tipos.size(); i++)
+						for (int i = 0; i < complejidades.size(); i++)
 							if (comboComplejidad.getSelectedItem().toString().equals(complejidades.get(i).getNombre()))
 								complejidad = complejidades.get(i);
 
@@ -297,14 +295,16 @@ public class PedidoProgramar extends javax.swing.JPanel {
 							pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
 							pedido.setComplejidad(complejidad);
 							pedido.setTipoPedido(tipo);
-							//empleados = Sistema.getInstancia().getEmpleadosCapacitadosDTO(tipo, complejidad);
-							empleadoss = Sistema.getInstancia().getEmpleadosCapacitadosYDisponibles(pedido);
+							empleados = Sistema.getInstancia().getEmpleadosCapacitadosYDisponibles(pedido);
 
-							if (empleadoss.size() == 0)
+							if (empleados.size() == 0)
 								JOptionPane.showMessageDialog(null, "No hay empleados disponibles para los requisitos seleccionados");
-							else
-								for (int i = 0; i < empleadoss.size(); i++)
-									comboEmpleado.addItem(empleadoss.get(i).getApellido());
+							else {
+
+								comboEmpleado.setEnabled(true);
+								for (int i = 0; i < empleados.size(); i++)
+									comboEmpleado.addItem(empleados.get(i).getApellido());
+							}
 
 						} catch (ParseException e) {
 							e.printStackTrace();
@@ -328,7 +328,7 @@ public class PedidoProgramar extends javax.swing.JPanel {
 						try {
 							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 							pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
-							pedido.setEmpleado(AdmEmpleado.getInstancia().toEntity(empleado));
+							pedido.setEmpleado(empleado);
 							Sistema.getInstancia().programarPedido(pedido, tipo, complejidad);
 
 						} catch (ParseException e) {
