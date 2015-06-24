@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -56,6 +57,7 @@ public class Principal extends javax.swing.JFrame {
 	private JMenu jMenuComplejidadPedidos;
 	private AbstractButton capacidadesMenuItem;
 	private JMenuItem tiposMenuItem;
+	private JMenu jMenuTipoPedidos;
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -226,7 +228,48 @@ public class Principal extends javax.swing.JFrame {
 							}
 						});
 					}
+					{
+						jMenuTipoPedidos = new JMenu();
+						jMenuBar1.add(jMenuTipoPedidos);
+						jMenuTipoPedidos.setText("Tipos");
+						jMenuTipoPedidos.setFont(new java.awt.Font("SansSerif", 1, 12));
+						{
+							altaMenuItem = new JMenuItem();
+							jMenuTipoPedidos.add(altaMenuItem);
+							altaMenuItem.setText("Alta");
+							altaMenuItem.addActionListener(new ActionListener() {
 
+								public void actionPerformed(ActionEvent evt) {
+									TipoPedidoAlta tabTipoPedidoAlta = new TipoPedidoAlta(panel);
+									panel.addTab("Agregar Tipo", tabTipoPedidoAlta);
+								}
+							});
+						}
+						{
+							modificarMenuItem = new JMenuItem();
+							jMenuTipoPedidos.add(modificarMenuItem);
+							modificarMenuItem.setText("Modificar");
+							modificarMenuItem.addActionListener(new ActionListener() {
+
+								public void actionPerformed(ActionEvent evt) {
+									TipoPedidoModificar tabTipoPedidoModificar = new TipoPedidoModificar(panel);
+									panel.addTab("Modificar Tipo", tabTipoPedidoModificar);
+								}
+							});
+						}
+						{
+							bajaMenuItem = new JMenuItem();
+							jMenuTipoPedidos.add(bajaMenuItem);
+							bajaMenuItem.setText("Baja");
+							bajaMenuItem.addActionListener(new ActionListener() {
+
+								public void actionPerformed(ActionEvent evt) {
+									TipoPedidoBaja tabTipoPedidoBaja = new TipoPedidoBaja(panel);
+									panel.addTab("Eliminar Tipo", tabTipoPedidoBaja);
+								}
+							});
+						}
+					}
 					{
 						jMenuComplejidadPedidos = new JMenu();
 						jMenuBar1.add(jMenuComplejidadPedidos);
