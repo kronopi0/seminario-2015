@@ -66,6 +66,14 @@ public class Sistema {
 		AdmPedido.getInstancia().finalizarPedido(p);
 	}
 
+	public void liberarDisponibilidadPedido(Pedido pedido) throws ParseException {
+		AdmPedido.getInstancia().liberarDisponibilidadPedido(pedido);
+	}
+	
+	public void reprogramarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) throws ParseException {
+		AdmPedido.getInstancia().programarPedido(pedido, tipo, complejidad);
+	}
+	
 	public List<Pedido> getPedidos(String estado) {
 		return AdmPedido.getInstancia().getPedidos(estado);
 	}

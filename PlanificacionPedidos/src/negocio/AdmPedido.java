@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import dao.DisponibilidadDAO;
 import dao.PedidoDAO;
 import dto.PedidoDTO;
 import entities.ComplejidadPedido;
@@ -35,7 +36,21 @@ public class AdmPedido {
 	public List<Pedido> getPedidos(String estado) {
 		return dao.getPedidos(estado);
 	}
-	//PROBANDO A VER SI SE ROMPIO EL GITHUB
+
+
+	public void liberarDisponibilidadPedido(Pedido p) throws ParseException {
+
+		String mensaje = "Entra a liberarDisponibilidadPedido ";
+		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
+		
+		for (Disponibilidad d : p.getEmpleado().getDisponibilidades()) {
+			if (d.getFechaInicio().compareTo(p.getFechaInicio()) == 0) {
+				DisponibilidadDAO.getInstancia().BajaDisponibilidad(d);
+			}
+		}
+
+	}
+	
 	public void finalizarPedido(Pedido p) throws ParseException {
 		p.setEstado("Finalizado");
 		p.setFechaFinalizado(new Date());
