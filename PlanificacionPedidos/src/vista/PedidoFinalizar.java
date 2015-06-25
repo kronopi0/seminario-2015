@@ -47,7 +47,6 @@ public class PedidoFinalizar extends javax.swing.JPanel {
 	private JButton jButtonSalir;
 	private PedidoFinalizar instancia;
 	private JComboBox<String> comboProgramados;
-	private List<ClienteDTO> clientes;
 	private JLabel jLabelPedidosPendientes;
 	private Pedido pedido;
 	private List<Pedido> pedidos;
@@ -92,7 +91,7 @@ public class PedidoFinalizar extends javax.swing.JPanel {
 					comboProgramados.addItem(pedidos.get(i).getDescripcion());
 
 				comboProgramados.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent evt) {
 						for (int i = 0; i < pedidos.size(); i++)
 							if (comboProgramados.getSelectedItem().toString().equals(pedidos.get(i).getDescripcion()))
@@ -170,26 +169,26 @@ public class PedidoFinalizar extends javax.swing.JPanel {
 				jButtonConfirmar.setBounds(183, 304, 91, 40);
 				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonConfirmar.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent evt) {
-						System.out.println("jButtonFinalizarPedido.actionPerformed, event=" + evt);
 						try {
 							Sistema.getInstancia().finalizarPedido(pedido);
+							jTextFieldId.setText("");
+							jTextFieldFechaSolicitud.setText("");
+							jTextFieldCliente.setText("");
+							jTextFieldEmpleado.setText("");
+							pedidos.clear();
+							comboProgramados.removeAllItems();
+							pedidos = Sistema.getInstancia().getPedidos("programado");
+							for (int i = 0; i < pedidos.size(); i++)
+								comboProgramados.addItem(pedidos.get(i).getDescripcion());
+
+							JOptionPane.showMessageDialog(null, "Pedido finalizado.");
+
 						} catch (ParseException e) {
 							e.printStackTrace();
 						}
-						jTextFieldId.setText("");
-						jTextFieldFechaSolicitud.setText("");
-						jTextFieldCliente.setText("");
-						jTextFieldEmpleado.setText("");
 
-						pedidos.clear();
-						comboProgramados.removeAllItems();
-						pedidos = Sistema.getInstancia().getPedidos("programado");
-						for (int i = 0; i < clientes.size(); i++)
-							comboProgramados.addItem(pedidos.get(i).getDescripcion());
-
-						JOptionPane.showMessageDialog(null, "Pedido finalizado.");
 					}
 				});
 			}
@@ -200,7 +199,7 @@ public class PedidoFinalizar extends javax.swing.JPanel {
 				jButtonSalir.setBounds(396, 304, 91, 40);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonSalir.addActionListener(new ActionListener() {
-					@Override
+
 					public void actionPerformed(ActionEvent e) {
 						panel.remove(instancia);
 					}
