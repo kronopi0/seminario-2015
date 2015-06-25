@@ -1,55 +1,56 @@
 package dao;
 
-import hbt.HibernateUtil;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import hbt.HibernateUtil;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ComplejidadEmpleado;
+import entities.Cliente;
+import entities.Pedido;
 import entities.TipoPedidoEmpleado;
 
-public class ComplejidadEmpleadoDAO {
-
-	private static ComplejidadEmpleadoDAO instancia = null;
+public class TipoPedidoEmpleadoDAO {
+	
+	private static TipoPedidoEmpleadoDAO instancia = null;
 	private static SessionFactory sf = null;
 
-	public static ComplejidadEmpleadoDAO getInstancia() {
+	public static TipoPedidoEmpleadoDAO getInstancia() {
 		if (instancia == null) {
 			sf = HibernateUtil.getSessionFactory();
-			instancia = new ComplejidadEmpleadoDAO();
+			instancia = new TipoPedidoEmpleadoDAO();
 		}
 		return instancia;
 	}
-	
+
 	// ALTAS
-	public void guardarComplejidadEmpleado(ComplejidadEmpleado complejidadEmpleado) {
+	public void guardarTipoPedidoEmpleado(TipoPedidoEmpleado tipoPedidoEmpleado) {
 		Session session = sf.openSession();
 		session.beginTransaction();
-		session.persist(complejidadEmpleado);
+		session.persist(tipoPedidoEmpleado);
 		session.flush();
 		session.getTransaction().commit();
 		session.close();
 	}
 
 	// MODIFICAR
-	public void ModificarComplejidadEmpleado(ComplejidadEmpleado complejidadEmpleado) {
+	public void ModificarTipoPedidoEmpleado(TipoPedidoEmpleado tipoPedidoEmpleado) {
 		Session session = sf.openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(complejidadEmpleado);
+		session.saveOrUpdate(tipoPedidoEmpleado);
 		session.flush();
 		session.getTransaction().commit();
 		session.close();
 	}
 
 	// ELIMINAR
-	public void BajaComplejidadEmpleado(ComplejidadEmpleado complejidadEmpleado) {
+	public void BajaTipoPedidoEmpleado(TipoPedidoEmpleado tipoPedidoEmpleado) {
 		Session session = sf.openSession();
 		session.beginTransaction();
-		session.delete(complejidadEmpleado);
+		session.delete(tipoPedidoEmpleado);
 		session.flush();
 		session.getTransaction().commit();
 		session.close();
@@ -57,35 +58,35 @@ public class ComplejidadEmpleadoDAO {
 
 	// BUSCAR
 
-	@SuppressWarnings("unchecked")
-	public List<ComplejidadEmpleado> getComplejidadEmpleados() {
-		List<ComplejidadEmpleado> empleados = new ArrayList<ComplejidadEmpleado>();
+	public TipoPedidoEmpleado buscarTipoPedidoEmpleado(int idEmpleado) {
+		TipoPedidoEmpleado c;
 		Session sesion = sf.openSession();
 
 		sesion.beginTransaction();
-		Query q = sesion.createQuery("SELECT e FROM ComplejidadEmpleado e");
-
-		empleados = q.list();
+		Query q = sesion.createQuery("SELECT c FROM TipoPedidoEmpleado c WHERE c.idEmpleado = :idEmpleado");
+		q.setInteger("idEmpleado", idEmpleado);
+		c = (TipoPedidoEmpleado) q.uniqueResult();
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
 
-		return empleados;
+		return c;
 	}
+	
 	@SuppressWarnings("unchecked")
-	public List<ComplejidadEmpleado> getComplejidadEmpleados(int idEmpleado) {
-		List<ComplejidadEmpleado> complejidadEmpleados = new ArrayList<ComplejidadEmpleado>();
+	public List<TipoPedidoEmpleado> getTipoPedidoEmpleados(int idEmpleado) {
+		List<TipoPedidoEmpleado> tipoPedidoEmpleados = new ArrayList<TipoPedidoEmpleado>();
 		Session sesion = sf.openSession();
 
 		sesion.beginTransaction();
 		Query q = sesion.createQuery("SELECT p FROM TipoPedidoEmpleado p WHERE p.idEmpleado = :idEmpleado");
 		q.setString(idEmpleado, "idEmpleado");
-		complejidadEmpleados = q.list();
+		tipoPedidoEmpleados = q.list();
 		sesion.getTransaction().commit();
 		sesion.flush();
 		sesion.close();
 
-		return complejidadEmpleados;
+		return tipoPedidoEmpleados;
 	}
 
 }
