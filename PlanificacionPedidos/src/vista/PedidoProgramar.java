@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -291,19 +292,27 @@ public class PedidoProgramar extends javax.swing.JPanel {
 					public void actionPerformed(ActionEvent evt) {
 
 						try {
-							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-							pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
 							pedido.setComplejidad(complejidad);
 							pedido.setTipoPedido(tipo);
-							empleados = Sistema.getInstancia().getEmpleadosCapacitadosYDisponibles(pedido);
-
-							if (empleados.size() == 0)
-								JOptionPane.showMessageDialog(null, "No hay empleados disponibles para los requisitos seleccionados");
+							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+							Date fechaInicio = formatter.parse(jTextFieldFecha.getText());
+							int duracion = Math.round(pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+							Date fechaInicioTope = formatter.parse(Sistema.getInstancia().sumarRestarDiasFecha(pedido.getFechaEntrega(), -duracion));
+							
+							if(fechaInicio.after(fechaInicioTope))
+								JOptionPane.showMessageDialog(null, "La fecha de inicio ingresada no es válida\n La fecha de inicio no puede ser posterior a " + fechaInicioTope.toString());
 							else {
+								pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
+								empleados = Sistema.getInstancia().getEmpleadosCapacitadosYDisponibles(pedido);
 
-								comboEmpleado.setEnabled(true);
-								for (int i = 0; i < empleados.size(); i++)
-									comboEmpleado.addItem(empleados.get(i).getApellido());
+								if (empleados.size() == 0)
+									JOptionPane.showMessageDialog(null, "No hay empleados disponibles para los requisitos seleccionados");
+								else {
+
+									comboEmpleado.setEnabled(true);
+									for (int i = 0; i < empleados.size(); i++)
+										comboEmpleado.addItem(empleados.get(i).getApellido());
+								}
 							}
 
 						} catch (ParseException e) {
