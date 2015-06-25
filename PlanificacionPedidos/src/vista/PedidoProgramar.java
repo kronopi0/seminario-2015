@@ -352,6 +352,8 @@ public class PedidoProgramar extends javax.swing.JPanel {
 						} catch (ParseException e) {
 							e.printStackTrace();
 						}
+						JOptionPane.showMessageDialog(null, "Pedido Programado.");
+						
 
 						jTextFieldId.setText("");
 						jTextFieldFechaSolicitud.setText("");

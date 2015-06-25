@@ -177,7 +177,7 @@ public class PedidoAlta extends javax.swing.JPanel {
 							p.setFechaSolicitud(new Date());
 							p.setPeriodicidad(Integer.valueOf(jTextFieldPeriodicidad.getText()));
 							Sistema.getInstancia().altaPedido(p);
-							JOptionPane.showMessageDialog(null, "Pedido cargado.");
+							JOptionPane.showMessageDialog(null, "Pedido Cargado.");
 							jTextFieldFechaEntrega.setText("dd/mm/aaaa");
 							jTextFieldPeriodicidad.setText("");
 							jTextFieldDescripcion.setText("");

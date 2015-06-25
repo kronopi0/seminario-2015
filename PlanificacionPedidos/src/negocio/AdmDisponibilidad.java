@@ -31,7 +31,7 @@ public class AdmDisponibilidad {
 			}
 		}
 		
-		p.setEmpleado(null);
+		//p.setEmpleado(null);
 		AdmPedido.getInstancia().actualizarPedido(p);
 	}
 
