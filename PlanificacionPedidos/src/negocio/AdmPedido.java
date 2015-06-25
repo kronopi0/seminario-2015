@@ -208,7 +208,15 @@ public class AdmPedido {
 		List<Empleado> empleadosCapacitadosYDisponibles = new ArrayList<Empleado>();
 
 		// Calculo la duración total en días que demanda el pedido
-		int duracion = Math.round(pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+		//int duracion = Math.round(pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+		float dur = (pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+		System.out.println("DURACION: " + dur);
+		int duracion = 0;
+		if (dur > (int) dur) {
+			duracion = (int) dur + 1;
+		} else {
+			duracion = (int) dur;
+		}
 		System.out.println("DURACION TOTAL: " + duracion);
 
 		// Con la fecha de inicio del pedido junto con su duración en días
@@ -274,7 +282,15 @@ public class AdmPedido {
 
 	public void programarPedido(Pedido pedido, Empleado empleado) throws ParseException {
 		// Calculo la duración total en días que demanda el pedido
-		int duracion = Math.round(pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+		//int duracion = Math.round(pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+		float dur = (pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+		System.out.println("DURACION: " + dur);
+		int duracion = 0;
+		if (dur > (int) dur) {
+			duracion = (int) dur + 1;
+		} else {
+			duracion = (int) dur;
+		}
 		String mensaje = "";
 
 		// Con la fecha de inicio del pedido junto con su duración en días

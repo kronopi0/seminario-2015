@@ -296,7 +296,15 @@ public class PedidoProgramar extends javax.swing.JPanel {
 							pedido.setTipoPedido(tipo);
 							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 							Date fechaInicio = formatter.parse(jTextFieldFecha.getText());
-							int duracion = Math.round(pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+							//int duracion = Math.round(pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+							float dur = (pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+							System.out.println("DURACION: " + dur);
+							int duracion = 0;
+							if (dur > (int) dur) {
+								duracion = (int) dur + 1;
+							} else {
+								duracion = (int) dur;
+							}
 							Date fechaInicioTope = formatter.parse(Sistema.getInstancia().sumarRestarDiasFecha(pedido.getFechaEntrega(), -duracion));
 							
 							if(fechaInicio.after(fechaInicioTope))
