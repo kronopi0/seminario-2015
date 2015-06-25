@@ -1,8 +1,6 @@
 package negocio;
 
 import java.text.ParseException;
-import javax.swing.JOptionPane;
-
 import dao.DisponibilidadDAO;
 import entities.Disponibilidad;
 import entities.Pedido;
@@ -32,6 +30,9 @@ public class AdmDisponibilidad {
 				dao.BajaDisponibilidad(d);
 			}
 		}
+		
+		p.setEmpleado(null);
+		AdmPedido.getInstancia().actualizarPedido(p);
 	}
 
 }

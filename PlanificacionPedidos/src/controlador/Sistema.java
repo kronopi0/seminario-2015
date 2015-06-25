@@ -58,21 +58,17 @@ public class Sistema {
 	public void altaPedido(PedidoDTO p) {
 		AdmPedido.getInstancia().altaPedido(p);
 	}
-
-	public void programarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) throws ParseException {
-		AdmPedido.getInstancia().programarPedido(pedido, tipo, complejidad);
+	
+	public void programarPedido(Pedido pedido, Empleado empleado) throws ParseException {
+		AdmPedido.getInstancia().programarPedido(pedido, empleado);
 	}
-
+	
 	public void finalizarPedido(Pedido p) throws ParseException {
 		AdmPedido.getInstancia().finalizarPedido(p);
 	}
 
 	public void liberarDisponibilidadPedido(Pedido pedido) throws ParseException {
 		AdmDisponibilidad.getInstancia().liberarDisponibilidadPedido(pedido);
-	}
-
-	public void reprogramarPedido(Pedido pedido, TipoPedido tipo, ComplejidadPedido complejidad) throws ParseException {
-		AdmPedido.getInstancia().programarPedido(pedido, tipo, complejidad);
 	}
 
 	public List<Pedido> getPedidos(String estado) {

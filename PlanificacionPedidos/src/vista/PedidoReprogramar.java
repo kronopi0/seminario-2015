@@ -347,9 +347,10 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 						try {
 							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 							pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
-							pedido.setEmpleado(empleado);
-							Sistema.getInstancia().programarPedido(pedido, tipo, complejidad);
-
+							//pedido.setEmpleado(empleado);
+							//Sistema.getInstancia().programarPedido(pedido, tipo, complejidad);
+							Sistema.getInstancia().programarPedido(pedido, empleado);
+							
 						} catch (ParseException e) {
 							e.printStackTrace();
 						}

@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import controlador.Sistema;
-import dto.ClienteDTO;
 import entities.Pedido;
 
 /**

@@ -9,7 +9,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ComplejidadPedido;
 import entities.TipoPedido;
 
 public class TipoPedidoDAO {

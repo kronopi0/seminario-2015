@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import controlador.Sistema;
 import dto.ClienteDTO;
 import dto.PedidoDTO;
-import entities.Pedido;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI

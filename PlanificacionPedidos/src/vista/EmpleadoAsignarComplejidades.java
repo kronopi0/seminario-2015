@@ -1,6 +1,5 @@
 package vista;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,17 +11,12 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.event.TableModelEvent;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
 import controlador.Sistema;
-import dto.ComplejidadPedidoDTO;
 import dto.EmpleadoDTO;
-import entities.Pedido;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
@@ -55,8 +49,6 @@ public class EmpleadoAsignarComplejidades extends javax.swing.JPanel {
 	private EmpleadoAsignarComplejidades instancia;
 	private List<EmpleadoDTO> empleados;
 	private EmpleadoDTO empleado;
-	private List<ComplejidadPedidoDTO> complejidades;
-	private ComplejidadPedidoDTO complejidad;
 	private JComboBox<String> comboEmpleado;
 	private JLabel jLabelSeleccionar;
 	private JLabel jLabelComplejidades;
