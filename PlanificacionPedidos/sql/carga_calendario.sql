@@ -16,6 +16,9 @@ CREATE TABLE [dbo].[CALENDARIO](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+--Asignacion de lenguage de la sesion de base de datos
+SET LANGUAGE SPANISH
+
 ---------------------------------------------
 ---INSERCION DE DATOS EN LA TABLA FESTIVOS---
 ---------------------------------------------
@@ -52,8 +55,7 @@ INSERT [dbo].[FESTIVOS] ([nombre], [fecha]) VALUES ('Navidad', '25/12/2015')
 ---SCRIPT DE INSERCION DE DATOS EN LA TABLA CALENDARIO---
 ---------------------------------------------------------
 
---Asignacion de lenguage de la sesion de base de datos
-SET LANGUAGE SPANISH
+
 
 
 --Fecha inicial desde la cual se va a crear la tabla con los dias festivos
