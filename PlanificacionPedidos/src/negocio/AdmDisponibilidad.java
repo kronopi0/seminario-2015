@@ -24,8 +24,8 @@ public class AdmDisponibilidad {
 	
 	public void liberarDisponibilidadPedido(Pedido p) throws ParseException {
 
-		String mensaje = "Entra a liberarDisponibilidadPedido ";
-		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
+		//String mensaje = "Entra a liberarDisponibilidadPedido ";
+		//JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 		
 		for (Disponibilidad d : p.getEmpleado().getDisponibilidades()) {
 			if (d.getFechaInicio().compareTo(p.getFechaInicio()) == 0) {

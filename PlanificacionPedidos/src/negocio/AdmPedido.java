@@ -311,7 +311,7 @@ public class AdmPedido {
 		empleado.agregarDisponibilidad(disp);
 		AdmEmpleado.getInstancia().actualizarEmpleado(empleado);
 
-		mensaje = "Empleado Asignado  id : " + empleado.getId() + " Nombre : " + empleado.getNombre() + " Apellido : " + empleado.getApellido();
+		//mensaje = "Empleado Asignado  id : " + empleado.getId() + " Nombre : " + empleado.getNombre() + " Apellido : " + empleado.getApellido();
 		JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 		JOptionPane.showMessageDialog(null, "Pedido programado.");
 

@@ -5,34 +5,33 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 import controlador.Sistema;
-import dto.ClienteDTO;
 import entities.ComplejidadPedido;
+import entities.Empleado;
 import entities.Pedido;
 import entities.TipoPedido;
 
-
 /**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/ 
+ * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
+ * Builder, which is free for non-commercial use. If Jigloo is being used
+ * commercially (ie, by a corporation, company or business for any purpose
+ * whatever) then you should purchase a license for each developer using Jigloo.
+ * Please visit www.cloudgarden.com for details. Use of Jigloo implies
+ * acceptance of these licensing terms. A COMMERCIAL LICENSE HAS NOT BEEN
+ * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
+ * ANY CORPORATE OR COMMERCIAL PURPOSE.
+ */
 public class PedidoReprogramar extends javax.swing.JPanel {
 	/**
 	 * 
@@ -50,16 +49,15 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 	private JButton jButtonSalir;
 	private PedidoReprogramar instancia;
 	private JComboBox<String> comboPendientes;
-	private List<ClienteDTO> clientes;
 	private JLabel jLabelPedidosPendientes;
 	private Pedido pedido;
 	private List<Pedido> pedidos;
 	private JLabel jLabel1;
 	private JLabel jLabel2;
+	private JLabel jLabel3;
 	private JButton jButtonLiberarEmpleado;
 	private JComboBox<String> comboComplejidad;
 	private JComboBox<String> comboTipo;
-	private JSeparator jSeparator2;
 	private TipoPedido tipo;
 	private List<TipoPedido> tipos;
 	private ComplejidadPedido complejidad;
@@ -68,6 +66,11 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 	private JTextField jTextFieldFecha;
 	private JLabel jLabelPeriodicidad;
 	private JTextField jTextFieldPeriodicidad;
+	private JButton jButtonEmpleados;
+	private JLabel jLabel10;
+	private JComboBox<String> comboEmpleado;
+	private List<Empleado> empleados;
+	private Empleado empleado;
 
 	/**
 	 * Auto-generated main method to display this JPanel inside a new JFrame.
@@ -83,7 +86,7 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 
 	private void initGUI() {
 		try {
-			this.setPreferredSize(new java.awt.Dimension(676, 380));
+			setPreferredSize(new Dimension(676, 360));
 			this.setLayout(null);
 			{
 				jLabelCliente = new JLabel();
@@ -102,7 +105,7 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 			{
 				jLabelPedidosPendientes = new JLabel();
 				this.add(jLabelPedidosPendientes);
-				jLabelPedidosPendientes.setText("1) Seleccionar un pedido a reprogramar:");
+				jLabelPedidosPendientes.setText("1) Seleccionar un pedido a Reprogramar:");
 				jLabelPedidosPendientes.setBounds(39, 16, 248, 19);
 				jLabelPedidosPendientes.setFont(new java.awt.Font("Segoe UI", 1, 13));
 			}
@@ -110,7 +113,7 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 				comboPendientes = new JComboBox<String>();
 				this.add(comboPendientes);
 				comboPendientes.setBounds(37, 40, 254, 26);
-				
+
 				pedidos = Sistema.getInstancia().getPedidos("Programado");
 				for (int i = 0; i < pedidos.size(); i++)
 					comboPendientes.addItem(pedidos.get(i).getDescripcion());
@@ -121,7 +124,7 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 						for (int i = 0; i < pedidos.size(); i++)
 							if (comboPendientes.getSelectedItem().toString().equals(pedidos.get(i).getDescripcion()))
 								pedido = pedidos.get(i);
-						
+
 						jTextFieldId.setText(pedido.getId() + "");
 						jTextFieldFechaSolicitud.setText(pedido.getFechaSolicitud() + "");
 						jTextFieldCliente.setText(pedido.getCliente().getNombre());
@@ -158,23 +161,47 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 			{
 				jLabel1 = new JLabel();
 				this.add(jLabel1);
-				jLabel1.setText("2) Seleccionar tipo de pedido:");
-				jLabel1.setBounds(437, 28, 179, 16);
+				jLabel1.setText("3) Seleccionar tipo de pedido:");
+				jLabel1.setBounds(79, 228, 179, 16);
 				jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12));
+			}
+			{
+				jLabel10 = new JLabel();
+				this.add(jLabel10);
+				jLabel10.setText("6) Seleccionar empleado:");
+				jLabel10.setBounds(438, 205, 154, 16);
+				jLabel10.setFont(new java.awt.Font("SansSerif", 1, 12));
 			}
 			{
 				jLabel2 = new JLabel();
 				this.add(jLabel2);
-				jLabel2.setText("3) Seleccionar complejidad:");
-				jLabel2.setBounds(437, 98, 193, 16);
+				jLabel2.setText("4) Seleccionar complejidad:");
+				jLabel2.setBounds(432, 12, 193, 16);
 				jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12));
 			}
 			{
 				jLabel5 = new JLabel();
 				this.add(jLabel5);
-				jLabel5.setText("4) Ingresar fecha de inicio:");
-				jLabel5.setBounds(264, 251, 163, 16);
+				jLabel5.setText("5) Ingresar fecha de inicio:");
+				jLabel5.setBounds(436, 76, 163, 16);
 				jLabel5.setFont(new java.awt.Font("SansSerif", 1, 12));
+			}
+
+			{
+				comboEmpleado = new JComboBox<String>();
+				this.add(comboEmpleado);
+				comboEmpleado.setBounds(409, 232, 220, 26);
+				comboEmpleado.setEnabled(false);
+				comboEmpleado.addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent evt) {
+						for (int i = 0; i < empleados.size(); i++)
+							if (comboEmpleado.getSelectedItem().toString().equals(empleados.get(i).getApellido())) {
+								empleado = empleados.get(i);
+							}
+					}
+				});
+
 			}
 
 			{
@@ -201,7 +228,7 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 			{
 				jTextFieldFecha = new JTextField();
 				this.add(jTextFieldFecha);
-				jTextFieldFecha.setBounds(252, 279, 179, 27);
+				jTextFieldFecha.setBounds(430, 100, 179, 27);
 				jTextFieldFecha.setEnabled(true);
 				jTextFieldFecha.setText("dd/mm/aaaa");
 			}
@@ -209,18 +236,13 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 			{
 				jSeparator1 = new JSeparator();
 				this.add(jSeparator1);
-				jSeparator1.setBounds(0, 318, 700, 11);
-			}
-			{
-				jSeparator2 = new JSeparator();
-				this.add(jSeparator2);
-				jSeparator2.setBounds(-5, 235, 700, 11);
+				jSeparator1.setBounds(0, 288, 700, 11);
 			}
 
 			{
 				comboTipo = new JComboBox<String>();
 				this.add(comboTipo);
-				comboTipo.setBounds(418, 53, 216, 26);
+				comboTipo.setBounds(61, 256, 216, 26);
 
 				tipos = Sistema.getInstancia().getTiposDePedido();
 
@@ -241,7 +263,7 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 			{
 				comboComplejidad = new JComboBox<String>();
 				this.add(comboComplejidad);
-				comboComplejidad.setBounds(418, 123, 216, 26);
+				comboComplejidad.setBounds(413, 37, 216, 26);
 
 				complejidades = Sistema.getInstancia().getComplejidadesPedido();
 
@@ -251,7 +273,7 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 
 				comboComplejidad.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						for (int i = 0; i < tipos.size(); i++)
+						for (int i = 0; i < complejidades.size(); i++)
 							if (comboComplejidad.getSelectedItem().toString().equals(complejidades.get(i).getNombre()))
 								complejidad = complejidades.get(i);
 
@@ -260,13 +282,63 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 				});
 
 			}
+			{
+				jButtonEmpleados = new JButton();
+				jButtonEmpleados.setLayout(null);
+				this.add(jButtonEmpleados);
+				jButtonEmpleados.setText("Buscar Empleados");
+				jButtonEmpleados.setBounds(442, 135, 157, 30);
+				jButtonEmpleados.setFont(new java.awt.Font("SansSerif", 1, 13));
+				jButtonEmpleados.addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent evt) {
+
+						try {
+							pedido.setComplejidad(complejidad);
+							pedido.setTipoPedido(tipo);
+							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+							Date fechaInicio = formatter.parse(jTextFieldFecha.getText());
+							//int duracion = Math.round(pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+							float dur = (pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+							System.out.println("DURACION: " + dur);
+							int duracion = 0;
+							if (dur > (int) dur) {
+								duracion = (int) dur + 1;
+							} else {
+								duracion = (int) dur;
+							}
+							Date fechaInicioTope = formatter.parse(Sistema.getInstancia().sumarRestarDiasFecha(pedido.getFechaEntrega(), -duracion));
+							
+							if(fechaInicio.after(fechaInicioTope))
+								JOptionPane.showMessageDialog(null, "La fecha de inicio ingresada no es válida\n La fecha de inicio no puede ser posterior a " + fechaInicioTope.toString());
+							else {
+								pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
+								empleados = Sistema.getInstancia().getEmpleadosCapacitadosYDisponibles(pedido);
+
+								if (empleados.size() == 0)
+									JOptionPane.showMessageDialog(null, "No hay empleados disponibles para los requisitos seleccionados");
+								else {
+
+									comboEmpleado.setEnabled(true);
+									for (int i = 0; i < empleados.size(); i++)
+										comboEmpleado.addItem(empleados.get(i).getApellido());
+								}
+							}
+
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+
+					}
+				});
+			}
 
 			{
 				jButtonConfirmar = new JButton();
 				jButtonConfirmar.setLayout(null);
 				this.add(jButtonConfirmar);
 				jButtonConfirmar.setText("Confirmar");
-				jButtonConfirmar.setBounds(182, 329, 91, 40);
+				jButtonConfirmar.setBounds(186, 304, 91, 40);
 				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonConfirmar.addActionListener(new ActionListener() {
 
@@ -275,8 +347,9 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 						try {
 							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 							pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
-							Sistema.getInstancia().reprogramarPedido(pedido, tipo, complejidad);
-							
+							pedido.setEmpleado(empleado);
+							Sistema.getInstancia().programarPedido(pedido, tipo, complejidad);
+
 						} catch (ParseException e) {
 							e.printStackTrace();
 						}
@@ -286,11 +359,11 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 						jTextFieldCliente.setText("");
 						jTextFieldPeriodicidad.setText("");
 
-					/*	pedidos.clear();
+						pedidos.clear();
 						comboPendientes.removeAllItems();
-						pedidos = Sistema.getInstancia().getPedidos("pendiente");
-						for (int i = 0; i < clientes.size(); i++)
-							comboPendientes.addItem(pedidos.get(i).getDescripcion());*/
+						pedidos.addAll(Sistema.getInstancia().getPedidos("pendiente"));
+						for (int i = 0; i < pedidos.size(); i++)
+							comboPendientes.addItem(pedidos.get(i).getDescripcion());
 
 					}
 				});
@@ -299,7 +372,7 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 				jButtonSalir = new JButton();
 				this.add(jButtonSalir);
 				jButtonSalir.setText("Salir");
-				jButtonSalir.setBounds(397, 329, 91, 40);
+				jButtonSalir.setBounds(396, 304, 91, 40);
 				jButtonSalir.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonSalir.addActionListener(new ActionListener() {
 
@@ -312,8 +385,8 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 			{
 				jButtonLiberarEmpleado = new JButton();
 				this.add(jButtonLiberarEmpleado);
-				jButtonLiberarEmpleado.setText("LiberarEmpleado");
-				jButtonLiberarEmpleado.setBounds(149, 197, 163, 29);
+				jButtonLiberarEmpleado.setText("Liberar Empleado");
+				jButtonLiberarEmpleado.setBounds(149, 194, 163, 29);
 				jButtonLiberarEmpleado.addActionListener(new ActionListener() {
 
 					public void actionPerformed(ActionEvent e) {
@@ -325,6 +398,13 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 						}
 					}
 				});
+			}
+			{
+				jLabel3 = new JLabel();
+				this.add(jLabel3);
+				jLabel3.setText("2) Liberar Empleado:");
+				jLabel3.setFont(new java.awt.Font("SansSerif",1,12));
+				jLabel3.setBounds(20, 197, 179, 16);
 			}
 
 		} catch (Exception e) {
