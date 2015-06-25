@@ -366,6 +366,10 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 						pedidos.addAll(Sistema.getInstancia().getPedidos("pendiente"));
 						for (int i = 0; i < pedidos.size(); i++)
 							comboPendientes.addItem(pedidos.get(i).getDescripcion());
+						
+						
+						empleados.clear();
+						comboEmpleado.removeAllItems();
 
 					}
 				});

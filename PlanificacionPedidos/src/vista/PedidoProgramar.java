@@ -296,7 +296,9 @@ public class PedidoProgramar extends javax.swing.JPanel {
 							pedido.setTipoPedido(tipo);
 							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 							Date fechaInicio = formatter.parse(jTextFieldFecha.getText());
-							//int duracion = Math.round(pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
+							// int duracion =
+							// Math.round(pedido.getTipoPedido().getTiempo() *
+							// pedido.getComplejidad().getFactorTiempo());
 							float dur = (pedido.getTipoPedido().getTiempo() * pedido.getComplejidad().getFactorTiempo());
 							System.out.println("DURACION: " + dur);
 							int duracion = 0;
@@ -306,9 +308,10 @@ public class PedidoProgramar extends javax.swing.JPanel {
 								duracion = (int) dur;
 							}
 							Date fechaInicioTope = formatter.parse(Sistema.getInstancia().sumarRestarDiasFecha(pedido.getFechaEntrega(), -duracion));
-							
-							if(fechaInicio.after(fechaInicioTope))
-								JOptionPane.showMessageDialog(null, "La fecha de inicio ingresada no es válida\n La fecha de inicio no puede ser posterior a " + fechaInicioTope.toString());
+
+							if (fechaInicio.after(fechaInicioTope))
+								JOptionPane.showMessageDialog(null,
+										"La fecha de inicio ingresada no es válida\n La fecha de inicio no puede ser posterior a " + fechaInicioTope.toString());
 							else {
 								pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
 								empleados = Sistema.getInstancia().getEmpleadosCapacitadosYDisponibles(pedido);
@@ -345,15 +348,15 @@ public class PedidoProgramar extends javax.swing.JPanel {
 						try {
 							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 							pedido.setFechaInicio(formatter.parse(jTextFieldFecha.getText()));
-							//pedido.setEmpleado(empleado);
-							//Sistema.getInstancia().programarPedido(pedido, tipo, complejidad);
+							// pedido.setEmpleado(empleado);
+							// Sistema.getInstancia().programarPedido(pedido,
+							// tipo, complejidad);
 							Sistema.getInstancia().programarPedido(pedido, empleado);
-							
+
 						} catch (ParseException e) {
 							e.printStackTrace();
 						}
 						JOptionPane.showMessageDialog(null, "Pedido Programado.");
-						
 
 						jTextFieldId.setText("");
 						jTextFieldFechaSolicitud.setText("");
@@ -365,6 +368,9 @@ public class PedidoProgramar extends javax.swing.JPanel {
 						pedidos.addAll(Sistema.getInstancia().getPedidos("pendiente"));
 						for (int i = 0; i < pedidos.size(); i++)
 							comboPendientes.addItem(pedidos.get(i).getDescripcion());
+
+						empleados.clear();
+						comboEmpleado.removeAllItems();
 
 					}
 				});
