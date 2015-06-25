@@ -47,8 +47,8 @@ public class DisponibilidadDAO {
 		Session session = sf.openSession();
 		session.beginTransaction();
 		session.delete(disponibilidad);
-		session.flush();
 		session.getTransaction().commit();
+		session.flush();
 		session.close();
 	}
 
