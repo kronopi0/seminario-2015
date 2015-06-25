@@ -396,8 +396,20 @@ public class Principal extends javax.swing.JFrame {
 								}
 							});
 						}
-						/*jMenuEmpleados.add(new JSeparator());
+						jMenuEmpleados.add(new JSeparator());
 						{
+							capacidadesMenuItem = new JMenuItem();
+							jMenuEmpleados.add(capacidadesMenuItem);
+							capacidadesMenuItem.setText("Licencias");
+							capacidadesMenuItem.addActionListener(new ActionListener() {
+
+								public void actionPerformed(ActionEvent evt) {
+									EmpleadoLicencia tabComplejidadAsignarEmpleado = new EmpleadoLicencia(panel);
+									panel.addTab("Licencias", tabComplejidadAsignarEmpleado);
+								}
+							});
+						}
+						/*{
 							capacidadesMenuItem = new JMenuItem();
 							jMenuEmpleados.add(capacidadesMenuItem);
 							capacidadesMenuItem.setText("Asignar complejidades");

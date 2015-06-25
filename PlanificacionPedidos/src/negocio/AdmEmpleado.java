@@ -85,5 +85,15 @@ public class AdmEmpleado {
 			dtos.add(toDTO(entities.get(i)));
 		return dtos;
 	}
+	
+	public void agregarLicencia(Empleado empleado,Disponibilidad disponibilidad)  {
+		empleado.agregarDisponibilidad(disponibilidad);
+		AdmEmpleado.getInstancia().actualizarEmpleado(empleado);
+	}
+
+	public List<Empleado> getEmpleados() {
+		return dao.getEmpleados();
+		
+	}
 
 }

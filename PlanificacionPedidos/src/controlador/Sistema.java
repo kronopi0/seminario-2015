@@ -17,6 +17,7 @@ import negocio.AdmPedido;
 import negocio.AdmTipoPedido;
 import entities.Cliente;
 import entities.ComplejidadPedido;
+import entities.Disponibilidad;
 import entities.Empleado;
 import entities.Pedido;
 import entities.TipoPedido;
@@ -149,6 +150,16 @@ public class Sistema {
 	public List<EmpleadoDTO> getEmpleadosCapacitadosDTO(TipoPedido tipo, ComplejidadPedido complejidad) {
 		return AdmEmpleado.getInstancia().getEmpleadosCapacitadosDTO(tipo, complejidad);
 	}
+	
+	public void agregarLicencia(Empleado empleado,Disponibilidad disponibilidad) {
+		AdmEmpleado.getInstancia().agregarLicencia(empleado,disponibilidad);
+	}
+	
+	public List<Empleado> getEmpleados() {
+		return AdmEmpleado.getInstancia().getEmpleados();
+	}
+	
+	
 
 	/*
 	 * COMPLEJIDAD PEDIDO

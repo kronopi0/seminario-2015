@@ -118,13 +118,13 @@ public class PedidoAlta extends javax.swing.JPanel {
 				jLabelFechaEntrega.setBounds(173, 190, 129, 38);
 				jLabelFechaEntrega.setFont(new java.awt.Font("SansSerif", 1, 13));
 			}
-			{
+			/*{
 				jLabelPeriodicidad = new JLabel();
 				this.add(jLabelPeriodicidad);
 				jLabelPeriodicidad.setText("Periodicidad:");
 				jLabelPeriodicidad.setBounds(173, 233, 106, 38);
 				jLabelPeriodicidad.setFont(new java.awt.Font("SansSerif", 1, 13));
-			}
+			}*/
 			{
 				jTextFieldDescripcion = new JTextField();
 				this.add(jTextFieldDescripcion);
@@ -136,12 +136,12 @@ public class PedidoAlta extends javax.swing.JPanel {
 				jTextFieldFechaEntrega.setBounds(313, 194, 230, 28);
 				jTextFieldFechaEntrega.setText("dd/mm/aaaa");
 			}
-			{
+			/*{
 				jTextFieldPeriodicidad = new JTextField();
 				this.add(jTextFieldPeriodicidad);
 				jTextFieldPeriodicidad.setBounds(313, 236, 230, 28);
 				jTextFieldPeriodicidad.setText("0");
-			}
+			}*/
 			{
 				jSeparator1 = new JSeparator();
 				this.add(jSeparator1);
@@ -161,7 +161,7 @@ public class PedidoAlta extends javax.swing.JPanel {
 				jButtonConfirmar.setFont(new java.awt.Font("SansSerif", 1, 13));
 				jButtonConfirmar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						if (jTextFieldFechaEntrega.getText().isEmpty() || jTextFieldPeriodicidad.getText().isEmpty() || jTextFieldDescripcion.getText().isEmpty()) {
+						if (jTextFieldFechaEntrega.getText().isEmpty() || jTextFieldDescripcion.getText().isEmpty()) {
 							JOptionPane.showMessageDialog(null, "Faltan completar campos.");
 						} else {
 							SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -175,11 +175,10 @@ public class PedidoAlta extends javax.swing.JPanel {
 								e.printStackTrace();
 							}
 							p.setFechaSolicitud(new Date());
-							p.setPeriodicidad(Integer.valueOf(jTextFieldPeriodicidad.getText()));
+							p.setPeriodicidad(0);
 							Sistema.getInstancia().altaPedido(p);
 							JOptionPane.showMessageDialog(null, "Pedido Cargado.");
 							jTextFieldFechaEntrega.setText("dd/mm/aaaa");
-							jTextFieldPeriodicidad.setText("");
 							jTextFieldDescripcion.setText("");
 						}
 					}
