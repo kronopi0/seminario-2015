@@ -64,7 +64,6 @@ public class AdmPedido {
 				}
 			}
 		}
-
 		dao.actualizarPedido(p);
 	}
 
