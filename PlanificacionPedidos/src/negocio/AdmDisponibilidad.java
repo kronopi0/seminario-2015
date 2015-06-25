@@ -25,14 +25,15 @@ public class AdmDisponibilidad {
 		//String mensaje = "Entra a liberarDisponibilidadPedido ";
 		//JOptionPane.showMessageDialog(null, mensaje, "OK", JOptionPane.INFORMATION_MESSAGE);
 		
-		for (Disponibilidad d : p.getEmpleado().getDisponibilidades()) {
+		for(Disponibilidad d : p.getEmpleado().getDisponibilidades()) {
 			if (d.getFechaInicio().compareTo(p.getFechaInicio()) == 0) {
-				dao.BajaDisponibilidad(d);
+				dao.borrarDisponibilidadPorId(d.getIdDisponibilidad());
 			}
 		}
 		
 		//p.setEmpleado(null);
-		AdmPedido.getInstancia().actualizarPedido(p);
+		//AdmPedido.getInstancia().actualizarPedido(p);
 	}
+
 
 }

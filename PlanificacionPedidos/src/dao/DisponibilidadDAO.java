@@ -67,4 +67,13 @@ public class DisponibilidadDAO {
 		return disponibilidades;
 	}
 
+	public void borrarDisponibilidadPorId(int idDisp) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		sesion.createSQLQuery("DELETE FROM DISPONIBILIDADES WHERE idDisponibilidad = :id").
+				setInteger("id", idDisp).executeUpdate();
+		sesion.getTransaction().commit();
+		sesion.close();
+	}
+	
 }
