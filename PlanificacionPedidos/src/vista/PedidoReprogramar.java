@@ -356,6 +356,7 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 							e.printStackTrace();
 						}
 						JOptionPane.showMessageDialog(null, "Pedido Reprogramado.");
+						jButtonSalir.setEnabled(true);
 						jTextFieldId.setText("");
 						jTextFieldFechaSolicitud.setText("");
 						jTextFieldCliente.setText("");
@@ -400,6 +401,7 @@ public class PedidoReprogramar extends javax.swing.JPanel {
 							Sistema.getInstancia().liberarDisponibilidadPedido(pedido);
 							JOptionPane.showMessageDialog(null, "Empleado Liberado.");
 							jButtonLiberarEmpleado.setEnabled(false);
+							jButtonSalir.setEnabled(false);
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

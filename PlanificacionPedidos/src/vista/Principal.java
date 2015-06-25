@@ -396,7 +396,7 @@ public class Principal extends javax.swing.JFrame {
 								}
 							});
 						}
-						jMenuEmpleados.add(new JSeparator());
+						/*jMenuEmpleados.add(new JSeparator());
 						{
 							capacidadesMenuItem = new JMenuItem();
 							jMenuEmpleados.add(capacidadesMenuItem);
@@ -420,7 +420,7 @@ public class Principal extends javax.swing.JFrame {
 									panel.addTab("Asignar tipos", tabEmpleadoAsignarTiposPedido);
 								}
 							});
-						}
+						}*/
 					}
 
 					{
